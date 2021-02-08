@@ -38,8 +38,13 @@ import {
 import {
   PermissionController,
   SubjectMetadataController,
+  ///: BEGIN:ONLY_INCLUDE_IN(flask)
+  SnapController,
+  ///: END:ONLY_INCLUDE_IN
 } from '@metamask/snap-controllers';
-
+///: BEGIN:ONLY_INCLUDE_IN(flask)
+import { IframeExecutionEnvironmentService } from '@metamask/iframe-execution-environment-service';
+///: END:ONLY_INCLUDE_IN
 import { TRANSACTION_STATUSES } from '../../shared/constants/transaction';
 import {
   GAS_API_BASE_URL,
@@ -64,7 +69,12 @@ import { hexToDecimal } from '../../ui/helpers/utils/conversions.util';
 import ComposableObservableStore from './lib/ComposableObservableStore';
 import AccountTracker from './lib/account-tracker';
 import createLoggerMiddleware from './lib/createLoggerMiddleware';
-import createMethodMiddleware from './lib/rpc-method-middleware';
+import {
+  createMethodMiddleware,
+  ///: BEGIN:ONLY_INCLUDE_IN(flask)
+  createSnapMethodMiddleware,
+  ///: END:ONLY_INCLUDE_IN
+} from './lib/rpc-method-middleware';
 import createOriginMiddleware from './lib/createOriginMiddleware';
 import createTabIdMiddleware from './lib/createTabIdMiddleware';
 import createOnboardingMiddleware from './lib/createOnboardingMiddleware';
@@ -509,6 +519,87 @@ export default class MetamaskController extends EventEmitter {
       subjectCacheLimit: 100,
     });
 
+    ///: BEGIN:ONLY_INCLUDE_IN(flask)
+    this.workerController = new IframeExecutionEnvironmentService({
+      onError: this.onExecutionEnvironmentError.bind(this),
+      iframeUrl: new URL(
+        'https://metamask.github.io/iframe-execution-environment/',
+      ),
+      messenger: this.controllerMessenger.getRestricted({
+        name: 'ServiceMessenger',
+      }),
+      setupSnapProvider: this.setupSnapProvider.bind(this),
+    });
+
+    const snapControllerMessenger = this.controllerMessenger.getRestricted({
+      name: 'SnapController',
+      allowedEvents: [
+        'ServiceMessenger:unhandledError',
+        'ServiceMessenger:unresponsive',
+      ],
+    });
+
+    this.snapController = new SnapController({
+      terminateAllSnaps: this.workerController.terminateAllSnaps.bind(
+        this.workerController,
+      ),
+      terminateSnap: this.workerController.terminateSnap.bind(
+        this.workerController,
+      ),
+      executeSnap: this.workerController.executeSnap.bind(
+        this.workerController,
+      ),
+      getRpcMessageHandler: this.workerController.getRpcMessageHandler.bind(
+        this.workerController,
+      ),
+      getPermissions: this.permissionController.getPermissions.bind(
+        this.permissionController,
+      ),
+      hasPermission: this.permissionController.hasPermission.bind(
+        this.permissionController,
+      ),
+      removeAllPermissionsFor: (snapIds) => {
+        snapIds.forEach((snapId) =>
+          this.permissionController.revokeAllPermissions(snapId),
+        );
+      },
+      requestPermissions: (snapId, requestedPermissions) => {
+        this.permissionController.requestPermissions(
+          { origin: snapId },
+          requestedPermissions,
+        );
+      },
+      closeAllConnections: this.removeAllConnections.bind(this),
+      state: initState.SnapController,
+      messenger: snapControllerMessenger,
+    });
+    ///: END:ONLY_INCLUDE_IN
+
+    // TODO:rebase fix this after skunkworks@0.5.0
+    // this.permissionsController.initializePermissions(
+    //   initState.PermissionsController,
+    //   getRestrictedMethods,
+    //   ///: BEGIN:ONLY_INCLUDE_IN(flask)
+    //   {
+    //     addSnap: this.snapController.add.bind(this.snapController),
+    //     clearSnapState: (fromDomain) =>
+    //       this.snapController.updateSnapState(fromDomain, {}),
+    //     getMnemonic: this.getPrimaryKeyringMnemonic.bind(this),
+    //     getSnap: this.snapController.get.bind(this.snapController),
+    //     getSnapRpcHandler: this.snapController.getRpcMessageHandler.bind(
+    //       this.snapController,
+    //     ),
+    //     getSnapState: this.snapController.getSnapState.bind(
+    //       this.snapController,
+    //     ),
+    //     showConfirmation: window.confirm, // Eventually, a template confirmation.
+    //     updateSnapState: this.snapController.updateSnapState.bind(
+    //       this.snapController,
+    //     ),
+    //   },
+    //   ///: END:ONLY_INCLUDE_IN
+    // );
+
     this.detectTokensController = new DetectTokensController({
       preferences: this.preferencesController,
       tokensController: this.tokensController,
@@ -713,6 +804,9 @@ export default class MetamaskController extends EventEmitter {
       TokenListController: this.tokenListController,
       TokensController: this.tokensController,
       CollectiblesController: this.collectiblesController,
+      ///: BEGIN:ONLY_INCLUDE_IN(flask)
+      SnapController: this.snapController,
+      ///: END:ONLY_INCLUDE_IN
     });
 
     this.memStore = new ComposableObservableStore({
@@ -749,6 +843,9 @@ export default class MetamaskController extends EventEmitter {
         TokenListController: this.tokenListController,
         TokensController: this.tokensController,
         CollectiblesController: this.collectiblesController,
+        ///: BEGIN:ONLY_INCLUDE_IN(flask)
+        SnapController: this.snapController,
+        ///: END:ONLY_INCLUDE_IN
       },
       controllerMessenger: this.controllerMessenger,
     });
@@ -1003,6 +1100,11 @@ export default class MetamaskController extends EventEmitter {
     return {
       // etc
       getState: (cb) => cb(null, this.getState()),
+      ///: BEGIN:ONLY_INCLUDE_IN(flask)
+      removeSnapError: nodeify(
+        this.snapController.removeSnapError.bind(this.snapController),
+      ),
+      ///: END:ONLY_INCLUDE_IN
       setCurrentCurrency: nodeify(
         this.currencyRateController.setCurrentCurrency.bind(
           this.currencyRateController,
@@ -1778,6 +1880,17 @@ export default class MetamaskController extends EventEmitter {
     this.preferencesController.setSelectedAddress(address);
   }
 
+  /**
+   * Gets the mnemonic of the user's primary keyring.
+   */
+  getPrimaryKeyringMnemonic() {
+    const keyring = this.keyringController.getKeyringsByType('HD Key Tree')[0];
+    if (!keyring.mnemonic) {
+      throw new Error('Primary keyring mnemonic unavailable.');
+    }
+    return keyring.mnemonic;
+  }
+
   //
   // Hardware
   //
@@ -2144,6 +2257,23 @@ export default class MetamaskController extends EventEmitter {
     }
     return await promise;
   }
+
+  ///: BEGIN:ONLY_INCLUDE_IN(flask)
+  /**
+   * TODO:snaps verify safety of using keyringController.getAccounts
+   */
+  async getAppKeyForDomain(domain, requestedAccount) {
+    let account;
+
+    if (requestedAccount) {
+      account = requestedAccount;
+    } else {
+      account = (await this.keyringController.getAccounts())[0];
+    }
+
+    return this.keyringController.exportAppKeyForAddress(account, domain);
+  }
+  ///: END:ONLY_INCLUDE_IN
 
   /**
    * Signifies user intent to complete an eth_sign method.
@@ -2645,25 +2775,35 @@ export default class MetamaskController extends EventEmitter {
    * @param {*} connectionStream - The Duplex stream to connect to.
    * @param {MessageSender} sender - The sender of the messages on this stream
    */
-  setupUntrustedCommunication(connectionStream, sender) {
+  setupUntrustedCommunication(connectionStream, sender, isSnap = false) {
     const { usePhishDetect } = this.preferencesController.store.getState();
-    const { hostname } = new URL(sender.url);
-    // Check if new connection is blocked if phishing detection is on
-    if (usePhishDetect && this.phishingController.test(hostname)) {
-      log.debug('MetaMask - sending phishing warning for', hostname);
-      this.sendPhishingWarning(connectionStream, hostname);
-      return;
+
+    if (!isSnap) {
+      const { hostname } = new URL(sender.url);
+      // Check if new connection is blocked if phishing detection is on
+      if (usePhishDetect && this.phishingController.test(hostname)) {
+        log.debug('MetaMask - sending phishing warning for', hostname);
+        this.sendPhishingWarning(connectionStream, hostname);
+        return;
+      }
     }
 
     // setup multiplexing
     const mux = setupMultiplex(connectionStream);
 
     // messages between inpage and background
-    this.setupProviderConnection(mux.createStream('metamask-provider'), sender);
+    this.setupProviderConnection(
+      mux.createStream('metamask-provider'),
+      sender,
+      false,
+      isSnap,
+    );
 
     // TODO:LegacyProvider: Delete
-    // legacy streams
-    this.setupPublicConfig(mux.createStream('publicConfig'));
+    if (!isSnap) {
+      // legacy streams
+      this.setupPublicConfig(mux.createStream('publicConfig'));
+    }
   }
 
   /**
@@ -2739,9 +2879,32 @@ export default class MetamaskController extends EventEmitter {
    * @param {MessageSender} sender - The sender of the messages on this stream
    * @param {boolean} isInternal - True if this is a connection with an internal process
    */
-  setupProviderConnection(outStream, sender, isInternal) {
-    const origin = isInternal ? 'metamask' : new URL(sender.url).origin;
-    if (sender.id !== this.extension.runtime.id) {
+  setupProviderConnection(
+    outStream,
+    sender,
+    isInternal = false,
+    isSnap = false,
+  ) {
+    let origin;
+    if (isInternal) {
+      origin = 'metamask';
+    }
+    ///: BEGIN:ONLY_INCLUDE_IN(flask)
+    else if (isSnap) {
+      try {
+        origin = new URL(sender.url).toString();
+      } catch (_) {
+        // TODO: Sometimes the origin isn't an URL, and we should probably
+        // handle it better than by means of this hack.
+        origin = sender.url;
+      }
+    }
+    ///: END:ONLY_INCLUDE_IN
+    else {
+      origin = new URL(sender.url).origin;
+    }
+
+    if (!isSnap && sender.id !== this.extension.runtime.id) {
       this.subjectMetadataController.addSubjectMetadata(origin, {
         extensionId: sender.id,
       });
@@ -2757,6 +2920,7 @@ export default class MetamaskController extends EventEmitter {
       location: sender.url,
       tabId,
       isInternal,
+      isSnap,
     });
 
     // setup connection
@@ -2778,6 +2942,27 @@ export default class MetamaskController extends EventEmitter {
     });
   }
 
+  ///: BEGIN:ONLY_INCLUDE_IN(flask)
+  /**
+   * For snaps running in workers.
+   */
+  onExecutionEnvironmentError(snapName, error) {
+    this.snapController.stopPlugin(snapName);
+    this.snapController.addSnapError(error);
+  }
+
+  /**
+   * For snaps running in workers.
+   */
+  setupSnapProvider(snapName, connectionStream) {
+    const sender = {
+      hostname: snapName,
+      url: snapName,
+    };
+    this.setupUntrustedCommunication(connectionStream, sender, true);
+  }
+  ///: END:ONLY_INCLUDE_IN
+
   /**
    * A method for creating a provider that is safely restricted for the requesting domain.
    * @param {Object} options - Provider engine options
@@ -2786,10 +2971,23 @@ export default class MetamaskController extends EventEmitter {
    * @param {tabId} [options.tabId] - The tab ID of the sender - if the sender is within a tab
    * @param {boolean} [options.isInternal] - True if called for a connection to an internal process
    **/
-  setupProviderEngine({ origin, location, tabId, isInternal = false }) {
+  setupProviderEngine({
+    origin,
+    location,
+    tabId,
+    isInternal = false,
+    isSnap = false,
+  }) {
     // setup json rpc engine stack
     const engine = new JsonRpcEngine();
-    const { provider, blockTracker } = this;
+    const {
+      blockTracker,
+      permissionController,
+      provider,
+      ///: BEGIN:ONLY_INCLUDE_IN(flask)
+      snapController,
+      ///: END:ONLY_INCLUDE_IN
+    } = this;
 
     // create filter polyfill middleware
     const filterMiddleware = createFilterMiddleware({ provider, blockTracker });
@@ -2805,19 +3003,27 @@ export default class MetamaskController extends EventEmitter {
 
     // append origin to each request
     engine.push(createOriginMiddleware({ origin }));
+
     // append tabId to each request if it exists
     if (tabId) {
       engine.push(createTabIdMiddleware({ tabId }));
     }
+
     // logging
     engine.push(createLoggerMiddleware({ origin }));
-    engine.push(
-      createOnboardingMiddleware({
-        location,
-        registerOnboarding: this.onboardingController.registerOnboarding,
-      }),
-    );
     engine.push(this.permissionLogController.createMiddleware());
+
+    // onboarding
+    if (!isSnap) {
+      engine.push(
+        createOnboardingMiddleware({
+          location,
+          registerOnboarding: this.onboardingController.registerOnboarding,
+        }),
+      );
+    }
+
+    // Unrestricted/permissionless RPC method implementations
     engine.push(
       createMethodMiddleware({
         origin,
@@ -2900,6 +3106,22 @@ export default class MetamaskController extends EventEmitter {
         ),
       }),
     );
+
+    ///: BEGIN:ONLY_INCLUDE_IN(flask)
+    engine.push(
+      createSnapMethodMiddleware(isSnap, {
+        getAppKey: this.getAppKeyForDomain.bind(this, origin),
+        getSnaps: snapController.getPermittedSnaps.bind(snapController, origin),
+        requestPermissions: permissionController.requestPermissions.bind(
+          permissionController,
+          origin,
+        ),
+        getAccounts: this.getPermittedAccounts.bind(this, origin),
+        installSnaps: snapController.installSnaps.bind(snapController, origin),
+      }),
+    );
+    ///: END:ONLY_INCLUDE_IN
+
     // filter and subscription polyfills
     engine.push(filterMiddleware);
     engine.push(subscriptionManager.middleware);
@@ -2911,6 +3133,7 @@ export default class MetamaskController extends EventEmitter {
         }),
       );
     }
+
     // forward to metamask primary provider
     engine.push(providerAsMiddleware(provider));
     return engine;
@@ -2983,6 +3206,24 @@ export default class MetamaskController extends EventEmitter {
     if (Object.keys(connections).length === 0) {
       delete this.connections[origin];
     }
+  }
+
+  /**
+   * Closes all connections for the given origin, and removes the references
+   * to them.
+   * Ignores unknown origins.
+   *
+   * @param {string} origin - The origin string.
+   */
+  removeAllConnections(origin) {
+    const connections = this.connections[origin];
+    if (!connections) {
+      return;
+    }
+
+    Object.keys(connections).forEach((id) => {
+      this.removeConnection(origin, id);
+    });
   }
 
   /**

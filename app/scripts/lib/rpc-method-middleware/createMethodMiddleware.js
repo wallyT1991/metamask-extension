@@ -1,4 +1,8 @@
+///: BEGIN:ONLY_INCLUDE_IN(flask)
+import { handlers as permittedSnapMethods } from '@metamask/rpc-methods/dist/permitted';
+///: END:ONLY_INCLUDE_IN
 import { permissionRpcMethods } from '@metamask/snap-controllers';
+import { selectHooks } from '@metamask/rpc-methods/dist/utils';
 import { ethErrors } from 'eth-rpc-errors';
 import { UNSUPPORTED_RPC_METHODS } from '../../../../shared/constants/network';
 import localHandlers from './handlers';
@@ -22,7 +26,7 @@ const handlerMap = allHandlers.reduce((map, handler) => {
  * controllers.
  * @returns {(req: Object, res: Object, next: Function, end: Function) => void}
  */
-export default function createMethodMiddleware(hooks) {
+export function createMethodMiddleware(hooks) {
   return async function methodMiddleware(req, res, next, end) {
     // Reject unsupported methods.
     if (UNSUPPORTED_RPC_METHODS.has(req.method)) {
@@ -50,22 +54,38 @@ export default function createMethodMiddleware(hooks) {
   };
 }
 
-/**
- * Returns the subset of the specified `hooks` that are included in the
- * `hookNames` object. This is a Principle of Least Authority (POLA) measure
- * to ensure that each RPC method implementation only has access to the
- * API "hooks" it needs to do its job.
- *
- * @param {Record<string, unknown>} hooks - The hooks to select from.
- * @param {Record<string, true>} hookNames - The names of the hooks to select.
- * @returns {Record<string, unknown> | undefined} The selected hooks.
- */
-function selectHooks(hooks, hookNames) {
-  if (hookNames) {
-    return Object.keys(hookNames).reduce((hookSubset, hookName) => {
-      hookSubset[hookName] = hooks[hookName];
-      return hookSubset;
-    }, {});
+///: BEGIN:ONLY_INCLUDE_IN(flask)
+const snapHandlerMap = permittedSnapMethods.reduce((map, handler) => {
+  for (const methodName of handler.methodNames) {
+    map.set(methodName, handler);
   }
-  return undefined;
+  return map;
+}, new Map());
+
+export function createSnapMethodMiddleware(isSnap, hooks) {
+  return async function methodMiddleware(req, res, next, end) {
+    const handler = snapHandlerMap.get(req.method);
+    if (handler) {
+      if (/^snap_/iu.test(req.method) && !isSnap) {
+        return end(ethErrors.rpc.methodNotFound());
+      }
+
+      const { implementation, hookNames } = handler;
+      try {
+        // Implementations may or may not be async, so we must await them.
+        return await implementation(
+          req,
+          res,
+          next,
+          end,
+          selectHooks(hooks, hookNames),
+        );
+      } catch (error) {
+        return end(error);
+      }
+    }
+
+    return next();
+  };
 }
+///: END:ONLY_INCLUDE_IN
