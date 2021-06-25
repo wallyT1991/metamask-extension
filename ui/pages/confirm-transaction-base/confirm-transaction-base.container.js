@@ -32,10 +32,25 @@ import {
   getUseTokenDetection,
   getTokenList,
   getIsMultiLayerFeeNetwork,
+  getFailedTransactionsToDisplay,
 } from '../../selectors';
 import { getMostRecentOverviewPage } from '../../ducks/history/history';
 import {
   isAddressLedger,
+  transactionMatchesNetwork,
+  txParamsAreDappSuggested,
+} from '../../../shared/modules/transaction.utils';
+import { KEYRING_TYPES } from '../../../shared/constants/hardware-wallets';
+import { getPlatform } from '../../../app/scripts/lib/util';
+import { PLATFORM_FIREFOX } from '../../../shared/constants/app';
+
+import {
+  addTxToFailedTxesToDisplay,
+  removeTxFromFailedTxesToDisplay,
+  getGasLoadingAnimationIsShowing,
+} from '../../ducks/app/app';
+import { toChecksumHexAddress } from '../../../shared/modules/hexstring-utils';
+import {
   updateTransactionGasFees,
   getIsGasEstimatesLoading,
   getNativeCurrency,
@@ -84,10 +99,13 @@ const mapStateToProps = (state, ownProps) => {
     nextNonce,
     provider: { chainId },
   } = metamask;
+
+  const failedTransactionsToDisplay = getFailedTransactionsToDisplay(state);
+
   const { tokenData, txData, tokenProps, nonce } = confirmTransaction;
   const { txParams = {}, id: transactionId, type } = txData;
   const transaction =
-    Object.values(unapprovedTxs).find(
+    Object.values({ ...unapprovedTxs, ...failedTransactionsToDisplay }).find(
       ({ id }) => id === (transactionId || Number(paramsTransactionId)),
     ) || {};
   const {
@@ -181,6 +199,9 @@ const mapStateToProps = (state, ownProps) => {
   const hardwareWalletRequiresConnection = doesAddressRequireLedgerHidConnection(
     state,
     fromAddress,
+  )
+  const isFailedTransaction = Boolean(
+    failedTransactionsToDisplay[fullTxData.id],
   );
 
   const isMultiLayerFeeNetwork = getIsMultiLayerFeeNetwork(state);
@@ -235,6 +256,7 @@ const mapStateToProps = (state, ownProps) => {
     hardwareWalletRequiresConnection,
     isMultiLayerFeeNetwork,
     chainId,
+    isFailedTransaction,
   };
 };
 
@@ -269,6 +291,10 @@ export const mapDispatchToProps = (dispatch) => {
     updateTransactionGasFees: (gasFees) => {
       dispatch(updateTransactionGasFees({ ...gasFees, expectHexWei: true }));
     },
+    addTxToFailedTxesToDisplay: (id) =>
+      dispatch(addTxToFailedTxesToDisplay(id)),
+    removeTxFromFailedTxesToDisplay: (id) =>
+      dispatch(removeTxFromFailedTxesToDisplay(id)),
   };
 };
 

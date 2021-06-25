@@ -42,6 +42,8 @@ export default class ConfirmPageContainerContent extends Component {
     rejectNText: PropTypes.string,
     hideTitle: PropTypes.bool,
     supportsEIP1559V2: PropTypes.bool,
+    hideTitle: PropTypes.boolean,
+    isFailedTransaction: PropTypes.bool,
   };
 
   renderContent() {
@@ -107,6 +109,7 @@ export default class ConfirmPageContainerContent extends Component {
       setUserAcknowledgedGasMissing,
       hideUserAcknowledgedGasMissing,
       supportsEIP1559V2,
+      isFailedTransaction,
     } = this.props;
 
     const primaryAction = hideUserAcknowledgedGasMissing
@@ -160,6 +163,8 @@ export default class ConfirmPageContainerContent extends Component {
           onSubmit={onSubmit}
           submitText={submitText}
           disabled={disabled}
+          hideCancel={isFailedTransaction}
+          submitButtonType={isFailedTransaction ? 'default' : 'confirm'}
         >
           {unapprovedTxCount > 1 ? (
             <a onClick={onCancelAll}>{rejectNText}</a>
