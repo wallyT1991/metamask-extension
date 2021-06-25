@@ -156,21 +156,23 @@ export default class ConfirmPageContainerContent extends Component {
           hideTitle={hideTitle}
         />
         {this.renderContent()}
-        {!supportsEIP1559V2 && !hasSimulationError && (errorKey || errorMessage) && (
-          <div className="confirm-page-container-content__error-container">
-            {errorKey ? (
-              <ErrorMessage errorKey={errorKey} />
-            ) : (
-              <DetailedErrorMessage
-                errorMessage={this.context.t('somethingWentWrong')}
-                linkText={this.context.t('moreDetails')}
-                onErrorMessageClick={() =>
-                  this.setState({ showTransactionErrorDetails: true })
-                }
-              />
-            )}
-          </div>
-        )}
+        {!supportsEIP1559V2 &&
+          !hasSimulationError &&
+          (errorKey || errorMessage) && (
+            <div className="confirm-page-container-content__error-container">
+              {errorKey ? (
+                <ErrorMessage errorKey={errorKey} />
+              ) : (
+                <DetailedErrorMessage
+                  errorMessage={this.context.t('somethingWentWrong')}
+                  linkText={this.context.t('moreDetails')}
+                  onErrorMessageClick={() =>
+                    this.setState({ showTransactionErrorDetails: true })
+                  }
+                />
+              )}
+            </div>
+          )}
         {this.state.showTransactionErrorDetails && (
           <TransactionErrorDetailsModal
             message={errorMessage}
