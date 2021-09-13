@@ -71,6 +71,7 @@ function hexValueIsEmpty(value) {
 
 /**
  * Returns the registry address for the given chain ID
+ *
  * @param {number} chainId - the chain ID
  * @returns {string|null} the registry address if known, null otherwise
  */

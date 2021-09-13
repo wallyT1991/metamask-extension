@@ -57,6 +57,7 @@ import { MESSAGE_TYPE } from '../../shared/constants/app';
  *
  * This will be used for all cases where this state key is accessed only for that
  * purpose.
+ *
  * @param {Object} state - redux state object
  */
 export function isNetworkLoading(state) {
@@ -150,6 +151,8 @@ export function isEIP1559Account(state) {
 /**
  * The function returns true if network and account details are fetched and
  * both of them support EIP-1559.
+ *
+ * @param state
  */
 export function checkNetworkAndAccountSupports1559(state) {
   const networkSupports1559 = isEIP1559Network(state);
@@ -161,6 +164,8 @@ export function checkNetworkAndAccountSupports1559(state) {
 /**
  * The function returns true if network and account details are fetched and
  * either of them do not support EIP-1559.
+ *
+ * @param state
  */
 export function checkNetworkOrAccountNotSupports1559(state) {
   const networkNotSupports1559 = isNotEIP1559Network(state);
@@ -171,8 +176,9 @@ export function checkNetworkOrAccountNotSupports1559(state) {
 
 /**
  * Checks if the current wallet is a hardware wallet.
+ *
  * @param {Object} state
- * @returns {Boolean}
+ * @returns {boolean}
  */
 export function isHardwareWallet(state) {
   const keyring = getCurrentKeyring(state);
@@ -181,8 +187,9 @@ export function isHardwareWallet(state) {
 
 /**
  * Get a HW wallet type, e.g. "Ledger Hardware"
+ *
  * @param {Object} state
- * @returns {String|undefined}
+ * @returns {string | undefined}
  */
 export function getHardwareWalletType(state) {
   const keyring = getCurrentKeyring(state);
@@ -211,6 +218,7 @@ export function getAccountType(state) {
  * instead use chainId in most situations. There are a limited number of
  * use cases to use this method still, such as when comparing transaction
  * metadata that predates the switch to using chainId.
+ *
  * @deprecated - use getCurrentChainId instead
  * @param {Object} state - redux state object
  */
@@ -625,6 +633,7 @@ export function getShowWhatsNewPopup(state) {
 
 /**
  * Get an object of notification IDs and if they are allowed or not.
+ *
  * @param {Object} state
  * @returns {Object}
  */
@@ -692,6 +701,7 @@ export function getShowRecoveryPhraseReminder(state) {
 
 /**
  * To get the useTokenDetection flag which determines whether a static or dynamic token list is used
+ *
  * @param {*} state
  * @returns Boolean
  */
@@ -701,6 +711,7 @@ export function getUseTokenDetection(state) {
 
 /**
  * To get the useCollectibleDetection flag which determines whether we autodetect NFTs
+ *
  * @param {*} state
  * @returns Boolean
  */
@@ -710,6 +721,7 @@ export function getUseCollectibleDetection(state) {
 
 /**
  * To retrieve the tokenList produced by TokenListcontroller
+ *
  * @param {*} state
  * @returns {Object}
  */
@@ -741,6 +753,7 @@ export function getNewCollectibleAddedMessage(state) {
 
 /**
  * To retrieve the name of the new Network added using add network form
+ *
  * @param {*} state
  * @returns string
  */
@@ -777,8 +790,9 @@ export function getIsMultiLayerFeeNetwork(state) {
 
 /**
  *  To retrieve the maxBaseFee and priotitFee teh user has set as default
- *  @param {*} state
- *  @returns Boolean
+ *
+ * @param {*} state
+ * @returns Boolean
  */
 export function getAdvancedGasFeeValues(state) {
   return state.metamask.advancedGasFee;
@@ -786,8 +800,9 @@ export function getAdvancedGasFeeValues(state) {
 
 /**
  *  To check if the user has set advanced gas fee settings as default with a non empty  maxBaseFee and priotityFee.
- *  @param {*} state
- *  @returns Boolean
+ *
+ * @param {*} state
+ * @returns Boolean
  */
 export function getIsAdvancedGasFeeDefault(state) {
   const { advancedGasFee } = state.metamask;

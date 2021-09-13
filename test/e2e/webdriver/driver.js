@@ -6,7 +6,9 @@ const cssToXPath = require('css-to-xpath');
 /**
  * Temporary workaround to patch selenium's element handle API with methods
  * that match the playwright API for Elements
+ *
  * @param {Object} element - Selenium Element
+ * @param driver
  * @returns {Object} modified Selenium Element
  */
 function wrapElementWithAPI(element, driver) {
@@ -38,6 +40,7 @@ class Driver {
   /**
    * @param {!ThenableWebDriver} driver - A {@code WebDriver} instance
    * @param {string} browser - The type of browser this driver is controlling
+   * @param extensionUrl
    * @param {number} timeout
    */
   constructor(driver, browser, extensionUrl, timeout = 10000) {
@@ -317,6 +320,7 @@ class Driver {
 
   /**
    * Closes all windows except those in the given list of exceptions
+   *
    * @param {Array<string>} exceptions - The list of window handle exceptions
    * @param {Array} [windowHandles] - The full list of window handles
    * @returns {Promise<void>}

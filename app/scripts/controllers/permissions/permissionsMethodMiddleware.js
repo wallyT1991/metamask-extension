@@ -3,6 +3,14 @@ import { ethErrors } from 'eth-rpc-errors';
 
 /**
  * Create middleware for handling certain methods and preprocessing permissions requests.
+ *
+ * @param options
+ * @param options.addDomainMetadata
+ * @param options.getAccounts
+ * @param options.getUnlockPromise
+ * @param options.hasPermission
+ * @param options.notifyAccountsChanged
+ * @param options.requestAccountsPermission
  */
 export default function createPermissionsMethodMiddleware({
   addDomainMetadata,

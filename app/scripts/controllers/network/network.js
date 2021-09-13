@@ -113,7 +113,7 @@ export default class NetworkController extends EventEmitter {
    *
    * @param {string} projectId - The Infura project ID
    * @throws {Error} if the project ID is not a valid string
-   * @return {void}
+   * @returns {void}
    */
   setInfuraProjectId(projectId) {
     if (!projectId || typeof projectId !== 'string') {
@@ -139,6 +139,7 @@ export default class NetworkController extends EventEmitter {
 
   /**
    * Method to return the latest block for the current network
+   *
    * @returns {Object} Block header
    */
   getLatestBlock() {
@@ -160,6 +161,7 @@ export default class NetworkController extends EventEmitter {
   /**
    * Method to check if the block header contains fields that indicate EIP 1559
    * support (baseFeePerGas).
+   *
    * @returns {Promise<boolean>} true if current network supports EIP 1559
    */
   async getEIP1559Compatibility() {
@@ -191,6 +193,7 @@ export default class NetworkController extends EventEmitter {
 
   /**
    * Set EIP support indication in the networkDetails store
+   *
    * @param {number} EIPNumber - The number of the EIP to mark support for
    * @param {boolean} isSupported - True if the EIP is supported
    */
@@ -315,6 +318,8 @@ export default class NetworkController extends EventEmitter {
 
   /**
    * Sets the provider config and switches the network.
+   *
+   * @param config
    */
   setProviderConfig(config) {
     this.previousProviderStore.updateState(this.getProviderConfig());

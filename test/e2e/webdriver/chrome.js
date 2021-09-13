@@ -38,7 +38,7 @@ class ChromeDriver {
   }
 
   /**
-   * @constructor
+   * @class
    * @param {!ThenableWebDriver} driver - a {@code WebDriver} instance
    */
   constructor(driver) {
@@ -47,6 +47,7 @@ class ChromeDriver {
 
   /**
    * Returns the extension ID for the given extension name
+   *
    * @param {string} extensionName - the extension name
    * @returns {Promise<string|undefined>} the extension ID
    */
