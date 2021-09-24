@@ -44,6 +44,7 @@ export default function reduceMetamask(state = {}, action) {
     nextNonce: null,
     conversionRate: null,
     nativeCurrency: 'ETH',
+    isNetworkBusy: false,
     ...state,
   };
 
@@ -398,4 +399,8 @@ export function doesUserHaveALedgerAccount(state) {
   return state.metamask.keyrings.some((kr) => {
     return kr.type === KEYRING_TYPES.LEDGER;
   });
+}
+
+export function getIsNetworkBusy(state) {
+  return state.metamask.isNetworkBusy;
 }

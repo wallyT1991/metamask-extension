@@ -485,21 +485,13 @@
     },
     "@metamask/controllers": {
       "globals": {
-        "Headers": true,
-        "clearInterval": true,
         "clearTimeout": true,
         "console.error": true,
-        "console.log": true,
         "fetch": true,
-        "setInterval": true,
         "setTimeout": true
       },
       "packages": {
-        "@ethereumjs/common": true,
-        "@ethereumjs/tx": true,
         "@metamask/contract-metadata": true,
-        "abort-controller": true,
-        "async-mutex": true,
         "await-semaphore": true,
         "buffer": true,
         "eth-ens-namehash": true,
@@ -513,18 +505,13 @@
         "ethereumjs-tx": true,
         "ethereumjs-util": true,
         "ethereumjs-wallet": true,
-        "ethers": true,
         "ethjs-query": true,
-        "ethjs-unit": true,
-        "ethjs-util": true,
         "events": true,
         "human-standard-collectible-abi": true,
         "human-standard-token-abi": true,
-        "immer": true,
         "isomorphic-fetch": true,
         "jsonschema": true,
         "nanoid": true,
-        "punycode": true,
         "single-call-balance-checker-abi": true,
         "uuid": true,
         "web3": true,
@@ -963,6 +950,9 @@
       }
     },
     "bn.js": {
+      "globals": {
+        "Buffer": true
+      },
       "packages": {
         "browser-resolve": true
       }
@@ -1030,6 +1020,12 @@
         "bn.js": true,
         "buffer": true,
         "randombytes": true
+      }
+    },
+    "browserify-sha3": {
+      "packages": {
+        "js-sha3": true,
+        "safe-buffer": true
       }
     },
     "browserify-sign": {
@@ -1523,6 +1519,8 @@
         "results": "write"
       },
       "packages": {
+        "@metamask/safe-event-emitter": true,
+        "async-mutex": true,
         "await-semaphore": true,
         "eth-json-rpc-middleware": true,
         "eth-query": true,
@@ -1665,6 +1663,7 @@
         "ethjs-util": true,
         "is-buffer": true,
         "keccak": true,
+        "keccakjs": true,
         "rlp": true,
         "safe-buffer": true,
         "secp256k1": true
@@ -2586,6 +2585,11 @@
         "stream-browserify": true
       }
     },
+    "keccakjs": {
+      "packages": {
+        "browserify-sha3": true
+      }
+    },
     "latency-monitor": {
       "globals": {
         "clearInterval": true,
@@ -3467,6 +3471,7 @@
       },
       "packages": {
         "create-hash": true,
+        "is-buffer": true,
         "process": true,
         "ripemd160": true,
         "safe-buffer": true,
