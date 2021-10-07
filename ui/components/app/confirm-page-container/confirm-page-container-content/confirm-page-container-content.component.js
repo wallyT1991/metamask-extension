@@ -80,6 +80,10 @@ export default class ConfirmPageContainerContent extends Component {
     );
   }
 
+  onErrorMessageClick(message) {
+    alert(message);
+  }
+
   render() {
     const {
       action,
@@ -150,13 +154,16 @@ export default class ConfirmPageContainerContent extends Component {
           hideTitle={hideTitle}
         />
         {this.renderContent()}
-        {!supportsEIP1559V2 &&
-          !hasSimulationError &&
-          (errorKey || errorMessage) && (
-            <div className="confirm-page-container-content__error-container">
-              <ErrorMessage errorMessage={errorMessage} errorKey={errorKey} />
-            </div>
-          )}
+        {!supportsEIP1559V2 && !hasSimulationError && (errorKey || errorMessage) && (
+          <div className="confirm-page-container-content__error-container">
+            <ErrorMessage
+              errorMessage={this.context.t('somethingWentWrong2')}
+              errorKey={errorKey}
+              linkText={this.context.t('moreDetails')}
+              onErrorMessageClick={() => this.onErrorMessageClick(errorMessage)}
+            />
+          </div>
+        )}
         <PageContainerFooter
           onCancel={onCancel}
           cancelText={cancelText}

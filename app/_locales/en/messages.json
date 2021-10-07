@@ -1663,6 +1663,9 @@
   "multiplier": {
     "message": "multiplier"
   },
+  "moreDetails": {
+    "message": "More details..."
+  },
   "mustSelectOne": {
     "message": "Must select at least 1 token."
   },
@@ -2511,6 +2514,9 @@
   },
   "somethingWentWrong": {
     "message": "Oops! Something went wrong."
+  },
+  "somethingWentWrong2": {
+    "message": "Something went wrong."
   },
   "speedUp": {
     "message": "Speed Up"
