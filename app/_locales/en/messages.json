@@ -2512,6 +2512,9 @@
   "somethingWentWrong": {
     "message": "Something went wrong."
   },
+  "somethingWentWrong2": {
+    "message": "Something went wrong."
+  },
   "speedUp": {
     "message": "Speed Up"
   },
