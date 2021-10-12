@@ -646,3 +646,12 @@ export function getUseTokenDetection(state) {
 export function getTokenList(state) {
   return state.metamask.tokenList;
 }
+
+/**
+ * To retrieve the name of the new Network added using add network form
+ * @param {*} state
+ * @returns string
+ */
+export function getNewNetworkAdded(state) {
+  return state.appState.newNetworkAdded;
+}

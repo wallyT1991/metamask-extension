@@ -1513,6 +1513,9 @@
   "newNetwork": {
     "message": "New Network"
   },
+  "newNetworkAdded": {
+    "message": "“$1” was successfully added!"
+  },
   "newPassword": {
     "message": "New password (min 8 chars)"
   },
