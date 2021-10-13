@@ -1199,9 +1199,6 @@
   "newContract": {
     "message": "Kontrak Baru"
   },
-  "newNetwork": {
-    "message": "Jaringan Baru"
-  },
   "newPassword": {
     "message": "Kata sandi baru (min. 8 karakter)"
   },

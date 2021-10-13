@@ -1199,9 +1199,6 @@
   "newContract": {
     "message": "Contrato nuevo"
   },
-  "newNetwork": {
-    "message": "Red nueva"
-  },
   "newPassword": {
     "message": "Contraseña nueva (mín. de 8 caracteres)"
   },

@@ -1199,9 +1199,6 @@
   "newContract": {
     "message": "नया अनुबंध"
   },
-  "newNetwork": {
-    "message": "नया नेटवर्क"
-  },
   "newPassword": {
     "message": "नया पासवर्ड (न्यूनतम 8 वर्ण)"
   },
