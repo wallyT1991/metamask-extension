@@ -146,8 +146,8 @@ export default class ConfirmTransactionBase extends Component {
     hardwareWalletRequiresConnection: PropTypes.bool,
     isMultiLayerFeeNetwork: PropTypes.bool,
     isFailedTransaction: PropTypes.bool,
-    removeTxFromFailedTxesToDisplay: PropTypes.bool,
-    addTxToDisplay: PropTypes.bool,
+    removeTxFromFailedTxesToDisplay: PropTypes.func,
+    addTxToDisplay: PropTypes.func,
     showTransactionErrorDialog: PropTypes.func,
   };
 
