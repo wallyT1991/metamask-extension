@@ -148,7 +148,6 @@ export default class ConfirmTransactionBase extends Component {
     isFailedTransaction: PropTypes.bool,
     removeTxFromFailedTxesToDisplay: PropTypes.func,
     addTxToDisplay: PropTypes.func,
-    showTransactionErrorDialog: PropTypes.func,
   };
 
   state = {
@@ -904,11 +903,6 @@ export default class ConfirmTransactionBase extends Component {
     }
   }
 
-  onErrorMessageClick(message) {
-    const { showTransactionErrorDialog } = this.props;
-    showTransactionErrorDialog(message);
-  }
-
   getNavigateTxData() {
     const { currentNetworkUnapprovedTxs, txData: { id } = {} } = this.props;
     const enumUnapprovedTxs = Object.keys(currentNetworkUnapprovedTxs);
@@ -1112,7 +1106,10 @@ export default class ConfirmTransactionBase extends Component {
           onEdit={() => this.handleEdit()}
           onCancelAll={() => this.handleCancelAll()}
           onCancel={() => this.handleCancel()}
-          onSubmit={() => this.handleSubmit()}
+          onSubmit={() =>
+            isFailedTransaction ? this.handleFailedTxClose() : this.handleSubmit()
+          }
+          onConfirmAnyways={() => this.handleConfirmAnyways()}
           setUserAcknowledgedGasMissing={this.setUserAcknowledgedGasMissing}
           hideSenderToRecipient={hideSenderToRecipient}
           origin={txData.origin}
@@ -1122,7 +1119,6 @@ export default class ConfirmTransactionBase extends Component {
           currentTransaction={txData}
           supportsEIP1559V2={this.supportsEIP1559V2}
           isFailedTransaction={isFailedTransaction}
-          onErrorMessageClick={(message) => this.onErrorMessageClick(message)}
         />
       </TransactionModalContextProvider>
     );
