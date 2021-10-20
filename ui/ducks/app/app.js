@@ -47,6 +47,7 @@ export default function reduceApp(state = {}, action) {
       testKey: null,
     },
     gasLoadingAnimationIsShowing: false,
+    newNetworkAdded: '',
     ...state,
   };
 
