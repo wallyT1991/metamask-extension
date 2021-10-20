@@ -905,11 +905,6 @@ export default class ConfirmTransactionBase extends Component {
     }
   }
 
-  onErrorMessageClick(message) {
-    const { showTransactionErrorDialog } = this.props;
-    showTransactionErrorDialog(message);
-  }
-
   getNavigateTxData() {
     const { currentNetworkUnapprovedTxs, txData: { id } = {} } = this.props;
     const enumUnapprovedTxs = Object.keys(currentNetworkUnapprovedTxs);
@@ -1126,7 +1121,6 @@ export default class ConfirmTransactionBase extends Component {
           currentTransaction={txData}
           supportsEIP1559V2={this.supportsEIP1559V2}
           isFailedTransaction={isFailedTransaction}
-          onErrorMessageClick={(message) => this.onErrorMessageClick(message)}
         />
       </TransactionModalContextProvider>
     );

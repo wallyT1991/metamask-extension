@@ -86,7 +86,6 @@ export default class ConfirmPageContainer extends Component {
     isOwnedAccount: PropTypes.bool,
     supportsEIP1559V2: PropTypes.bool,
     isFailedTransaction: PropTypes.bool,
-    onErrorMessageClick: PropTypes.func,
   };
 
   render() {
@@ -139,7 +138,6 @@ export default class ConfirmPageContainer extends Component {
       isOwnedAccount,
       supportsEIP1559V2,
       isFailedTransaction,
-      onErrorMessageClick,
     } = this.props;
 
     const showAddToAddressDialog =

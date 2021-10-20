@@ -49,7 +49,6 @@ export default class ConfirmPageContainerContent extends Component {
     supportsEIP1559V2: PropTypes.bool,
     hideTitle: PropTypes.boolean,
     isFailedTransaction: PropTypes.bool,
-    onErrorMessageClick: PropTypes.func,
   };
 
   renderContent() {
@@ -116,7 +115,6 @@ export default class ConfirmPageContainerContent extends Component {
       hideUserAcknowledgedGasMissing,
       supportsEIP1559V2,
       isFailedTransaction,
-      onErrorMessageClick,
     } = this.props;
 
     const primaryAction = hideUserAcknowledgedGasMissing
