@@ -45,7 +45,7 @@ import { getPlatform } from '../../../app/scripts/lib/util';
 import { PLATFORM_FIREFOX } from '../../../shared/constants/app';
 
 import {
-  addTxToDisplay,
+  addTxToFailedTxesToDisplay,
   removeTxFromFailedTxesToDisplay,
   getGasLoadingAnimationIsShowing,
 } from '../../ducks/app/app';
@@ -291,7 +291,7 @@ export const mapDispatchToProps = (dispatch) => {
     updateTransactionGasFees: (gasFees) => {
       dispatch(updateTransactionGasFees({ ...gasFees, expectHexWei: true }));
     },
-    addTxToDisplay: (id) => dispatch(addTxToDisplay(id)),
+    addTxToFailedTxesToDisplay: (id) => dispatch(addTxToFailedTxesToDisplay(id)),
     removeTxFromFailedTxesToDisplay: (id) =>
       dispatch(removeTxFromFailedTxesToDisplay(id)),
   };
