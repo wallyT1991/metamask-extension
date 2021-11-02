@@ -90,12 +90,12 @@ const mapStateToProps = (state, ownProps) => {
     provider: { chainId },
   } = metamask;
 
-  const failedTransactionsToDisplay = getFailedTransactionsToDisplay(state);
+  const transactionsToDisplayOnFailure = getFailedTransactionsToDisplay(state);
 
   const { tokenData, txData, tokenProps, nonce } = confirmTransaction;
   const { txParams = {}, id: transactionId, type } = txData;
   const transaction =
-    Object.values({ ...unapprovedTxs, ...failedTransactionsToDisplay }).find(
+    Object.values({ ...unapprovedTxs, ...transactionsToDisplayOnFailure }).find(
       ({ id }) => id === (transactionId || Number(paramsTransactionId)),
     ) || {};
   const {
@@ -192,7 +192,7 @@ const mapStateToProps = (state, ownProps) => {
   );
 
   const isFailedTransaction = Boolean(
-    failedTransactionsToDisplay[fullTxData.id],
+    transactionsToDisplayOnFailure[fullTxData.id],
   );
 
   const isMultiLayerFeeNetwork = getIsMultiLayerFeeNetwork(state);
