@@ -253,7 +253,7 @@ export default class ConfirmPageContainer extends Component {
                 isFailedTransaction
                   ? this.context.t('close')
                   : this.context.t('confirm')
-              }  
+              }
               submitButtonType={isFailedTransaction ? 'default' : 'confirm'}
               disabled={disabled}
             >
