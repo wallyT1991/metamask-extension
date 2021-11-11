@@ -156,7 +156,6 @@ export default class AdvancedGasInputs extends Component {
             min="0"
             value={value}
             onChange={onChange}
-            disabled={disabled}
             data-testid={testId}
             disabled={disabled}
           />
@@ -256,7 +255,6 @@ export default class AdvancedGasInputs extends Component {
           errorComponent: gasPriceErrorComponent,
           errorType: gasPriceErrorType,
           disabled: !networkSupportsSettingGasPrice,
-          disabled,
         })}
         {this.renderGasInput({
           label: this.context.t('gasLimit'),
