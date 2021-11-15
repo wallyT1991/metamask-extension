@@ -28,6 +28,7 @@ export default class CurrencyInput extends PureComponent {
     value: PropTypes.string,
     fiatSuffix: PropTypes.string,
     nativeSuffix: PropTypes.string,
+    primaryNumberOfDecimals: PropTypes.number,
   };
 
   constructor(props) {
@@ -58,7 +59,12 @@ export default class CurrencyInput extends PureComponent {
   }
 
   getDecimalValue(props) {
-    const { value: hexValue, currentCurrency, conversionRate } = props;
+    const {
+      value: hexValue,
+      currentCurrency,
+      conversionRate,
+      primaryNumberOfDecimals = 8,
+    } = props;
     const decimalValueString = this.shouldUseFiat()
       ? getValueFromWeiHex({
           value: hexValue,
@@ -69,7 +75,7 @@ export default class CurrencyInput extends PureComponent {
       : getValueFromWeiHex({
           value: hexValue,
           toCurrency: ETH,
-          numberOfDecimals: 8,
+          numberOfDecimals: primaryNumberOfDecimals,
         });
 
     return Number(decimalValueString) || 0;
