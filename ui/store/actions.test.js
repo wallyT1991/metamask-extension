@@ -10,7 +10,7 @@ import * as actions from './actions';
 const middleware = [thunk];
 const defaultState = {
   appState: {
-    transactionsToDisplayOnFailure: { id: '0x' },
+    transactionsToDisplayOnFailure: { '1011001': true },
   },
   metamask: {
     currentNetworkTxList: [],
