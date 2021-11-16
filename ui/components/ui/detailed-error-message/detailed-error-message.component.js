@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const DetailedErrorMessage = (props, context) => {
-  const { errorMessage, errorKey, onErrorMessageClick, linkText } = props;
-  const error = errorKey ? context.t(errorKey) : errorMessage;
+const DetailedErrorMessage = (props) => {
+  const { errorMessage, onErrorMessageClick, linkText } = props;
 
   return (
     <div className="error-message">
@@ -13,7 +12,7 @@ const DetailedErrorMessage = (props, context) => {
         className="error-message__icon"
       />
       <div className="error-message__text">
-        {error}
+        {errorMessage}
         {linkText ? (
           <a className="error-message__link" onClick={onErrorMessageClick}>
             {` ${linkText}`}
@@ -28,7 +27,6 @@ const DetailedErrorMessage = (props, context) => {
 
 DetailedErrorMessage.propTypes = {
   errorMessage: PropTypes.string,
-  errorKey: PropTypes.string,
   linkText: PropTypes.string,
   onErrorMessageClick: PropTypes.func,
 };
