@@ -8,6 +8,7 @@ import { GasFeeContextProvider } from '../../../contexts/gasFee';
 import ErrorMessage from '../../ui/error-message';
 import { TRANSACTION_TYPES } from '../../../../shared/constants/transaction';
 import Dialog from '../../ui/dialog';
+import HardwareConnectivityPopover from '../../../pages/confirm-transaction-base/hardware-connectivity/hardware-connectivity-popover';
 import {
   ConfirmPageContainerHeader,
   ConfirmPageContainerContent,
@@ -72,6 +73,9 @@ export default class ConfirmPageContainer extends Component {
     showAddToAddressBookModal: PropTypes.func,
     contact: PropTypes.object,
     isOwnedAccount: PropTypes.bool,
+    // Hardware
+    showingHardwareConnectionContents: PropTypes.bool,
+    showingHardwareConnectionAdvancedPopover: PropTypes.bool,
   };
 
   render() {
@@ -122,6 +126,8 @@ export default class ConfirmPageContainer extends Component {
       showAddToAddressBookModal,
       contact = {},
       isOwnedAccount,
+      showingHardwareConnectionContents,
+      showingHardwareConnectionAdvancedPopover,
     } = this.props;
 
     const showAddToAddressDialog =
@@ -134,6 +140,11 @@ export default class ConfirmPageContainer extends Component {
       (currentTransaction.type === TRANSACTION_TYPES.CONTRACT_INTERACTION ||
         currentTransaction.type === TRANSACTION_TYPES.DEPLOY_CONTRACT) &&
       currentTransaction.txParams?.value === '0x0';
+
+    /* ToDo:  We need this method from elevated component */
+    const onHardwareConnectivityClose = () => {
+      console.log('Closing hardware connectivity');
+    };
 
     return (
       <GasFeeContextProvider transaction={currentTransaction}>
@@ -203,6 +214,9 @@ export default class ConfirmPageContainer extends Component {
               origin={origin}
               ethGasPriceWarning={ethGasPriceWarning}
               hideTitle={hideTitle}
+              showingHardwareConnectionContents={
+                showingHardwareConnectionContents
+              }
             />
           )}
           {shouldDisplayWarning && (
@@ -232,6 +246,11 @@ export default class ConfirmPageContainer extends Component {
               transaction={currentTransaction}
             />
           )}
+          {showingHardwareConnectionAdvancedPopover ? (
+            <HardwareConnectivityPopover
+              onClose={onHardwareConnectivityClose}
+            />
+          ) : null}
         </div>
       </GasFeeContextProvider>
     );

@@ -35,7 +35,8 @@ export default class ConfirmPageContainerContent extends Component {
     disabled: PropTypes.bool,
     unapprovedTxCount: PropTypes.number,
     rejectNText: PropTypes.string,
-    hideTitle: PropTypes.boolean,
+    hideTitle: PropTypes.bool,
+    showingHardwareConnectionContents: PropTypes.bool,
   };
 
   renderContent() {
@@ -91,6 +92,7 @@ export default class ConfirmPageContainerContent extends Component {
       origin,
       ethGasPriceWarning,
       hideTitle,
+      showingHardwareConnectionContents,
     } = this.props;
 
     return (
@@ -99,38 +101,42 @@ export default class ConfirmPageContainerContent extends Component {
         {ethGasPriceWarning && (
           <ConfirmPageContainerWarning warning={ethGasPriceWarning} />
         )}
-        <ConfirmPageContainerSummary
-          className={classnames({
-            'confirm-page-container-summary--border':
-              !detailsComponent || !dataComponent,
-          })}
-          action={action}
-          title={title}
-          titleComponent={titleComponent}
-          subtitleComponent={subtitleComponent}
-          hideSubtitle={hideSubtitle}
-          identiconAddress={identiconAddress}
-          nonce={nonce}
-          origin={origin}
-          hideTitle={hideTitle}
-        />
+        {showingHardwareConnectionContents ? null : (
+          <ConfirmPageContainerSummary
+            className={classnames({
+              'confirm-page-container-summary--border':
+                !detailsComponent || !dataComponent,
+            })}
+            action={action}
+            title={title}
+            titleComponent={titleComponent}
+            subtitleComponent={subtitleComponent}
+            hideSubtitle={hideSubtitle}
+            identiconAddress={identiconAddress}
+            nonce={nonce}
+            origin={origin}
+            hideTitle={hideTitle}
+          />
+        )}
         {this.renderContent()}
         {(errorKey || errorMessage) && (
           <div className="confirm-page-container-content__error-container">
             <ErrorMessage errorMessage={errorMessage} errorKey={errorKey} />
           </div>
         )}
-        <PageContainerFooter
-          onCancel={onCancel}
-          cancelText={cancelText}
-          onSubmit={onSubmit}
-          submitText={submitText}
-          disabled={disabled}
-        >
-          {unapprovedTxCount > 1 ? (
-            <a onClick={onCancelAll}>{rejectNText}</a>
-          ) : null}
-        </PageContainerFooter>
+        {showingHardwareConnectionContents ? null : (
+          <PageContainerFooter
+            onCancel={onCancel}
+            cancelText={cancelText}
+            onSubmit={onSubmit}
+            submitText={submitText}
+            disabled={disabled}
+          >
+            {unapprovedTxCount > 1 ? (
+              <a onClick={onCancelAll}>{rejectNText}</a>
+            ) : null}
+          </PageContainerFooter>
+        )}
       </div>
     );
   }
