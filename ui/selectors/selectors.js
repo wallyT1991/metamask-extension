@@ -450,13 +450,12 @@ export function getUnapprovedConfirmations(state) {
 }
 
 export function getFailedTransactionsToDisplay(state) {
-  const { currentNetworkTxList = [] } = state.metamask;
-  const { transactionsToDisplayOnFailure = {} } = state.appState;
+  const { currentNetworkTxList } = state.metamask;
+  const { transactionsToDisplayOnFailure } = state.appState;
   const failedTransactions = currentNetworkTxList.reduce(
     (_failedTransactions, tx) => {
       if (
-        transactionsToDisplayOnFailure[tx.id] &&
-        (tx.err || tx.status === 'approved' || tx.status === 'signed')
+        transactionsToDisplayOnFailure[tx.id]
       ) {
         return { ..._failedTransactions, [tx.id]: tx };
       }
