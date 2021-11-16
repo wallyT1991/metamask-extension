@@ -61,9 +61,9 @@ let customNonceValue = '';
 const customNonceMerge = (txData) =>
   customNonceValue
     ? {
-      ...txData,
-      customNonceValue,
-    }
+        ...txData,
+        customNonceValue,
+      }
     : txData;
 
 const mapStateToProps = (state, ownProps) => {
@@ -95,8 +95,12 @@ const mapStateToProps = (state, ownProps) => {
   const { tokenData, txData, tokenProps, nonce } = confirmTransaction;
   const { txParams = {}, id: transactionId, type } = txData;
   const transaction =
-    Object.values(unapprovedTxs).find(({ id }) => id === (transactionId || Number(paramsTransactionId))) ||
-    Object.values(transactionsToDisplayOnFailure).find(({ id }) => id === (transactionId || Number(paramsTransactionId))) ||
+    Object.values(unapprovedTxs).find(
+      ({ id }) => id === (transactionId || Number(paramsTransactionId)),
+    ) ||
+    Object.values(transactionsToDisplayOnFailure).find(
+      ({ id }) => id === (transactionId || Number(paramsTransactionId)),
+    ) ||
     {};
 
   const {
@@ -118,11 +122,11 @@ const mapStateToProps = (state, ownProps) => {
   const casedTokenList = useTokenDetection
     ? tokenList
     : Object.keys(tokenList).reduce((acc, base) => {
-      return {
-        ...acc,
-        [base.toLowerCase()]: tokenList[base],
-      };
-    }, {});
+        return {
+          ...acc,
+          [base.toLowerCase()]: tokenList[base],
+        };
+      }, {});
   const toName =
     identities[toAddress]?.name ||
     casedTokenList[toAddress]?.name ||
@@ -192,8 +196,9 @@ const mapStateToProps = (state, ownProps) => {
     fromAddress,
   );
 
-  
-  const isFailedTransaction = !Object.keys(unapprovedTxs).includes(fullTxData.id);
+  const isFailedTransaction = !Object.keys(unapprovedTxs).includes(
+    fullTxData.id,
+  );
 
   const isMultiLayerFeeNetwork = getIsMultiLayerFeeNetwork(state);
 

@@ -454,9 +454,7 @@ export function getFailedTransactionsToDisplay(state) {
   const { transactionsToDisplayOnFailure } = state.appState;
   const failedTransactions = currentNetworkTxList.reduce(
     (_failedTransactions, tx) => {
-      if (
-        transactionsToDisplayOnFailure[tx.id]
-      ) {
+      if (transactionsToDisplayOnFailure[tx.id]) {
         return { ..._failedTransactions, [tx.id]: tx };
       }
       return _failedTransactions;

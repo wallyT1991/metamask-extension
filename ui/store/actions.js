@@ -7,10 +7,7 @@ import {
   fetchLocale,
   loadRelativeTimeFormatLocaleData,
 } from '../helpers/utils/i18n-helper';
-import {
-  getMethodDataAsync,
-  getStatusKey,
-} from '../helpers/utils/transactions.util';
+import { getMethodDataAsync } from '../helpers/utils/transactions.util';
 import { getSymbolAndDecimals } from '../helpers/utils/token-util';
 import { isEqualCaseInsensitive } from '../helpers/utils/util';
 import switchDirection from '../helpers/utils/switch-direction';
@@ -1117,18 +1114,21 @@ export function updateMetamaskState(newState) {
     });
 
     // Check that the transaction was not submitted successfully, and remove it from failed transactions if it was.
-        
+
     const transactionIdsToRemove = Object.keys(
       transactionsToDisplayOnFailure,
     ).filter((id) => {
       const currentTx = currentNetworkTxList.find((tx) => tx.id === id);
       const newTx = newNetworkTxList.find((tx) => tx.id === id);
-      return (
-        newTx.status !== currentTx.status &&
-        newTx.status !== TRANSACTION_STATUSES.FAILED &&
-        newTx.status !== TRANSACTION_STATUSES.SIGNED &&
-        newTx.status !== TRANSACTION_STATUSES.APPROVED
-      );  
+      if (currentTx && newTx) {
+        return (
+          newTx.status !== currentTx.status &&
+          newTx.status !== TRANSACTION_STATUSES.FAILED &&
+          newTx.status !== TRANSACTION_STATUSES.SIGNED &&
+          newTx.status !== TRANSACTION_STATUSES.APPROVED
+        );
+      }
+      return false;
     });
 
     transactionIdsToRemove.forEach((id) => {

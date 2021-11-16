@@ -60,7 +60,6 @@ describe('Confirm Page Container Container Test', () => {
     currentTransaction: {},
     contact: undefined,
     isOwnedAccount: false,
-    hideTitle: false,
   };
 
   beforeAll(() => {

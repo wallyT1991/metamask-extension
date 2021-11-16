@@ -10,7 +10,7 @@ import * as actions from './actions';
 const middleware = [thunk];
 const defaultState = {
   appState: {
-    transactionsToDisplayOnFailure: { '1011001': true },
+    transactionsToDisplayOnFailure: {},
   },
   metamask: {
     currentNetworkTxList: [],
@@ -385,6 +385,7 @@ describe('Actions', () => {
   describe('#addNewAccount', () => {
     it('adds a new account', async () => {
       const store = mockStore({
+        appState: defaultState.appState,
         metamask: { identities: {}, ...defaultState.metamask },
       });
 
