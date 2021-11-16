@@ -1117,32 +1117,18 @@ export function updateMetamaskState(newState) {
     });
 
     // Check that the transaction was not submitted successfully, and remove it from failed transactions if it was.
+        
     const transactionIdsToRemove = Object.keys(
       transactionsToDisplayOnFailure,
     ).filter((id) => {
-      const foundTx = currentNetworkTxList
-        .map((tx, index) => {
-          return { id: tx.id, status: tx.status, index };
-        })
-        .find((currentTx) => {
-          return id === currentTx.id;
-        });
-
-      // check if the status of foundTx has changed
-      if (foundTx) {
-        const newTx = newNetworkTxList[foundTx.index];
-        const newTxStatus = getStatusKey(newTx);
-        if (
-          newTx.status !== foundTx.status &&
-          newTxStatus !== TRANSACTION_STATUSES.FAILED &&
-          newTxStatus !== TRANSACTION_STATUSES.SIGNED &&
-          newTxStatus !== TRANSACTION_STATUSES.APPROVED
-        ) {
-          return true;
-        }
-      }
-
-      return false;
+      const currentTx = currentNetworkTxList.find((tx) => tx.id === id);
+      const newTx = newNetworkTxList.find((tx) => tx.id === id);
+      return (
+        newTx.status !== currentTx.status &&
+        newTx.status !== TRANSACTION_STATUSES.FAILED &&
+        newTx.status !== TRANSACTION_STATUSES.SIGNED &&
+        newTx.status !== TRANSACTION_STATUSES.APPROVED
+      );  
     });
 
     transactionIdsToRemove.forEach((id) => {
