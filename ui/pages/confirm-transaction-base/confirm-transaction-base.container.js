@@ -196,8 +196,12 @@ const mapStateToProps = (state, ownProps) => {
     fromAddress,
   );
 
-  const isFailedTransaction = !Object.keys(unapprovedTxs).includes(
-    fullTxData.id,
+  // const isFailedTransaction = Object.keys(unapprovedTxs).includes(
+  //   fullTxData.id,
+  // );
+
+  const isFailedTransaction = Boolean(
+    transactionsToDisplayOnFailure[fullTxData.id],
   );
 
   const isMultiLayerFeeNetwork = getIsMultiLayerFeeNetwork(state);
