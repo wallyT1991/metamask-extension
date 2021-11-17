@@ -13,22 +13,18 @@ const DetailedErrorMessage = (props) => {
       />
       <div className="error-message__text">
         {errorMessage}
-        {linkText ? (
-          <a className="error-message__link" onClick={onErrorMessageClick}>
-            {` ${linkText}`}
-          </a>
-        ) : (
-          ''
-        )}
+        <a className="error-message__link" onClick={onErrorMessageClick}>
+          {` ${linkText}`}
+        </a>
       </div>
     </div>
   );
 };
 
 DetailedErrorMessage.propTypes = {
-  errorMessage: PropTypes.string,
-  linkText: PropTypes.string,
-  onErrorMessageClick: PropTypes.func,
+  errorMessage: PropTypes.string.isRequired,
+  linkText: PropTypes.string.isRequired,
+  onErrorMessageClick: PropTypes.func.isRequired,
 };
 
 DetailedErrorMessage.contextTypes = {
