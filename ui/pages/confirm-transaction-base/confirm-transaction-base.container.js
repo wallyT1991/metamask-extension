@@ -61,9 +61,9 @@ let customNonceValue = '';
 const customNonceMerge = (txData) =>
   customNonceValue
     ? {
-        ...txData,
-        customNonceValue,
-      }
+      ...txData,
+      customNonceValue,
+    }
     : txData;
 
 const mapStateToProps = (state, ownProps) => {
@@ -122,11 +122,11 @@ const mapStateToProps = (state, ownProps) => {
   const casedTokenList = useTokenDetection
     ? tokenList
     : Object.keys(tokenList).reduce((acc, base) => {
-        return {
-          ...acc,
-          [base.toLowerCase()]: tokenList[base],
-        };
-      }, {});
+      return {
+        ...acc,
+        [base.toLowerCase()]: tokenList[base],
+      };
+    }, {});
   const toName =
     identities[toAddress]?.name ||
     casedTokenList[toAddress]?.name ||
@@ -196,12 +196,8 @@ const mapStateToProps = (state, ownProps) => {
     fromAddress,
   );
 
-  // const isFailedTransaction = Object.keys(unapprovedTxs).includes(
-  //   fullTxData.id,
-  // );
-
-  const isFailedTransaction = Boolean(
-    transactionsToDisplayOnFailure[fullTxData.id],
+  const isFailedTransaction = Object.keys(unapprovedTxs).includes(
+    toString(fullTxData.id),
   );
 
   const isMultiLayerFeeNetwork = getIsMultiLayerFeeNetwork(state);
