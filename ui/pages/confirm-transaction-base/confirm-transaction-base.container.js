@@ -196,9 +196,7 @@ const mapStateToProps = (state, ownProps) => {
     fromAddress,
   );
 
-  const isFailedTransaction = Object.keys(unapprovedTxs).includes(
-    toString(fullTxData.id),
-  );
+  const isFailedTransaction = fullTxData.status === 'failed';
 
   const isMultiLayerFeeNetwork = getIsMultiLayerFeeNetwork(state);
 

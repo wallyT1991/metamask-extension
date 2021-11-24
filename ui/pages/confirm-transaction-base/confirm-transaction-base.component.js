@@ -1068,7 +1068,7 @@ export default class ConfirmTransactionBase extends Component {
           toAddress={toAddress}
           toEns={toEns}
           toNickname={toNickname}
-          showEdit={Boolean(onEdit)}
+          showEdit={Boolean(onEdit) && !isFailedTransaction}
           action={functionType}
           title={title}
           titleComponent={this.renderTitleComponent()}
@@ -1107,7 +1107,9 @@ export default class ConfirmTransactionBase extends Component {
           onCancelAll={() => this.handleCancelAll()}
           onCancel={() => this.handleCancel()}
           onSubmit={() =>
-            isFailedTransaction ? this.handleFailedTxClose() : this.handleSubmit()
+            isFailedTransaction
+              ? this.handleFailedTxClose()
+              : this.handleSubmit()
           }
           onConfirmAnyways={() => this.handleConfirmAnyways()}
           setUserAcknowledgedGasMissing={this.setUserAcknowledgedGasMissing}
