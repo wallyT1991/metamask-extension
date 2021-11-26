@@ -253,6 +253,9 @@
   "approve": {
     "message": "Approve spend limit"
   },
+  "approveAndInstall": {
+    "message": "Approve & Install"
+  },
   "approveButtonText": {
     "message": "Approve"
   },
@@ -265,6 +268,12 @@
   },
   "approvedAmountWithColon": {
     "message": "Approved amount:"
+  },
+  "areYouDeveloper": {
+    "message": "Are you a developer?"
+  },
+  "areYouSure": {
+    "message": "Are you sure?"
   },
   "asset": {
     "message": "Asset"
@@ -1983,6 +1992,9 @@
     "message": "Open MetaMask in full screen to connect your ledger via WebHID.",
     "description": "Shown to the user on the confirm screen when they are viewing MetaMask in a popup window but need to connect their ledger via webhid."
   },
+  "openSourceCode": {
+    "message": "Check the source code"
+  },
   "optional": {
     "message": "Optional"
   },
@@ -2482,6 +2494,15 @@
   },
   "slow": {
     "message": "Slow"
+  },
+  "snapInstallWarningCheck": {
+    "message": "To confirm you understand, check all."
+  },
+  "snapInstallWarningKeyAccess": {
+    "message": "You are granting key access to $1 snap. This is irrevocable and makes $1 able to control your account and assets. Make sure you trust $1 developers."
+  },
+  "snapRequestsPermission": {
+    "message": "This snap is requesting the following permissions:"
   },
   "somethingWentWrong": {
     "message": "Oops! Something went wrong."

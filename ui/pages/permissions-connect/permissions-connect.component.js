@@ -8,6 +8,7 @@ import { DEFAULT_ROUTE } from '../../helpers/constants/routes';
 import PermissionPageContainer from '../../components/app/permission-page-container';
 import ChooseAccount from './choose-account';
 import PermissionsRedirect from './redirect';
+import SnapInstall from './snap-install/snap-install';
 
 const APPROVE_TIMEOUT = MILLISECOND * 1200;
 
@@ -205,10 +206,14 @@ export default class PermissionConnect extends Component {
       targetDomainMetadata,
     } = this.state;
 
+    const HACK_snapInstall = true;
+
     return (
       <div className="permissions-connect">
         {this.renderTopBar()}
-        {redirecting && permissionsApproved ? (
+        {HACK_snapInstall ? (
+          <SnapInstall />
+        ) : redirecting && permissionsApproved ? (
           <PermissionsRedirect domainMetadata={targetDomainMetadata} />
         ) : (
           <Switch>
