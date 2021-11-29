@@ -110,6 +110,7 @@ function addGasBuffer(
   ) {
     return initialGasLimitHex;
   }
+
   // if bufferedGasLimit is below blockGasLimit, use bufferedGasLimit
   if (
     conversionLessThan(

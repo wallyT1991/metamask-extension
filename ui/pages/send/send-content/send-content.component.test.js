@@ -46,12 +46,15 @@ describe('SendContent Component', () => {
       expect(PageContainerContentChild.childAt(0).is(Dialog)).toStrictEqual(
         true,
       );
+
       expect(
         PageContainerContentChild.childAt(1).is(SendAssetRow),
       ).toStrictEqual(true);
+
       expect(
         PageContainerContentChild.childAt(2).is(SendAmountRow),
       ).toStrictEqual(true);
+
       expect(
         PageContainerContentChild.childAt(3).is(SendHexDataRow),
       ).toStrictEqual(true);
@@ -65,9 +68,11 @@ describe('SendContent Component', () => {
       expect(PageContainerContentChild.childAt(0).is(Dialog)).toStrictEqual(
         true,
       );
+
       expect(
         PageContainerContentChild.childAt(1).is(SendAssetRow),
       ).toStrictEqual(true);
+
       expect(
         PageContainerContentChild.childAt(2).is(SendAmountRow),
       ).toStrictEqual(true);
@@ -82,9 +87,11 @@ describe('SendContent Component', () => {
       expect(PageContainerContentChild.childAt(0).is(Dialog)).toStrictEqual(
         true,
       );
+
       expect(
         PageContainerContentChild.childAt(1).is(SendAssetRow),
       ).toStrictEqual(true);
+
       expect(
         PageContainerContentChild.childAt(2).is(SendAmountRow),
       ).toStrictEqual(true);
@@ -102,6 +109,7 @@ describe('SendContent Component', () => {
       expect(
         PageContainerContentChild.childAt(0).is(SendAssetRow),
       ).toStrictEqual(true);
+
       expect(
         PageContainerContentChild.childAt(1).is(SendAmountRow),
       ).toStrictEqual(true);
@@ -119,6 +127,7 @@ describe('SendContent Component', () => {
       expect(
         PageContainerContentChild.childAt(0).is(SendAssetRow),
       ).toStrictEqual(true);
+
       expect(
         PageContainerContentChild.childAt(1).is(SendAmountRow),
       ).toStrictEqual(true);
@@ -149,6 +158,7 @@ describe('SendContent Component', () => {
     expect(PageContainerContentChild.childAt(1).is(SendAssetRow)).toStrictEqual(
       true,
     );
+
     expect(
       PageContainerContentChild.childAt(1).find(
         'send-v2__asset-dropdown__single-asset',

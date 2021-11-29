@@ -18,6 +18,7 @@ describe('createMetaRPCHandler', function () {
       params: ['bar'],
     });
   });
+
   it('can write the response to the outstream when api callback is called', function (done) {
     const api = {
       foo: (param1, cb) => {
@@ -32,12 +33,14 @@ describe('createMetaRPCHandler', function () {
       method: 'foo',
       params: ['bar'],
     });
+
     streamTest.on('data', (data) => {
       assert.strictEqual(data.result, 'foobarbaz');
       streamTest.end();
       done();
     });
   });
+
   it('can write the error to the outstream when api callback is called with an error', function (done) {
     const api = {
       foo: (param1, cb) => {
@@ -52,12 +55,14 @@ describe('createMetaRPCHandler', function () {
       method: 'foo',
       params: ['bar'],
     });
+
     streamTest.on('data', (data) => {
       assert.strictEqual(data.error.message, 'foo-error');
       streamTest.end();
       done();
     });
   });
+
   it('can not throw an error for writing an error after end', function (done) {
     const api = {
       foo: (param1, cb) => {
@@ -75,6 +80,7 @@ describe('createMetaRPCHandler', function () {
     });
     done();
   });
+
   it('can not throw an error for write after end', function (done) {
     const api = {
       foo: (param1, cb) => {

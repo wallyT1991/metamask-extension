@@ -42,6 +42,7 @@ export default class Migrator extends EventEmitter {
         if (!migratedData.data) {
           throw new Error('Migrator - migration returned empty data');
         }
+
         if (
           migratedData.version !== undefined &&
           migratedData.meta.version !== migration.version

@@ -63,6 +63,7 @@ export default class EnsInput extends Component {
     if (internalSearch) {
       return null;
     }
+
     // Empty ENS state if input is empty
     // maybe scan ENS
     if (isValidDomainName(input)) {

@@ -164,6 +164,7 @@ class NetworkDropdown extends Component {
       if (isCurrentRpcTarget) {
         borderColor = COLORS.WHITE;
       }
+
       if (opts.isLocalHost) {
         borderColor = 'localhost';
       }

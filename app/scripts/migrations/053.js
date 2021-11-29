@@ -34,6 +34,7 @@ function transformState(state) {
       }
     });
   }
+
   if (incomingTransactions) {
     const incomingTransactionsEntries = Object.entries(incomingTransactions);
     incomingTransactionsEntries.forEach(([key, transaction]) => {

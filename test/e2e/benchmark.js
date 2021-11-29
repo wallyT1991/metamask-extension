@@ -178,6 +178,7 @@ async function main() {
     existingParentDirectory = await getFirstParentDirectoryThatExists(
       outputDirectory,
     );
+
     if (!(await isWritable(existingParentDirectory))) {
       throw new Error('Specified output file directory is not writable');
     }

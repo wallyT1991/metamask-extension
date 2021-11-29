@@ -18,6 +18,7 @@ describe('AccountListItem Component', () => {
         handleClick: sinon.spy(),
       };
     });
+
     beforeEach(() => {
       wrapper = shallow(
         <AccountListItem
@@ -65,6 +66,7 @@ describe('AccountListItem Component', () => {
       expect(
         wrapper.find('.mockClassName > .account-list-item__top-row'),
       ).toHaveLength(1);
+
       expect(
         wrapper.find('.mockClassName > .account-list-item__top-row').is('div'),
       ).toStrictEqual(true);
@@ -105,6 +107,7 @@ describe('AccountListItem Component', () => {
       expect(
         topRow.find('.account-list-item__icon').childAt(0).is('i'),
       ).toStrictEqual(true);
+
       expect(
         topRow.find('.account-list-item__icon').childAt(0).hasClass('mockIcon'),
       ).toStrictEqual(true);
@@ -123,6 +126,7 @@ describe('AccountListItem Component', () => {
       expect(wrapper.find('.account-list-item__account-address')).toHaveLength(
         1,
       );
+
       expect(
         wrapper.find('.account-list-item__account-address').text(),
       ).toStrictEqual('mockCheckSumAddress');

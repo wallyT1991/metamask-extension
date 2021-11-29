@@ -34,6 +34,7 @@ export function useShouldShowSpeedUp(transactionGroup, isEarliestNonce) {
         }, 5001 - (Date.now() - submittedTime));
       }
     }
+
     // Anytime the effect is re-ran, make sure to remove a previously set timeout
     // so as to avoid multiple timers potentially overlapping
     return () => {

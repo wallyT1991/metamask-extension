@@ -112,6 +112,7 @@ describe('SendFooter Component', () => {
       expect(propsMethodSpies.addToAddressBookIfNew.calledOnce).toStrictEqual(
         true,
       );
+
       expect(
         propsMethodSpies.addToAddressBookIfNew.getCall(0).args,
       ).toStrictEqual(['mockTo', ['mockAccount']]);

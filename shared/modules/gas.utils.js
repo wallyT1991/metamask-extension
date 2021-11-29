@@ -35,6 +35,7 @@ export function getMaximumGasTotalInHexWei({
       }),
     );
   }
+
   if (!gasPrice) {
     throw new Error(
       'getMaximumGasTotalInHexWei requires gasPrice be provided to calculate legacy gas total',
@@ -102,6 +103,7 @@ export function getMinimumGasTotalInHexWei({
       `getMinimumGasTotalInHexWei requires maxFeePerGas and maxPriorityFeePerGas be provided when calculating EIP-1559 totals`,
     );
   }
+
   if (isEIP1559Estimate === false) {
     return getMaximumGasTotalInHexWei({ gasLimit, gasPrice });
   }

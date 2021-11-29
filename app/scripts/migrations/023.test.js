@@ -29,6 +29,7 @@ let status;
 while (transactions.length <= 100) {
   status =
     txStates[Math.floor(Math.random() * Math.floor(txStates.length - 1))];
+
   // This is an old migration, let's allow it
   // eslint-disable-next-line no-loop-func
   if (!deletableTxStates.find((s) => s === status)) {

@@ -209,6 +209,7 @@ export default class TransactionStateManager extends EventEmitter {
     this.once(`${txMeta.id}:signed`, () => {
       this.removeAllListeners(`${txMeta.id}:rejected`);
     });
+
     this.once(`${txMeta.id}:rejected`, () => {
       this.removeAllListeners(`${txMeta.id}:signed`);
     });
@@ -384,6 +385,7 @@ export default class TransactionStateManager extends EventEmitter {
         ) {
           return false;
         }
+
         // iterate over the predicateMethods keys to check if the transaction
         // matches the searchCriteria
         for (const [key, predicate] of Object.entries(predicateMethods)) {
@@ -525,6 +527,7 @@ export default class TransactionStateManager extends EventEmitter {
       rpc: error.value,
       stack: error.stack,
     };
+
     this.updateTransaction(
       txMeta,
       'transactions:tx-state-manager#fail - add error',
@@ -673,6 +676,7 @@ export default class TransactionStateManager extends EventEmitter {
     targetTransactionIds.forEach((transactionId) => {
       delete transactions[transactionId];
     });
+
     this.store.updateState({
       transactions,
     });

@@ -190,6 +190,7 @@ export default class ImportWithSeedPhrase extends PureComponent {
         name: 'Check ToS',
       },
     });
+
     this.setState((prevState) => ({
       termsChecked: !prevState.termsChecked,
     }));

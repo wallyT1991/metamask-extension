@@ -106,6 +106,7 @@ export default class TransactionController extends EventEmitter {
     this.getProviderConfig = opts.getProviderConfig;
     this._getCurrentNetworkEIP1559Compatibility =
       opts.getCurrentNetworkEIP1559Compatibility;
+
     this._getCurrentAccountEIP1559Compatibility =
       opts.getCurrentAccountEIP1559Compatibility;
     this.preferencesStore = opts.preferencesStore || new ObservableStore({});
@@ -679,6 +680,7 @@ export default class TransactionController extends EventEmitter {
             10,
           ),
         );
+
       newGasParams.maxPriorityFeePerGas =
         customGasSettings?.maxPriorityFeePerGas ||
         bnToHex(
@@ -867,6 +869,7 @@ export default class TransactionController extends EventEmitter {
       if (customNonceValue) {
         txMeta.nonceDetails.customNonceValue = customNonceValue;
       }
+
       this.txStateManager.updateTransaction(
         txMeta,
         'transactions#approveTransaction',
@@ -884,6 +887,7 @@ export default class TransactionController extends EventEmitter {
       } catch (err2) {
         log.error(err2);
       }
+
       // must set transaction to submitted/failed before releasing lock
       if (nonceLock) {
         nonceLock.releaseLock();
@@ -949,6 +953,7 @@ export default class TransactionController extends EventEmitter {
       const preTxBalance = await this.query.getBalance(txMeta.txParams.from);
       txMeta.preTxBalance = preTxBalance.toString(16);
     }
+
     this.txStateManager.updateTransaction(
       txMeta,
       'transactions#publishTransaction',
@@ -1178,17 +1183,21 @@ export default class TransactionController extends EventEmitter {
         'transactions/pending-tx-tracker#event: tx:warning',
       );
     });
+
     this.pendingTxTracker.on('tx:failed', (txId, error) => {
       this._failTransaction(txId, error);
     });
+
     this.pendingTxTracker.on(
       'tx:confirmed',
       (txId, transactionReceipt, baseFeePerGas) =>
         this.confirmTransaction(txId, transactionReceipt, baseFeePerGas),
     );
+
     this.pendingTxTracker.on('tx:dropped', (txId) => {
       this._dropTransaction(txId);
     });
+
     this.pendingTxTracker.on('tx:block-update', (txMeta, latestBlockNumber) => {
       if (!txMeta.firstRetryBlockNumber) {
         txMeta.firstRetryBlockNumber = latestBlockNumber;
@@ -1198,6 +1207,7 @@ export default class TransactionController extends EventEmitter {
         );
       }
     });
+
     this.pendingTxTracker.on('tx:retry', (txMeta) => {
       if (!('retryCount' in txMeta)) {
         txMeta.retryCount = 0;
@@ -1286,6 +1296,7 @@ export default class TransactionController extends EventEmitter {
     if (!sameNonceTxs.length) {
       return;
     }
+
     // mark all same nonce transactions as dropped and give i a replacedBy hash
     sameNonceTxs.forEach((otherTxMeta) => {
       if (otherTxMeta.id === txId) {
@@ -1326,6 +1337,7 @@ export default class TransactionController extends EventEmitter {
     } catch (err) {
       log.error(err);
     }
+
     try {
       await this.pendingTxTracker.resubmitPendingTxs(blockNumber);
     } catch (err) {

@@ -108,6 +108,7 @@ function getMetaMetricsController({
     },
   });
 }
+
 describe('MetaMetricsController', function () {
   describe('constructor', function () {
     it('should properly initialize', function () {
@@ -119,10 +120,12 @@ describe('MetaMetricsController', function () {
         metaMetricsController.state.participateInMetaMetrics,
         true,
       );
+
       assert.strictEqual(
         metaMetricsController.state.metaMetricsId,
         TEST_META_METRICS_ID,
       );
+
       assert.strictEqual(
         metaMetricsController.locale,
         LOCALE.replace('_', '-'),
@@ -180,6 +183,7 @@ describe('MetaMetricsController', function () {
       metaMetricsController.setParticipateInMetaMetrics(false);
       assert.equal(metaMetricsController.state.participateInMetaMetrics, false);
     });
+
     it('should generate and update the metaMetricsId when set to true', function () {
       const metaMetricsController = getMetaMetricsController({
         participateInMetaMetrics: null,
@@ -189,6 +193,7 @@ describe('MetaMetricsController', function () {
       metaMetricsController.setParticipateInMetaMetrics(true);
       assert.equal(typeof metaMetricsController.state.metaMetricsId, 'string');
     });
+
     it('should nullify the metaMetricsId when set to false', function () {
       const metaMetricsController = getMetaMetricsController();
       metaMetricsController.setParticipateInMetaMetrics(false);
@@ -230,6 +235,7 @@ describe('MetaMetricsController', function () {
             ...DEFAULT_EVENT_PROPERTIES,
           },
         });
+
       metaMetricsController.submitEvent(
         {
           event: 'Fake Event',
@@ -260,6 +266,7 @@ describe('MetaMetricsController', function () {
             ...DEFAULT_EVENT_PROPERTIES,
           },
         });
+
       metaMetricsController.submitEvent(
         {
           event: 'Fake Event',
@@ -289,6 +296,7 @@ describe('MetaMetricsController', function () {
             ...DEFAULT_EVENT_PROPERTIES,
           },
         });
+
       metaMetricsController.submitEvent(
         {
           event: 'Fake Event',
@@ -317,6 +325,7 @@ describe('MetaMetricsController', function () {
             ...DEFAULT_EVENT_PROPERTIES,
           },
         });
+
       metaMetricsController.submitEvent({
         event: 'Fake Event',
         category: 'Unit Test',
@@ -392,6 +401,7 @@ describe('MetaMetricsController', function () {
           },
         }),
       );
+
       assert.ok(
         spy.calledWith({
           event: 'Fake Event',
@@ -419,6 +429,7 @@ describe('MetaMetricsController', function () {
             ...DEFAULT_PAGE_PROPERTIES,
           },
         });
+
       metaMetricsController.trackPage({
         name: 'home',
         params: null,
@@ -462,6 +473,7 @@ describe('MetaMetricsController', function () {
             ...DEFAULT_PAGE_PROPERTIES,
           },
         });
+
       metaMetricsController.trackPage(
         {
           name: 'home',

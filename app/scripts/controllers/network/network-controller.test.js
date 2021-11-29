@@ -77,6 +77,7 @@ describe('NetworkController', function () {
           1,
           'should have called setNetworkState 2 times',
         );
+
         assert.ok(
           spy.calledOnceWithExactly('loading'),
           'should have called with "loading" first',

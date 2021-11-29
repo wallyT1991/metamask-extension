@@ -74,6 +74,7 @@ export default class NetworkController extends EventEmitter {
     this.providerStore = new ObservableStore(
       opts.provider || { ...defaultProviderConfig },
     );
+
     this.previousProviderStore = new ObservableStore(
       this.providerStore.getState(),
     );
@@ -88,6 +89,7 @@ export default class NetworkController extends EventEmitter {
         ...defaultNetworkDetailsState,
       },
     );
+
     this.store = new ComposedStore({
       provider: this.providerStore,
       previousProviderStore: this.previousProviderStore,
@@ -270,10 +272,12 @@ export default class NetworkController extends EventEmitter {
       isPrefixedFormattedHexString(chainId),
       `Invalid chain ID "${chainId}": invalid hex string.`,
     );
+
     assert.ok(
       isSafeChainId(parseInt(chainId, 16)),
       `Invalid chain ID "${chainId}": numerical value greater than max safe value.`,
     );
+
     this.setProviderConfig({
       type: NETWORK_TYPE_RPC,
       rpcUrl,
@@ -290,6 +294,7 @@ export default class NetworkController extends EventEmitter {
       NETWORK_TYPE_RPC,
       `NetworkController - cannot call "setProviderType" with type "${NETWORK_TYPE_RPC}". Use "setRpcTarget"`,
     );
+
     assert.ok(
       INFURA_PROVIDER_TYPES.includes(type),
       `Unknown Infura provider type "${type}".`,
@@ -366,6 +371,7 @@ export default class NetworkController extends EventEmitter {
         if (networkChanged) {
           return;
         }
+
         if (responseMessage.error === INFURA_BLOCKED_KEY) {
           this.emit(NETWORK_EVENTS.INFURA_IS_BLOCKED);
         }
@@ -436,6 +442,7 @@ export default class NetworkController extends EventEmitter {
     } else {
       this._providerProxy = createSwappableProxy(provider);
     }
+
     if (this._blockTrackerProxy) {
       this._blockTrackerProxy.setTarget(blockTracker);
     } else {

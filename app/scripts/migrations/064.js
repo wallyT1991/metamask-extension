@@ -27,6 +27,7 @@ function transformState(state) {
       if (tx.type === SENT_ETHER) {
         tx.type = TRANSACTION_TYPES.SIMPLE_SEND;
       }
+
       if (tx.history) {
         tx.history.map((txEvent) => {
           if (txEvent.type && txEvent.type === SENT_ETHER) {

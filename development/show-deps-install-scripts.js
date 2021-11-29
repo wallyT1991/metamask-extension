@@ -25,9 +25,11 @@ readInstalled('./', { dev: true }, function (err, data) {
     if (packageScripts.preinstall) {
       matchingScripts.preinstall = packageScripts.preinstall;
     }
+
     if (packageScripts.install) {
       matchingScripts.install = packageScripts.install;
     }
+
     if (packageScripts.postinstall) {
       matchingScripts.postinstall = packageScripts.postinstall;
     }

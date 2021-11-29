@@ -160,6 +160,7 @@ describe('GasModalPageContainer Component', () => {
       expect(tabs.at(0).childAt(0).props().className).toStrictEqual(
         'gas-modal-content',
       );
+
       expect(tabs.at(1).childAt(0).props().className).toStrictEqual(
         'gas-modal-content',
       );
@@ -178,6 +179,7 @@ describe('GasModalPageContainer Component', () => {
         'mockSendAmount',
         'mockTransactionFee',
       ]);
+
       expect(GP.renderInfoRows.getCall(1).args).toStrictEqual([
         'mockNewTotalFiat',
         'mockNewTotalEth',
@@ -247,12 +249,15 @@ describe('GasModalPageContainer Component', () => {
       expect(
         renderedInfoRows.at(0).hasClass(`${baseClassName}__send-info`),
       ).toStrictEqual(true);
+
       expect(
         renderedInfoRows.at(1).hasClass(`${baseClassName}__transaction-info`),
       ).toStrictEqual(true);
+
       expect(
         renderedInfoRows.at(2).hasClass(`${baseClassName}__total-info`),
       ).toStrictEqual(true);
+
       expect(
         renderedInfoRows.at(3).hasClass(`${baseClassName}__fiat-total-info`),
       ).toStrictEqual(true);
@@ -260,9 +265,11 @@ describe('GasModalPageContainer Component', () => {
       expect(renderedInfoRows.at(0).text()).toStrictEqual(
         'sendAmount mockSendAmount',
       );
+
       expect(renderedInfoRows.at(1).text()).toStrictEqual(
         'transactionFee mockTransactionFee',
       );
+
       expect(renderedInfoRows.at(2).text()).toStrictEqual(
         'newTotal mockNewTotalEth',
       );

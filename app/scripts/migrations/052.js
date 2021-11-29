@@ -52,6 +52,7 @@ function transformState(state = {}) {
               accountTokens[address][NETWORK_TYPE_RPC];
           });
         }
+
         for (const providerType of Object.keys(accountTokens[address])) {
           switch (providerType) {
             case MAINNET:
@@ -91,6 +92,7 @@ function transformState(state = {}) {
               accountHiddenTokens[address][NETWORK_TYPE_RPC];
           });
         }
+
         for (const providerType of Object.keys(accountHiddenTokens[address])) {
           switch (providerType) {
             case MAINNET:

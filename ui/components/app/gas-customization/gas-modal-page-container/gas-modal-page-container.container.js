@@ -259,6 +259,7 @@ const mergeProps = (stateProps, dispatchProps, ownProps) => {
         ownProps.onSubmit({ gasLimit, gasPrice });
         return;
       }
+
       if (isConfirm) {
         dispatchUpdateTransactionGasFees({
           gasLimit,

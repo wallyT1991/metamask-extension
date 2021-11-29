@@ -17,6 +17,7 @@ describe('SelectedAccount Component', () => {
     expect(wrapper.find('.selected-account__address').text()).toStrictEqual(
       '0x1B8...5C9D',
     );
+
     expect(wrapper.find('.selected-account__name').text()).toStrictEqual(
       'testName',
     );

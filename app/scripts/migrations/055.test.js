@@ -83,6 +83,7 @@ describe('migration #55', () => {
     const newStorage = await migration55.migrate(oldStorage);
     expect(oldStorage.data).toStrictEqual(newStorage.data);
   });
+
   it('should do nothing if state is empty', async () => {
     const oldStorage = {
       meta: {},

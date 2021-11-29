@@ -672,6 +672,7 @@ const slice = createSlice({
           },
         );
       }
+
       slice.caseReducers.updateSendAmount(state, {
         payload: amount,
       });
@@ -728,6 +729,7 @@ const slice = createSlice({
           calcGasTotal(state.gas.gasLimit, state.gas.gasPrice),
         );
       }
+
       if (
         state.amount.mode === AMOUNT_MODES.MAX &&
         state.asset.type === ASSET_TYPES.NATIVE
@@ -856,6 +858,7 @@ const slice = createSlice({
           state.recipient.warning = null;
         }
       }
+
       // if amount mode is MAX update amount to max of new asset, otherwise set
       // to zero. This will revalidate the send amount field.
       if (state.amount.mode === AMOUNT_MODES.MAX) {
@@ -1010,6 +1013,7 @@ const slice = createSlice({
         } else {
           recipient.error = null;
         }
+
         if (
           isSendingToken &&
           isValidHexAddress(recipient.userInput) &&
@@ -1211,6 +1215,7 @@ const slice = createSlice({
         if (action.payload.gasEstimatePollToken) {
           state.gas.isGasEstimateLoading = false;
         }
+
         if (state.stage !== SEND_STAGES.INACTIVE) {
           slice.caseReducers.validateRecipientUserInput(state, {
             payload: {
@@ -1221,6 +1226,7 @@ const slice = createSlice({
             },
           });
         }
+
         state.stage =
           state.stage === SEND_STAGES.INACTIVE
             ? SEND_STAGES.ADD_RECIPIENT
@@ -1314,6 +1320,7 @@ export function resetSendState() {
     }
   };
 }
+
 /**
  * Updates the amount the user intends to send and performs side effects.
  * 1. If the current mode is MAX change to INPUT
@@ -1362,6 +1369,7 @@ export function updateSendAsset({ type, details }) {
         details,
         state.send.account.address ?? getSelectedAddress(state),
       );
+
       if (details && details.isERC721 === undefined) {
         const updatedAssetDetails = await updateTokenType(details.address);
         details.isERC721 = updatedAssetDetails.isERC721;
@@ -1688,6 +1696,7 @@ export function getGasInputMode(state) {
   if (state[name].gas.isCustomGasSet) {
     return GAS_INPUT_MODES.CUSTOM;
   }
+
   if ((!isMainnet && !process.env.IN_TEST) || showAdvancedGasFields) {
     return GAS_INPUT_MODES.INLINE;
   }
@@ -1729,6 +1738,7 @@ export function getSendAmount(state) {
 export function getIsBalanceInsufficient(state) {
   return state[name].gas.error === INSUFFICIENT_FUNDS_ERROR;
 }
+
 export function getSendMaxModeState(state) {
   return state[name].amount.mode === AMOUNT_MODES.MAX;
 }

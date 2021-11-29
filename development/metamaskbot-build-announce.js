@@ -189,14 +189,17 @@ async function start() {
             }
             metricRows.push(metricData);
           }
+
           metricRows[0] = `<td rowspan="${
             allMetrics.size
           }">${capitalizeFirstLetter(page)}</td>${metricRows[0]}`;
           pageRows.push(...metricRows);
         }
+
         pageRows[0] = `<td rowspan="${
           allPages.size * allMetrics.size
         }">${capitalizeFirstLetter(platform)}</td>${pageRows[0]}`;
+
         for (const row of pageRows) {
           tableRows.push(`<tr>${row}</tr>`);
         }
@@ -240,7 +243,7 @@ async function start() {
     body: JSON_PAYLOAD,
     headers: {
       'User-Agent': 'metamaskbot',
-      'Authorization': `token ${GITHUB_COMMENT_TOKEN}`,
+      Authorization: `token ${GITHUB_COMMENT_TOKEN}`,
     },
   });
   if (!response.ok) {

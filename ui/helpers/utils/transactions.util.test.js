@@ -67,6 +67,7 @@ describe('Transactions utils', () => {
         utils.isLegacyTransaction({ type: TRANSACTION_ENVELOPE_TYPES.LEGACY }),
       ).toStrictEqual(true);
     });
+
     it('should return false if transaction is not type-0', () => {
       expect(
         utils.isLegacyTransaction({

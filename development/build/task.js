@@ -20,10 +20,12 @@ async function runTask(taskName, { skipStats } = {}) {
   if (!(taskName in tasks)) {
     throw new Error(`MetaMask build: Unrecognized task name "${taskName}"`);
   }
+
   if (!skipStats) {
     setupTaskDisplay(taskEvents);
     console.log(`Running task "${taskName}"...`);
   }
+
   try {
     await tasks[taskName]();
   } catch (err) {

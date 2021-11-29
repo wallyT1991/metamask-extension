@@ -44,6 +44,7 @@ const alertStateReducer = produce((state, action) => {
       if (!state[action.confirmationId]) {
         state[action.confirmationId] = {};
       }
+
       action.alerts.forEach((alert) => {
         state[action.confirmationId][alert.id] = {
           ...alert,
@@ -92,6 +93,7 @@ function useAlertState(pendingConfirmation) {
         }
       });
     }
+
     return () => {
       isMounted = false;
     };
@@ -146,6 +148,7 @@ export default function ConfirmationPage() {
       setCurrentPendingConfirmation(pendingConfirmations.length - 1);
     }
   }, [pendingConfirmations, history, currentPendingConfirmation]);
+
   if (!pendingConfirmation) {
     return null;
   }

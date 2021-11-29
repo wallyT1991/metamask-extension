@@ -28,6 +28,7 @@ describe('SendContent Component', () => {
       expect(
         wrapper.find('.send-v2__form-row > .send-v2__form-label'),
       ).toHaveLength(1);
+
       expect(
         wrapper.find('.send-v2__form-row > .send-v2__form-field'),
       ).toHaveLength(1);
@@ -65,6 +66,7 @@ describe('SendContent Component', () => {
       expect(expectedSendRowErrorMessage.is(SendRowErrorMessage)).toStrictEqual(
         true,
       );
+
       expect(expectedSendRowErrorMessage.props()).toStrictEqual({
         errorType: 'mockErrorType',
       });
@@ -81,6 +83,7 @@ describe('SendContent Component', () => {
           <span>Mock Form Field</span>
         </SendRowWrapper>,
       );
+
       expect(
         wrapper
           .find('.send-v2__form-row > .send-v2__form-field')
@@ -100,6 +103,7 @@ describe('SendContent Component', () => {
           <span>Mock Form Field</span>
         </SendRowWrapper>,
       );
+
       expect(
         wrapper
           .find('.send-v2__form-row > .send-v2__form-label')

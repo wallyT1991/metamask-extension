@@ -42,6 +42,7 @@ export default function ViewQuotePriceDifference(props) {
     priceDifferenceTitle = t('swapPriceDifferenceTitle', [
       priceDifferencePercentage,
     ]);
+
     priceDifferenceMessage = t('swapPriceDifference', [
       sourceTokenValue, // Number of source token to swap
       usedQuote.sourceTokenInfo.symbol, // Source token symbol

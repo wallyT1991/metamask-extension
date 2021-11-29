@@ -49,6 +49,7 @@ export default class AdvancedGasInputs extends Component {
     if (customGasPrice !== prevCustomGasPrice && customGasPrice !== gasPrice) {
       this.setState({ gasPrice: customGasPrice });
     }
+
     if (customGasLimit !== prevCustomGasLimit && customGasLimit !== gasLimit) {
       this.setState({ gasLimit: customGasLimit });
     }

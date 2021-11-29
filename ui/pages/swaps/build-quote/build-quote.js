@@ -228,6 +228,7 @@ export default function BuildQuote({
     } else {
       setFetchedTokenExchangeRate(null);
     }
+
     if (
       token?.address &&
       !memoizedUsersTokens.find((usersToken) =>
@@ -440,6 +441,7 @@ export default function BuildQuote({
         ),
       );
     };
+
     // Delay fetching quotes until a user is done typing an input value. If they type a new char in less than a second,
     // we will cancel previous setTimeout call and start running a new one.
     timeoutIdForQuotesPrefetching = setTimeout(() => {

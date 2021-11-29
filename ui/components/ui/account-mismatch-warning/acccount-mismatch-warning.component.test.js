@@ -26,6 +26,7 @@ describe('AccountMismatchWarning', () => {
     const wrapper = shallow(<AccountMismatchWarning address="mockedAddress" />);
     expect(wrapper.find(InfoIcon)).toHaveLength(0);
   });
+
   it('renders a warning info icon when addresses do not match', () => {
     const wrapper = shallow(
       <AccountMismatchWarning address="mockedAddress2" />,

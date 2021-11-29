@@ -44,6 +44,7 @@ describe('Transaction Controller', function () {
       // by default, all accounts are external accounts (not contracts)
       eth_getCode: '0x',
     };
+
     provider = createTestProviderTools({ scaffold: providerResultStub })
       .provider;
 
@@ -72,6 +73,7 @@ describe('Transaction Controller', function () {
       trackMetaMetricsEvent: () => undefined,
       getEIP1559GasFeeEstimates: () => undefined,
     });
+
     txController.nonceTracker.getNonceLock = () =>
       Promise.resolve({ nextNonce: 0, releaseLock: noop });
   });
@@ -83,14 +85,17 @@ describe('Transaction Controller', function () {
         'unapprovedTxs' in exposedState,
         'state should have the key unapprovedTxs',
       );
+
       assert.ok(
         'currentNetworkTxList' in exposedState,
         'state should have the key currentNetworkTxList',
       );
+
       assert.ok(
         typeof exposedState?.unapprovedTxs === 'object',
         'should be an object',
       );
+
       assert.ok(
         Array.isArray(exposedState.currentNetworkTxList),
         'should be an array',
@@ -248,6 +253,7 @@ describe('Transaction Controller', function () {
           history: [{}],
         },
       ]);
+
       assert.equal(
         txController.nonceTracker.getConfirmedTransactions(address).length,
         3,
@@ -262,6 +268,7 @@ describe('Transaction Controller', function () {
         from: '0xc684832530fcbddae4b4230a47e991ddcec2831d',
         to: '0xc684832530fcbddae4b4230a47e991ddcec2831d',
       };
+
       txMeta = {
         status: TRANSACTION_STATUSES.UNAPPROVED,
         id: 1,
@@ -322,6 +329,7 @@ describe('Transaction Controller', function () {
       getSelectedAddress = sinon
         .stub(txController, 'getSelectedAddress')
         .returns(selectedAddress);
+
       getPermittedAccounts = sinon
         .stub(txController, 'getPermittedAccounts')
         .returns([selectedAddress]);
@@ -361,6 +369,7 @@ describe('Transaction Controller', function () {
         assert.ok(txMetaFromEmit, 'txMeta is falsy');
         done();
       });
+
       txController
         .addUnapprovedTransaction({
           from: selectedAddress,
@@ -421,6 +430,7 @@ describe('Transaction Controller', function () {
         txMetaWithDefaults.txParams.gasPrice,
         'should have added the gas price',
       );
+
       assert.ok(
         txMetaWithDefaults.txParams.gas,
         'should have added the gas field',
@@ -472,6 +482,7 @@ describe('Transaction Controller', function () {
         TEST_MAX_FEE_PER_GAS,
         'should have added the correct max fee per gas',
       );
+
       assert.equal(
         txMetaWithDefaults.txParams.maxPriorityFeePerGas,
         TEST_MAX_PRIORITY_FEE_PER_GAS,
@@ -522,6 +533,7 @@ describe('Transaction Controller', function () {
         TEST_GASPRICE,
         'should have added the correct max fee per gas',
       );
+
       assert.equal(
         txMetaWithDefaults.txParams.maxPriorityFeePerGas,
         TEST_GASPRICE,
@@ -574,6 +586,7 @@ describe('Transaction Controller', function () {
         undefined,
         'should not have maxFeePerGas',
       );
+
       assert.equal(
         txMetaWithDefaults.txParams.maxPriorityFeePerGas,
         undefined,
@@ -628,6 +641,7 @@ describe('Transaction Controller', function () {
         TEST_MAX_FEE_PER_GAS,
         'should have added the correct max fee per gas',
       );
+
       assert.equal(
         txMetaWithDefaults.txParams.maxPriorityFeePerGas,
         TEST_MAX_PRIORITY_FEE_PER_GAS,
@@ -750,6 +764,7 @@ describe('Transaction Controller', function () {
           }),
         );
       });
+
       Promise.all(listeners)
         .then((returnValues) => {
           assert.deepEqual(
@@ -789,6 +804,7 @@ describe('Transaction Controller', function () {
         trackTransactionMetricsEventSpy.getCall(0).args[0],
         txMeta,
       );
+
       assert.equal(
         trackTransactionMetricsEventSpy.getCall(0).args[1],
         TRANSACTION_EVENTS.ADDED,
@@ -1008,6 +1024,7 @@ describe('Transaction Controller', function () {
         estimateSuggested: GAS_RECOMMENDATIONS.MEDIUM,
         estimateUsed: GAS_RECOMMENDATIONS.HIGH,
       };
+
       txController.txStateManager._addTransactionsToState([
         {
           id: 1,
@@ -1130,6 +1147,7 @@ describe('Transaction Controller', function () {
     beforeEach(function () {
       hash =
         '0x2a5523c6fa98b47b7d9b6c8320179785150b42a16bcff36b398c5062b65657e8';
+
       txMeta = {
         id: 1,
         status: TRANSACTION_STATUSES.UNAPPROVED,
@@ -1187,6 +1205,7 @@ describe('Transaction Controller', function () {
         trackTransactionMetricsEventSpy.getCall(0).args[0],
         txMeta,
       );
+
       assert.equal(
         trackTransactionMetricsEventSpy.getCall(0).args[1],
         TRANSACTION_EVENTS.SUBMITTED,
@@ -1527,6 +1546,7 @@ describe('Transaction Controller', function () {
         states.includes(TRANSACTION_STATUSES.APPROVED),
         'includes approved',
       );
+
       assert.ok(
         states.includes(TRANSACTION_STATUSES.SUBMITTED),
         'includes submitted',

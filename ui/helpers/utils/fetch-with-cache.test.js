@@ -163,6 +163,7 @@ describe('Fetch with cache', () => {
       testCache['cachedFetch:https://fetchwithcache.metamask.io/foo']
         .cachedResponse,
     ).toStrictEqual({ average: 9 });
+
     expect(
       testCache['cachedFetch:https://fetchwithcache.metamask.io/bar']
         .cachedResponse,

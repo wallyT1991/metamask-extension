@@ -101,6 +101,7 @@ async function switchEthereumChainHandler(
       res.result = null;
       return end();
     }
+
     try {
       const approvedRequestData = await requestUserApproval({
         origin,

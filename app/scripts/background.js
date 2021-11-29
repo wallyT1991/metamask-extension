@@ -263,9 +263,11 @@ function setupController(initState, initLangCode) {
     if (!state) {
       throw new Error('MetaMask - updated state is missing');
     }
+
     if (!state.data) {
       throw new Error('MetaMask - updated state does not have data');
     }
+
     if (localStore.isSupported) {
       try {
         await localStore.set(state);
@@ -418,26 +420,32 @@ function setupController(initState, initLangCode) {
     METAMASK_CONTROLLER_EVENTS.UPDATE_BADGE,
     updateBadge,
   );
+
   controller.messageManager.on(
     METAMASK_CONTROLLER_EVENTS.UPDATE_BADGE,
     updateBadge,
   );
+
   controller.personalMessageManager.on(
     METAMASK_CONTROLLER_EVENTS.UPDATE_BADGE,
     updateBadge,
   );
+
   controller.decryptMessageManager.on(
     METAMASK_CONTROLLER_EVENTS.UPDATE_BADGE,
     updateBadge,
   );
+
   controller.encryptionPublicKeyManager.on(
     METAMASK_CONTROLLER_EVENTS.UPDATE_BADGE,
     updateBadge,
   );
+
   controller.typedMessageManager.on(
     METAMASK_CONTROLLER_EVENTS.UPDATE_BADGE,
     updateBadge,
   );
+
   controller.appStateController.on(
     METAMASK_CONTROLLER_EVENTS.UPDATE_BADGE,
     updateBadge,
@@ -492,6 +500,7 @@ function setupController(initState, initLangCode) {
     ).forEach((txId) =>
       controller.txController.txStateManager.setTxStatusRejected(txId),
     );
+
     controller.messageManager.messages
       .filter((msg) => msg.status === 'unapproved')
       .forEach((tx) =>
@@ -500,6 +509,7 @@ function setupController(initState, initLangCode) {
           REJECT_NOTFICIATION_CLOSE_SIG,
         ),
       );
+
     controller.personalMessageManager.messages
       .filter((msg) => msg.status === 'unapproved')
       .forEach((tx) =>
@@ -508,6 +518,7 @@ function setupController(initState, initLangCode) {
           REJECT_NOTFICIATION_CLOSE_SIG,
         ),
       );
+
     controller.typedMessageManager.messages
       .filter((msg) => msg.status === 'unapproved')
       .forEach((tx) =>
@@ -516,6 +527,7 @@ function setupController(initState, initLangCode) {
           REJECT_NOTFICIATION_CLOSE_SIG,
         ),
       );
+
     controller.decryptMessageManager.messages
       .filter((msg) => msg.status === 'unapproved')
       .forEach((tx) =>
@@ -524,6 +536,7 @@ function setupController(initState, initLangCode) {
           REJECT_NOTFICIATION_CLOSE,
         ),
       );
+
     controller.encryptionPublicKeyManager.messages
       .filter((msg) => msg.status === 'unapproved')
       .forEach((tx) =>

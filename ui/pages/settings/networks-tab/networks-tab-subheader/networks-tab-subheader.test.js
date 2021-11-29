@@ -35,6 +35,7 @@ describe('NetworksTabSubheader Component', () => {
     expect(queryByText('Add a network')).toBeInTheDocument();
     expect(getByRole('button', { text: 'Add a network' })).toBeDefined();
   });
+
   it('should render add network form subheader correctly', () => {
     const { queryByText } = renderComponent({
       addNewNetwork: true,

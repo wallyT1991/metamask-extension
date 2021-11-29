@@ -26,6 +26,7 @@ describe('Show account details', function () {
         await driver.clickElement(
           '[data-testid="account-options-menu-button"]',
         );
+
         await driver.clickElement(
           '[data-testid="account-options-menu__account-details"]',
         );

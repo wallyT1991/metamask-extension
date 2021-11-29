@@ -31,6 +31,7 @@ describe('Identicon', () => {
     expect(wrapper.find('img.test-image').prop('className')).toStrictEqual(
       'identicon test-image',
     );
+
     expect(wrapper.find('img.test-image').prop('src')).toStrictEqual(
       'test-image',
     );

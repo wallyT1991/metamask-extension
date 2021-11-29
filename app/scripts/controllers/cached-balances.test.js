@@ -29,6 +29,7 @@ describe('CachedBalancesController', function () {
         'mockAccounts',
         KOVAN_CHAIN_ID,
       ]);
+
       assert.equal(
         controller.store.getState().cachedBalances,
         'mockNewCachedBalances',

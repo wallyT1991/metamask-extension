@@ -208,27 +208,35 @@ export function getTransactionTypeTitle(t, type, nativeCurrency = 'ETH') {
     case TRANSACTION_TYPES.TOKEN_METHOD_TRANSFER: {
       return t('transfer');
     }
+
     case TRANSACTION_TYPES.TOKEN_METHOD_TRANSFER_FROM: {
       return t('transferFrom');
     }
+
     case TRANSACTION_TYPES.TOKEN_METHOD_APPROVE: {
       return t('approve');
     }
+
     case TRANSACTION_TYPES.SIMPLE_SEND: {
       return t('sendingNativeAsset', [nativeCurrency]);
     }
+
     case TRANSACTION_TYPES.CONTRACT_INTERACTION: {
       return t('contractInteraction');
     }
+
     case TRANSACTION_TYPES.DEPLOY_CONTRACT: {
       return t('contractDeployment');
     }
+
     case TRANSACTION_TYPES.SWAP: {
       return t('swap');
     }
+
     case TRANSACTION_TYPES.SWAP_APPROVAL: {
       return t('swapApproval');
     }
+
     default: {
       throw new Error(`Unrecognized transaction type: ${type}`);
     }

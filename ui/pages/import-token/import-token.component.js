@@ -443,6 +443,7 @@ class ImportToken extends Component {
         </Tab>,
       );
     }
+
     tabs.push(
       <Tab name={this.context.t('customToken')} key="custom-tab">
         {this.renderCustomTokenForm()}

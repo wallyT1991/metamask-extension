@@ -90,6 +90,7 @@ export default function reducer(state = initState, action = {}) {
           hexTransactionAmount || state.hexTransactionAmount,
       };
     }
+
     case UPDATE_TRANSACTION_FEES: {
       const {
         fiatTransactionFee,
@@ -103,6 +104,7 @@ export default function reducer(state = initState, action = {}) {
         hexTransactionFee: hexTransactionFee || state.hexTransactionFee,
       };
     }
+
     case UPDATE_TRANSACTION_TOTALS: {
       const {
         fiatTransactionTotal,

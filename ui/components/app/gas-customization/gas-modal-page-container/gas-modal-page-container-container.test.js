@@ -159,6 +159,7 @@ describe('gas-modal-page-container container', () => {
         someOtherStateProp: 'baz',
         transaction: {},
       };
+
       dispatchProps = {
         updateCustomGasPrice: sinon.spy(),
         useCustomGas: sinon.spy(),
@@ -180,6 +181,7 @@ describe('gas-modal-page-container container', () => {
       expect(
         result.gasPriceButtonGroupProps.someGasPriceButtonGroupProp,
       ).toStrictEqual('foo');
+
       expect(
         result.gasPriceButtonGroupProps.anotherGasPriceButtonGroupProp,
       ).toStrictEqual('bar');
@@ -220,6 +222,7 @@ describe('gas-modal-page-container container', () => {
       expect(
         result.gasPriceButtonGroupProps.someGasPriceButtonGroupProp,
       ).toStrictEqual('foo');
+
       expect(
         result.gasPriceButtonGroupProps.anotherGasPriceButtonGroupProp,
       ).toStrictEqual('bar');

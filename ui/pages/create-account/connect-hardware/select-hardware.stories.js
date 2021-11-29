@@ -19,6 +19,7 @@ export const SelectHardwareComponent = () => {
     />
   );
 };
+
 export const BrowserNotSupported = () => {
   return (
     <SelectHardware

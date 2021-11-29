@@ -24,6 +24,7 @@ export const getMessage = (localeCode, localeMessages, key, substitutions) => {
   if (!localeMessages) {
     return null;
   }
+
   if (!localeMessages[key]) {
     if (localeCode === 'en') {
       if (!missingMessageErrors[key]) {

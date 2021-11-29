@@ -111,6 +111,7 @@ describe('TransactionAlerts', () => {
         ],
       },
     });
+
     expect(
       screen.queryByText('You have (1) pending transaction.'),
     ).toBeInTheDocument();
@@ -124,6 +125,7 @@ describe('TransactionAlerts', () => {
           'We were not able to estimate gas. There might be an error in the contract and this transaction may fail.',
         ),
       ).toBeInTheDocument();
+
       expect(
         screen.queryByText('I want to proceed anyway'),
       ).toBeInTheDocument();
@@ -136,11 +138,13 @@ describe('TransactionAlerts', () => {
         },
         transactionProps: { simulationFails: true },
       });
+
       expect(
         screen.queryByText(
           'We were not able to estimate gas. There might be an error in the contract and this transaction may fail.',
         ),
       ).toBeInTheDocument();
+
       expect(
         screen.queryByText('I want to proceed anyway'),
       ).not.toBeInTheDocument();

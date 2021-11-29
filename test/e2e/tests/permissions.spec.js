@@ -38,10 +38,12 @@ describe('Permissions', function () {
           'MetaMask Notification',
           windowHandles,
         );
+
         await driver.clickElement({
           text: 'Next',
           tag: 'button',
         });
+
         await driver.clickElement({
           text: 'Connect',
           tag: 'button',
@@ -53,6 +55,7 @@ describe('Permissions', function () {
         await driver.clickElement(
           '[data-testid="account-options-menu-button"]',
         );
+
         await driver.clickElement(
           '[data-testid="account-options-menu__connected-sites"]',
         );
@@ -61,6 +64,7 @@ describe('Permissions', function () {
           text: 'Connected sites',
           tag: 'h2',
         });
+
         await driver.waitForSelector({
           css: '.connected-sites-list__domain-name',
           text: '127.0.0.1:8080',

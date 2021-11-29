@@ -46,6 +46,7 @@ function generateTransactions(
   }
   return txs;
 }
+
 describe('TransactionStateManager', function () {
   let txStateManager;
   const currentNetworkId = KOVAN_NETWORK_ID;
@@ -441,24 +442,29 @@ describe('TransactionStateManager', function () {
         status: TRANSACTION_STATUSES.UNAPPROVED,
         from: VALID_ADDRESS,
       };
+
       assert.equal(
         txStateManager.getTransactions({ searchCriteria }).length,
         3,
         `getTransactions - ${JSON.stringify(searchCriteria)}`,
       );
+
       searchCriteria = {
         status: TRANSACTION_STATUSES.UNAPPROVED,
         to: VALID_ADDRESS,
       };
+
       assert.equal(
         txStateManager.getTransactions({ searchCriteria }).length,
         2,
         `getTransactions - ${JSON.stringify(searchCriteria)}`,
       );
+
       searchCriteria = {
         status: TRANSACTION_STATUSES.CONFIRMED,
         from: VALID_ADDRESS_TWO,
       };
+
       assert.equal(
         txStateManager.getTransactions({ searchCriteria }).length,
         3,
@@ -482,9 +488,11 @@ describe('TransactionStateManager', function () {
         5,
         `getTransactions - ${JSON.stringify(searchCriteria)}`,
       );
+
       searchCriteria = {
         status: (status) => status !== TRANSACTION_STATUSES.CONFIRMED,
       };
+
       assert.equal(
         txStateManager.getTransactions({ searchCriteria }).length,
         5,
@@ -705,6 +713,7 @@ describe('TransactionStateManager', function () {
         limit + 1,
         `limit of ${limit} + 1 for the grouped transactions is enforced`,
       );
+
       // The first group of transactions on mainnet should be removed
       assert.equal(
         result.some(
@@ -759,6 +768,7 @@ describe('TransactionStateManager', function () {
           from: VALID_ADDRESS,
         },
       });
+
       txStateManager.addTransaction({
         id: '2',
         status: TRANSACTION_STATUSES.CONFIRMED,
@@ -838,6 +848,7 @@ describe('TransactionStateManager', function () {
         false,
         'first history item is initial state',
       );
+
       assert.deepEqual(
         updatedTx.history[0],
         snapshotFromTxMeta(updatedTx),
@@ -845,9 +856,9 @@ describe('TransactionStateManager', function () {
       );
       // modify value and updateTransaction
       updatedTx.txParams.gasPrice = desiredGasPrice;
-      const before = new Date().getTime();
+      const timeBefore = new Date().getTime();
       txStateManager.updateTransaction(updatedTx);
-      const after = new Date().getTime();
+      const timeAfter = new Date().getTime();
       // check updated value
       const result = txStateManager.getTransaction('1');
       assert.equal(
@@ -855,12 +866,14 @@ describe('TransactionStateManager', function () {
         desiredGasPrice,
         'gas price updated',
       );
+
       // validate history was updated
       assert.equal(
         result.history.length,
         2,
         'two history items (initial + diff)',
       );
+
       assert.equal(
         result.history[1].length,
         1,
@@ -877,19 +890,22 @@ describe('TransactionStateManager', function () {
         expectedEntry.op,
         'two history items (initial + diff) operation',
       );
+
       assert.deepEqual(
         result.history[1][0].path,
         expectedEntry.path,
         'two history items (initial + diff) path',
       );
+
       assert.deepEqual(
         result.history[1][0].value,
         expectedEntry.value,
         'two history items (initial + diff) value',
       );
+
       assert.ok(
-        result.history[1][0].timestamp >= before &&
-          result.history[1][0].timestamp <= after,
+        result.history[1][0].timestamp >= timeBefore &&
+          result.history[1][0].timestamp <= timeAfter,
       );
     });
 
@@ -924,6 +940,7 @@ describe('TransactionStateManager', function () {
           from: VALID_ADDRESS,
         },
       });
+
       txStateManager.addTransaction({
         id: '2',
         status: TRANSACTION_STATUSES.CONFIRMED,
@@ -951,6 +968,7 @@ describe('TransactionStateManager', function () {
           from: VALID_ADDRESS,
         },
       });
+
       txStateManager.addTransaction({
         id: '2',
         status: TRANSACTION_STATUSES.CONFIRMED,
@@ -960,10 +978,12 @@ describe('TransactionStateManager', function () {
           from: VALID_ADDRESS,
         },
       });
+
       assert.equal(
         txStateManager.getTransaction('1').status,
         TRANSACTION_STATUSES.UNAPPROVED,
       );
+
       assert.equal(
         txStateManager.getTransaction('2').status,
         TRANSACTION_STATUSES.CONFIRMED,
@@ -1154,6 +1174,7 @@ describe('TransactionStateManager', function () {
         eip1559GeneratedTransaction,
         'generated EIP1559 transaction should be truthy',
       );
+
       assert.deepStrictEqual(
         eip1559GeneratedTransaction.dappSuggestedGasFees,
         eip1559GasFeeFields,
@@ -1164,6 +1185,7 @@ describe('TransactionStateManager', function () {
         legacyGeneratedTransaction,
         'generated legacy transaction should be truthy',
       );
+
       assert.deepStrictEqual(
         legacyGeneratedTransaction.dappSuggestedGasFees,
         legacyGasFeeFields,

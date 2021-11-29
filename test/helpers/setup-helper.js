@@ -15,6 +15,7 @@ process.on('unhandledRejection', (reason, promise) => {
   console.log('Unhandled rejection:', reason);
   unhandledRejections.set(promise, reason);
 });
+
 process.on('rejectionHandled', (promise) => {
   console.log(`handled: ${unhandledRejections.get(promise)}`);
   unhandledRejections.delete(promise);
@@ -75,6 +76,7 @@ window.requestAnimationFrame = () => undefined;
 if (!window.crypto) {
   window.crypto = {};
 }
+
 if (!window.crypto.getRandomValues) {
   // eslint-disable-next-line node/global-require
   window.crypto.getRandomValues = require('polyfill-crypto.getrandomvalues');

@@ -285,6 +285,7 @@ export default class AccountTracker {
         Promise.all(addresses.map(this._updateAccount.bind(this)));
         return;
       }
+
       addresses.forEach((address, index) => {
         const balance = result[index] ? bnToHex(result[index]) : '0x0';
         accounts[address] = { address, balance };

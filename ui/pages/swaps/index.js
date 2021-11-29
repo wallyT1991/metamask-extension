@@ -186,6 +186,7 @@ export default function Swap() {
     fetchParams,
     isAwaitingSwapRoute,
   ]);
+
   useEffect(() => {
     return () => {
       clearTemporaryTokenRef.current();
@@ -200,17 +201,21 @@ export default function Swap() {
           dispatch(setSwapsTokens(tokens));
         })
         .catch((error) => console.error(error));
+
       fetchTopAssets(chainId, useNewSwapsApi).then((topAssets) => {
         dispatch(setTopAssets(topAssets));
       });
+
       fetchAggregatorMetadata(chainId, useNewSwapsApi).then(
         (newAggregatorMetadata) => {
           dispatch(setAggregatorMetadata(newAggregatorMetadata));
         },
       );
+
       if (!networkAndAccountSupports1559) {
         dispatch(fetchAndSetSwapsGasPriceInfo(chainId));
       }
+
       return () => {
         dispatch(prepareToLeaveSwaps());
       };
@@ -276,6 +281,7 @@ export default function Swap() {
       }
       return null;
     };
+
     if (isLoadingQuotesRoute && !beforeUnloadEventAddedRef.current) {
       beforeUnloadEventAddedRef.current = true;
       window.addEventListener('beforeunload', fn);

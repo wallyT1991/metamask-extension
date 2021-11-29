@@ -26,12 +26,15 @@ describe('MainQuoteSummary', () => {
     expect(
       document.querySelector('.main-quote-summary__source-row'),
     ).toMatchSnapshot();
+
     expect(
       document.querySelector('.main-quote-summary__destination-row'),
     ).toMatchSnapshot();
+
     expect(
       document.querySelector('.main-quote-summary__quote-large'),
     ).toMatchSnapshot();
+
     expect(
       document.querySelector('.main-quote-summary__exchange-rate-container'),
     ).toMatchSnapshot();

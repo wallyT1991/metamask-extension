@@ -78,9 +78,11 @@ describe('SortList', () => {
     expect(
       document.querySelector('.select-quote-popover__receiving'),
     ).toMatchSnapshot();
+
     expect(
       document.querySelector('.select-quote-popover__network-fees-header'),
     ).toMatchSnapshot();
+
     expect(
       document.querySelector('.select-quote-popover__row--selected'),
     ).toMatchSnapshot();

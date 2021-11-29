@@ -74,6 +74,7 @@ async function buildScssPipeline(src, dest, devMode, rtl) {
     // eslint-disable-next-line node/global-require
     sass.compiler = require('./sass-compiler.js');
   }
+
   await pump(
     ...[
       // pre-process

@@ -222,6 +222,7 @@ export default class MetaMetricsController {
     if (isSendFlow) {
       excludeMetaMetricsId = true;
     }
+
     // If we are tracking sensitive data we will always use the anonymousId
     // property as well as our METAMETRICS_ANONYMOUS_ID. This prevents us from
     // associating potentially identifiable information with a specific id.

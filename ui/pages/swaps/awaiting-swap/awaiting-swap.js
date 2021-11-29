@@ -206,6 +206,7 @@ export default function AwaitingSwap({
         {destinationTokenInfo.symbol}
       </span>,
     ]);
+
     content = blockExplorerUrl && (
       <ViewOnEtherScanLink
         txHash={txHash}
@@ -225,6 +226,7 @@ export default function AwaitingSwap({
         {`${tokensReceived || ''} ${destinationTokenInfo.symbol}`}
       </span>,
     ]);
+
     content = blockExplorerUrl && (
       <ViewOnEtherScanLink
         txHash={txHash}

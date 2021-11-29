@@ -11,6 +11,7 @@ describe('metaRPCClientFactory', function () {
     const metaRPCClient = metaRPCClientFactory(streamTest);
     metaRPCClient.foo();
   });
+
   it('should be able to make an rpc request/response with the method and params and node-style callback', function (done) {
     const streamTest = createThoughStream();
     const metaRPCClient = metaRPCClientFactory(streamTest);
@@ -30,6 +31,7 @@ describe('metaRPCClientFactory', function () {
       });
     });
   });
+
   it('should be able to make an rpc request/error with the method and params and node-style callback', function (done) {
     const streamTest = createThoughStream();
     const metaRPCClient = metaRPCClientFactory(streamTest);

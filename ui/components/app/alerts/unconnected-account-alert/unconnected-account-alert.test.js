@@ -161,6 +161,7 @@ describe('Unconnected Account Alert', () => {
     expect(store.getActions()[0].type).toStrictEqual(
       'unconnectedAccount/disableAlertRequested',
     );
+
     expect(store.getActions()[1].type).toStrictEqual(
       'unconnectedAccount/disableAlertSucceeded',
     );

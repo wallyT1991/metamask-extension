@@ -193,6 +193,7 @@ describe('SwapsController', function () {
         swapsController.store.getState(),
         EMPTY_INIT_STATE,
       );
+
       assert.deepStrictEqual(
         swapsController.getBufferedGasLimit,
         MOCK_GET_BUFFERED_GAS_LIMIT,
@@ -400,6 +401,7 @@ describe('SwapsController', function () {
           await swapsController._findTopQuoteAndCalculateSavings(),
           {},
         );
+
         assert.deepStrictEqual(
           await swapsController._findTopQuoteAndCalculateSavings({}),
           {},
@@ -704,6 +706,7 @@ describe('SwapsController', function () {
           metaMaskFeeInEth: '0.5050505050505050505',
           ethValueOfTokens: '50',
         });
+
         assert.strictEqual(
           fetchTradesInfoStub.calledOnceWithExactly(MOCK_FETCH_PARAMS, {
             ...MOCK_FETCH_METADATA,

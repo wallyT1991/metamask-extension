@@ -431,6 +431,7 @@ function createFactoredBuild({
           contents: lavapack.makePolicyLoaderStream(lavamoatOpts),
         }),
       );
+
       // setup bundle destination
       browserPlatforms.forEach((platform) => {
         const dest = `./dist/${platform}/`;
@@ -460,6 +461,7 @@ function createFactoredBuild({
               browserPlatforms,
               useLavamoat: false,
             });
+
             renderHtmlFile({
               htmlName: 'notification',
               groupSet,
@@ -467,6 +469,7 @@ function createFactoredBuild({
               browserPlatforms,
               useLavamoat: false,
             });
+
             renderHtmlFile({
               htmlName: 'home',
               groupSet,
@@ -476,6 +479,7 @@ function createFactoredBuild({
             });
             break;
           }
+
           case 'background': {
             renderHtmlFile({
               htmlName: 'background',
@@ -486,6 +490,7 @@ function createFactoredBuild({
             });
             break;
           }
+
           case 'content-script': {
             renderHtmlFile({
               htmlName: 'trezor-usb-permissions',
@@ -496,6 +501,7 @@ function createFactoredBuild({
             });
             break;
           }
+
           default: {
             throw new Error(
               `build/scripts - unknown groupLabel "${groupLabel}"`,
@@ -657,6 +663,7 @@ function setupReloadOnChange({ bundlerOpts, events }) {
     cache: {},
     packageCache: {},
   });
+
   // Instrument pipeline
   events.on('configurePipeline', ({ bundleStream }) => {
     // Handle build error to avoid breaking build process

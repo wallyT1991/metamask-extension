@@ -20,6 +20,7 @@ jest.mock('../../../shared/modules/conversion.utils', () => ({
     if (String(a).match(/^0x.+/u)) {
       a1 = Number(String(a).slice(2));
     }
+
     if (String(b).match(/^0x.+/u)) {
       b1 = Number(String(b).slice(2));
     }
@@ -70,6 +71,7 @@ describe('send utils', () => {
         amount: 'ab',
         sendToken: { address: '0x0' },
       });
+
       expect(rawEncode.mock.calls[0].toString()).toStrictEqual(
         [
           ['address', 'uint256'],
@@ -103,6 +105,7 @@ describe('send utils', () => {
         bBase: 16,
         toNumericBase: 'hex',
       });
+
       expect(conversionGTE).toHaveBeenCalledWith(
         {
           value: 100,

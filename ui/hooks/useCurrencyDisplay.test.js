@@ -118,9 +118,11 @@ describe('useCurrencyDisplay', () => {
       it(`should return ${result.displayValue} as displayValue`, () => {
         expect(displayValue).toStrictEqual(result.displayValue);
       });
+
       it(`should return ${result.value} as value`, () => {
         expect(parts.value).toStrictEqual(result.value);
       });
+
       it(`should return ${result.suffix} as suffix`, () => {
         expect(parts.suffix).toStrictEqual(result.suffix);
       });

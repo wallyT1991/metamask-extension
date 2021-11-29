@@ -49,6 +49,7 @@ describe('Incremental Security', function () {
           '.first-time-flow__form #create-password',
           'correct horse battery staple',
         );
+
         await driver.fill(
           '.first-time-flow__form #confirm-password',
           'correct horse battery staple',
@@ -68,6 +69,7 @@ describe('Incremental Security', function () {
         await driver.clickElement(
           '[data-testid="account-options-menu-button"]',
         );
+
         await driver.clickElement(
           '[data-testid="account-options-menu__account-details"]',
         );

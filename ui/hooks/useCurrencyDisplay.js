@@ -53,6 +53,7 @@ export function useCurrencyDisplay(
     if (displayValue) {
       return displayValue;
     }
+
     if (
       currency === nativeCurrency ||
       (!isUserPreferredCurrency && !nativeCurrency)

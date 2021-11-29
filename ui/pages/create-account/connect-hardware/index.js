@@ -108,6 +108,7 @@ class ConnectHardwareForm extends Component {
       device: this.state.device,
       path,
     });
+
     this.setState({
       selectedAccounts: [],
     });

@@ -43,6 +43,7 @@ describe('ConfirmApproveContent Component', () => {
     expect(
       queryByText('Give permission to access your TST?'),
     ).toBeInTheDocument();
+
     expect(
       queryByText(
         'By granting permission, you are allowing the following contract to access your funds',

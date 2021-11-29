@@ -49,6 +49,7 @@ export default class DetectTokensController {
         this.restartTokenDetection();
       }
     });
+
     tokensController?.subscribe(({ tokens = [], ignoredTokens = [] }) => {
       this.tokenAddresses = tokens.map((token) => {
         return token.address;
@@ -159,6 +160,7 @@ export default class DetectTokensController {
     if (!interval) {
       return;
     }
+
     this._handle = setInterval(() => {
       this.detectNewTokens();
     }, interval);

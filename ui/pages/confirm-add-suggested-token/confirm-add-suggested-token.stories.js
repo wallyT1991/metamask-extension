@@ -28,6 +28,7 @@ const PageSet = ({ children }) => {
       ),
     );
   }, [symbol, suggestedAssetsState, state.metamask]);
+
   useEffect(() => {
     suggestedAssetsState[0].image = image;
     store.dispatch(

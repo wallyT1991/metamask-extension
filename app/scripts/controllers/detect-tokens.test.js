@@ -38,6 +38,7 @@ describe('DetectTokensController', function () {
       ),
       onNetworkStateChange: network.store.subscribe.bind(network.store),
     });
+
     preferences.setAddresses([
       '0x7e57e2',
       '0xbc86727e770de68b1060c91f6bb6945c73e10388',
@@ -46,12 +47,15 @@ describe('DetectTokensController', function () {
     sandbox
       .stub(network, 'getLatestBlock')
       .callsFake(() => Promise.resolve({}));
+
     sandbox
       .stub(tokensController, '_instantiateNewEthersProvider')
       .returns(null);
+
     sandbox
       .stub(tokensController, '_detectIsERC721')
       .returns(Promise.resolve(false));
+
     nock('https://token-api.metaswap.codefi.network')
       .get(`/tokens/1`)
       .reply(200, [

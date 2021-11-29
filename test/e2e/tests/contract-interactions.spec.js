@@ -39,6 +39,7 @@ describe('Deploy contract and call contract methods', function () {
           'E2E Test Dapp',
           windowHandles,
         );
+
         popup = windowHandles.find(
           (handle) => handle !== extension && handle !== dapp,
         );
@@ -101,6 +102,7 @@ describe('Deploy contract and call contract methods', function () {
           '.transaction-list__completed-transactions .transaction-list-item:nth-of-type(2)',
           { timeout: 10000 },
         );
+
         await driver.waitForSelector(
           {
             css: '.transaction-list-item__primary-currency',
@@ -127,6 +129,7 @@ describe('Deploy contract and call contract methods', function () {
           '.transaction-list__completed-transactions .transaction-list-item:nth-of-type(3)',
           { timeout: 10000 },
         );
+
         await driver.waitForSelector(
           {
             css: '.transaction-list-item__primary-currency',

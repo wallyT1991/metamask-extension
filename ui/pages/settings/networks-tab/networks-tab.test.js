@@ -38,6 +38,7 @@ describe('NetworksTab Component', () => {
     expect(queryByText('Kovan Test Network')).toBeInTheDocument();
     expect(queryByText('Add Network')).toBeInTheDocument();
   });
+
   it('should render add network form correctly', () => {
     const { queryByText } = renderComponent({
       addNewNetwork: true,

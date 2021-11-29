@@ -55,6 +55,7 @@ const MetaMaskTemplateRenderer = ({ sections }) => {
               'When using array syntax in MetaMask Template Language, you must specify a key for each child of the array',
             );
           }
+
           if (typeof child?.children === 'object') {
             // If this child has its own children, check if children is an
             // object, and in that case use recursion to render.

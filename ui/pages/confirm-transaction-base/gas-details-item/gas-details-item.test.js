@@ -59,6 +59,7 @@ describe('GasDetailsItem', () => {
     render({
       contextProps: { transaction: { txParams: {}, userFeeLevel: 'high' } },
     });
+
     await waitFor(() => {
       expect(screen.queryByText('⚠ Max fee:')).toBeInTheDocument();
     });
@@ -68,6 +69,7 @@ describe('GasDetailsItem', () => {
     render({
       contextProps: { transaction: { txParams: {}, userFeeLevel: 'low' } },
     });
+
     await waitFor(() => {
       expect(screen.queryByText('Max fee:')).toBeInTheDocument();
     });
@@ -100,6 +102,7 @@ describe('GasDetailsItem', () => {
         hexMaximumTransactionFee: '0x290ee75e3d900',
       },
     });
+
     await waitFor(() => {
       expect(screen.queryByTitle('0.0000315 ETH')).toBeInTheDocument();
       expect(screen.queryByText('ETH')).toBeInTheDocument();

@@ -208,6 +208,7 @@ export default function ViewQuote() {
     maxPriorityFeePerGas =
       customMaxPriorityFeePerGas ||
       decGWEIToHexWEI(suggestedMaxPriorityFeePerGas);
+
     baseAndPriorityFeePerGas = addHexes(
       decGWEIToHexWEI(estimatedBaseFee),
       maxPriorityFeePerGas,

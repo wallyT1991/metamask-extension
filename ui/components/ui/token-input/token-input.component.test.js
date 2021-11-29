@@ -44,6 +44,7 @@ describe('TokenInput Component', () => {
       expect(
         wrapper.find('.currency-input__conversion-component'),
       ).toHaveLength(1);
+
       expect(
         wrapper.find('.currency-input__conversion-component').text(),
       ).toStrictEqual('translate noConversionRateAvailable');
@@ -115,6 +116,7 @@ describe('TokenInput Component', () => {
       expect(wrapper.find('.unit-input__input').props().value).toStrictEqual(
         '1',
       );
+
       expect(wrapper.find('.currency-display-component').text()).toStrictEqual(
         '2ETH',
       );
@@ -154,6 +156,7 @@ describe('TokenInput Component', () => {
       expect(wrapper.find('.unit-input__input').props().value).toStrictEqual(
         '1',
       );
+
       expect(wrapper.find('.currency-display-component').text()).toStrictEqual(
         '$462.12USD',
       );
@@ -199,6 +202,7 @@ describe('TokenInput Component', () => {
       expect(wrapper.find('.unit-input__input').props().value).toStrictEqual(
         '1',
       );
+
       expect(
         wrapper.find('.currency-input__conversion-component').text(),
       ).toStrictEqual('translate noConversionRateAvailable');

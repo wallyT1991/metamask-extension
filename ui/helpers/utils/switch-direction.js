@@ -19,11 +19,13 @@ const switchDirection = async (direction) => {
         link.disabled = true;
       }
     });
+
   if (updatedLink) {
     return new Promise((resolve, reject) => {
       updatedLink.onload = () => {
         resolve();
       };
+
       updatedLink.onerror = () =>
         reject(new Error(`Failed to load '${direction}' stylesheet`));
     });

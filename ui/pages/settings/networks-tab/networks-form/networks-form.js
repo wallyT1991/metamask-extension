@@ -358,6 +358,7 @@ const NetworksForm = ({
         errorKey = 'invalidRPC';
         errorMessage = t('invalidRPC');
       }
+
       setErrorTo('rpcUrl', {
         key: errorKey,
         msg: errorMessage,

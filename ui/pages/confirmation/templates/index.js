@@ -47,6 +47,7 @@ export async function getTemplateAlerts(pendingApproval) {
   if (!Array.isArray(results)) {
     throw new Error(`Template alerts must be an array, received: ${results}`);
   }
+
   if (results.some((result) => result?.id === undefined)) {
     throw new Error(
       `Template alert entries must be objects with an id key. Received: ${results}`,

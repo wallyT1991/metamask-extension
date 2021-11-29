@@ -78,6 +78,7 @@ const slice = createSlice({
         } else {
           state.resolution = address;
         }
+
         if (isValidDomainName(address) && isConfusing(address)) {
           state.warning = CONFUSING_ENS_ERROR;
         }

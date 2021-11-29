@@ -16,6 +16,7 @@ export default function createOnboardingMiddleware({
         next();
         return;
       }
+
       if (req.tabId && req.tabId !== extension.tabs.TAB_ID_NONE) {
         await registerOnboarding(location, req.tabId);
       } else {

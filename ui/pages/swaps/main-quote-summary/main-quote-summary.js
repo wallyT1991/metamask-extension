@@ -12,6 +12,7 @@ function getFontSizesAndLineHeights(fontSizeScore) {
   if (fontSizeScore <= 9) {
     return [60, 48];
   }
+
   if (fontSizeScore <= 13) {
     return [40, 32];
   }

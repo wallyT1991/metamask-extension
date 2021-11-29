@@ -101,10 +101,12 @@ describe('migration #57', () => {
       // Build expected transaction object
       expectedTransactions[transaction.id] = transaction;
     }
+
     // Ensure that we got the correct number of transactions
     expect(Object.keys(expectedTransactions)).toHaveLength(
       oldStorage.data.TransactionController.transactions.length,
     );
+
     // Ensure that the one transaction with id is preserved, even though it is
     // a falsy id.
     expect(

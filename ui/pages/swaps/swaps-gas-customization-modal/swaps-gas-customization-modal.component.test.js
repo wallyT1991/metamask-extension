@@ -70,9 +70,11 @@ describe('GasCustomizationModalComponent', () => {
     expect(
       getByTestId('gas-modal-content__info-row__send-info'),
     ).toMatchSnapshot();
+
     expect(
       getByTestId('gas-modal-content__info-row__transaction-info'),
     ).toMatchSnapshot();
+
     expect(
       getByTestId('gas-modal-content__info-row__total-info'),
     ).toMatchSnapshot();

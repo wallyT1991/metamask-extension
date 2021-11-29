@@ -64,6 +64,7 @@ describe('permissions controller', function () {
         DOMAINS.a.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.a.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
@@ -80,6 +81,7 @@ describe('permissions controller', function () {
         [ACCOUNTS.a.primary],
         'first origin should have correct accounts',
       );
+
       assert.deepEqual(
         bAccounts,
         [ACCOUNTS.b.primary],
@@ -106,6 +108,7 @@ describe('permissions controller', function () {
         DOMAINS.a.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.a.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
@@ -116,6 +119,7 @@ describe('permissions controller', function () {
         permController.hasPermission(DOMAINS.a.origin, 'eth_accounts'),
         'should return true for granted permission',
       );
+
       assert.ok(
         permController.hasPermission(DOMAINS.b.origin, 'test_method'),
         'should return true for granted permission',
@@ -125,6 +129,7 @@ describe('permissions controller', function () {
         !permController.hasPermission(DOMAINS.a.origin, 'test_method'),
         'should return false for non-granted permission',
       );
+
       assert.ok(
         !permController.hasPermission(DOMAINS.b.origin, 'eth_accounts'),
         'should return true for non-granted permission',
@@ -134,6 +139,7 @@ describe('permissions controller', function () {
         !permController.hasPermission('foo', 'eth_accounts'),
         'should return false for unknown origin',
       );
+
       assert.ok(
         !permController.hasPermission(DOMAINS.b.origin, 'foo'),
         'should return false for unknown permission',
@@ -151,11 +157,13 @@ describe('permissions controller', function () {
         DOMAINS.a.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.a.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.b.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.c.origin,
@@ -171,11 +179,13 @@ describe('permissions controller', function () {
         [ACCOUNTS.a.primary],
         'first origin should have correct accounts',
       );
+
       assert.deepEqual(
         bAccounts,
         [ACCOUNTS.b.primary],
         'second origin should have correct accounts',
       );
+
       assert.deepEqual(
         cAccounts,
         [ACCOUNTS.c.primary],
@@ -227,6 +237,7 @@ describe('permissions controller', function () {
         DOMAINS.a.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.a.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
@@ -243,6 +254,7 @@ describe('permissions controller', function () {
         [ACCOUNTS.a.primary],
         'first origin should have correct accounts',
       );
+
       assert.deepEqual(
         bAccounts,
         [ACCOUNTS.b.primary],
@@ -265,6 +277,7 @@ describe('permissions controller', function () {
         [NOTIFICATIONS.removedAccounts()],
         'first origin should have correct notification',
       );
+
       assert.deepEqual(
         notifications[DOMAINS.b.origin],
         [NOTIFICATIONS.removedAccounts()],
@@ -331,6 +344,7 @@ describe('permissions controller', function () {
         [],
         'first origin should have no notifications',
       );
+
       assert.deepEqual(
         notifications[DOMAINS.b.origin],
         [NOTIFICATIONS.removedAccounts()],
@@ -364,6 +378,7 @@ describe('permissions controller', function () {
         [ACCOUNTS.a.primary],
         'first origin should have correct accounts',
       );
+
       assert.deepEqual(
         bAccounts,
         [ACCOUNTS.b.primary],
@@ -388,6 +403,7 @@ describe('permissions controller', function () {
         DOMAINS.a.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.a.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
@@ -479,6 +495,7 @@ describe('permissions controller', function () {
         DOMAINS.a.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.a.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
@@ -579,6 +596,7 @@ describe('permissions controller', function () {
         DOMAINS.a.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.a.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
@@ -719,11 +737,13 @@ describe('permissions controller', function () {
         DOMAINS.a.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.a.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
         PERMS.finalizedRequests.eth_accounts(ACCOUNTS.b.permitted),
       );
+
       grantPermissions(
         permController,
         DOMAINS.c.origin,
@@ -880,10 +900,12 @@ describe('permissions controller', function () {
         identitiesAcc[account] = {};
         return identitiesAcc;
       }, {});
+
       preferences = {
         getState: sinon.stub(),
         subscribe: sinon.stub(),
       };
+
       preferences.getState.returns({
         identities,
         selectedAddress: DUMMY_ACCOUNT,
@@ -895,6 +917,7 @@ describe('permissions controller', function () {
         notifyAllDomains: getNotifyAllDomains(notifications),
         preferences,
       });
+
       grantPermissions(
         permController,
         DOMAINS.b.origin,
@@ -903,6 +926,7 @@ describe('permissions controller', function () {
           EXTRA_ACCOUNT,
         ]),
       );
+
       grantPermissions(
         permController,
         DOMAINS.c.origin,
@@ -934,6 +958,7 @@ describe('permissions controller', function () {
         [],
         'should not have emitted notification',
       );
+
       assert.deepEqual(
         notifications[DOMAINS.c.origin],
         [],
@@ -954,6 +979,7 @@ describe('permissions controller', function () {
         [NOTIFICATIONS.newAccounts([ACCOUNTS.a.primary])],
         'should not have emitted notification',
       );
+
       assert.deepEqual(
         notifications[DOMAINS.c.origin],
         [NOTIFICATIONS.newAccounts([ACCOUNTS.a.primary])],
@@ -974,6 +1000,7 @@ describe('permissions controller', function () {
         [NOTIFICATIONS.newAccounts([EXTRA_ACCOUNT])],
         'should have emitted notification',
       );
+
       assert.deepEqual(
         notifications[DOMAINS.c.origin],
         [],
@@ -994,6 +1021,7 @@ describe('permissions controller', function () {
         [NOTIFICATIONS.newAccounts([ACCOUNTS.a.permitted[1]])],
         'should have emitted notification',
       );
+
       assert.deepEqual(
         notifications[DOMAINS.c.origin],
         [NOTIFICATIONS.newAccounts([ACCOUNTS.c.primary])],
@@ -1112,11 +1140,13 @@ describe('permissions controller', function () {
         request2,
         ACCOUNTS.b.permitted,
       );
+
       // add a non-existing request to the mix
       await permController.approvePermissionsRequest(
         request3,
         ACCOUNTS.c.permitted,
       );
+
       await permController.approvePermissionsRequest(
         request1,
         ACCOUNTS.a.permitted,
@@ -1379,11 +1409,13 @@ describe('permissions controller', function () {
         permController.store.getState.called,
         'should have called store.getState',
       );
+
       assert.equal(
         permController._setDomainMetadata.getCalls().length,
         1,
         'should have called _setDomainMetadata once',
       );
+
       assert.deepEqual(permController._setDomainMetadata.lastCall.args, [
         {
           [DOMAINS.a.origin]: {
@@ -1416,11 +1448,13 @@ describe('permissions controller', function () {
         permController.store.getState.called,
         'should have called store.getState',
       );
+
       assert.equal(
         permController._setDomainMetadata.getCalls().length,
         1,
         'should have called _setDomainMetadata once',
       );
+
       assert.deepEqual(permController._setDomainMetadata.lastCall.args, [
         {
           [DOMAINS.a.origin]: {
@@ -1475,11 +1509,13 @@ describe('permissions controller', function () {
         ),
         'should have called _pendingSiteMetadata.delete once',
       );
+
       assert.equal(
         permController._setDomainMetadata.getCalls().length,
         1,
         'should have called _setDomainMetadata once',
       );
+
       assert.deepEqual(permController._setDomainMetadata.lastCall.args, [
         expectedMetadata,
       ]);
@@ -1506,6 +1542,7 @@ describe('permissions controller', function () {
         1,
         'should have called permissions.getDomains once',
       );
+
       assert.deepEqual(
         metadataResult,
         {
@@ -1535,6 +1572,7 @@ describe('permissions controller', function () {
         });
       permController.requestAccountsPermissionWithId('example.com');
     });
+
     it('requestAccountsPermissionWithId calls _requestAccountsPermission with an explicit request ID', function (done) {
       const permController = initPermController();
       const _requestPermissions = sinon

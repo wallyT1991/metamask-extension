@@ -112,6 +112,7 @@ const TokenOverview = ({ className, token }) => {
                     string: balanceToRender,
                   }),
                 );
+
                 if (usingHardwareWallet) {
                   global.platform.openExtensionInBrowser(BUILD_QUOTE_ROUTE);
                 } else {

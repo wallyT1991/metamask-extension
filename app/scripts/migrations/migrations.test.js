@@ -55,9 +55,11 @@ describe('wallet1 is migrated successfully', () => {
         expect(fifthData.KeyringController.vault).toStrictEqual(
           vault4.data.vault,
         );
+
         expect(fifthData.KeyringController.selectedAccount).toStrictEqual(
           vault4.data.config.selectedAccount,
         );
+
         expect(
           fifthData.KeyringController.walletNicknames[
             '0x0beb674745816b125fbc07285d39fd373e64895c'
@@ -75,6 +77,7 @@ describe('wallet1 is migrated successfully', () => {
         expect(
           sixthResult.data.KeyringController.selectedAccount,
         ).toBeUndefined();
+
         expect(
           sixthResult.data.PreferencesController.selectedAddress,
         ).toStrictEqual(vault5.data.KeyringController.selectedAccount);
@@ -88,6 +91,7 @@ describe('wallet1 is migrated successfully', () => {
         expect(
           seventhResult.data.TransactionManager.transactions[0].id,
         ).toStrictEqual(vault6.data.transactions[0].id);
+
         expect(
           seventhResult.data.TransactionManager.gasMultiplier,
         ).toStrictEqual(vault6.data.gasMultiplier);
@@ -113,9 +117,11 @@ describe('wallet1 is migrated successfully', () => {
         expect(
           ninthResult.data.CurrencyController.currentCurrency,
         ).toStrictEqual(vault8.data.fiatCurrency);
+
         expect(
           ninthResult.data.CurrencyController.conversionRate,
         ).toStrictEqual(vault8.data.conversionRate);
+
         expect(
           ninthResult.data.CurrencyController.conversionDate,
         ).toStrictEqual(vault8.data.conversionDate);
@@ -141,6 +147,7 @@ describe('wallet1 is migrated successfully', () => {
         expect(
           twelfthResult.data.NoticeController.noticesList[0].body,
         ).toStrictEqual('');
+
         expect(
           twelfthResult.data.NoticeController.noticesList[1].body,
         ).toStrictEqual('nonempty');

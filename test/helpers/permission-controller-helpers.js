@@ -97,6 +97,7 @@ function _validateActivityEntry(entry, req, res, methodType, success) {
         Number.isInteger(entry.responseTime),
       'request and response times should be numbers',
     );
+
     assert.ok(
       entry.requestTime <= entry.responseTime,
       'request time should be less than response time',
@@ -113,6 +114,7 @@ function _validateActivityEntry(entry, req, res, methodType, success) {
       Number.isInteger(entry.requestTime) && entry.requestTime > 0,
       'entry should have non-zero request time',
     );
+
     assert.ok(
       entry.success === null &&
         entry.responseTime === null &&

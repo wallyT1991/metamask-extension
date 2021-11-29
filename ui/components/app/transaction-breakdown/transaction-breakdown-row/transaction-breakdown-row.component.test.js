@@ -16,6 +16,7 @@ describe('TransactionBreakdownRow Component', () => {
     expect(
       wrapper.find('.transaction-breakdown-row__title').text(),
     ).toStrictEqual('test');
+
     expect(
       wrapper.find('.transaction-breakdown-row__value').text(),
     ).toStrictEqual('Test');
@@ -33,6 +34,7 @@ describe('TransactionBreakdownRow Component', () => {
     expect(
       wrapper.find('.transaction-breakdown-row__title').text(),
     ).toStrictEqual('test');
+
     expect(
       wrapper.find('.transaction-breakdown-row__value').find(Button),
     ).toHaveLength(1);

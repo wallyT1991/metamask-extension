@@ -195,11 +195,13 @@ describe('PendingTransactionTracker', function () {
           sinon.match.has('id', 1),
         ),
       );
+
       assert.ok(
         checkPendingTxStub.secondCall.calledWithExactly(
           sinon.match.has('id', 2),
         ),
       );
+
       assert.ok(
         checkPendingTxStub.thirdCall.calledWithExactly(
           sinon.match.has('id', 3),
@@ -248,6 +250,7 @@ describe('PendingTransactionTracker', function () {
         publishTransaction.calledOnceWithExactly(txMeta.rawTx),
         'should call publish transaction with the rawTx',
       );
+
       assert.ok(
         approveTransaction.notCalled,
         'should NOT try to approve transaction',
@@ -295,6 +298,7 @@ describe('PendingTransactionTracker', function () {
         publishTransaction.calledOnceWithExactly(txMeta.rawTx),
         'should try to publish transaction',
       );
+
       assert.ok(
         approveTransaction.notCalled,
         'should NOT try to approve transaction',
@@ -342,6 +346,7 @@ describe('PendingTransactionTracker', function () {
         publishTransaction.notCalled,
         'should NOT try to publish transaction',
       );
+
       assert.ok(
         approveTransaction.notCalled,
         'should NOT try to approve transaction',
@@ -373,6 +378,7 @@ describe('PendingTransactionTracker', function () {
         approveTransaction.calledOnceWithExactly(40),
         'should call approveTransaction with the tx ID',
       );
+
       assert.ok(
         publishTransaction.notCalled,
         'should NOT try to publish transaction',
@@ -706,6 +712,7 @@ describe('PendingTransactionTracker', function () {
         ),
         "should pass txId to 'tx:failed' listener",
       );
+
       assert.ok(
         listeners.confirmed.notCalled,
         "should not emit 'tx:confirmed'",

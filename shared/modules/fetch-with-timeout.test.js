@@ -59,12 +59,15 @@ describe('getFetchWithTimeout', function () {
     expect(() => getFetchWithTimeout()).toThrow(
       'Must specify positive integer timeout.',
     );
+
     expect(() => getFetchWithTimeout(-1)).toThrow(
       'Must specify positive integer timeout.',
     );
+
     expect(() => getFetchWithTimeout({})).toThrow(
       'Must specify positive integer timeout.',
     );
+
     expect(() => getFetchWithTimeout(true)).toThrow(
       'Must specify positive integer timeout.',
     );

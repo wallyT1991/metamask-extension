@@ -51,6 +51,7 @@ describe('Confirm Page Container Content', () => {
     expect(
       queryByText('Transaction Error. Exception thrown in contract code.'),
     ).not.toBeInTheDocument();
+
     expect(
       queryByText(
         'This transaction is expected to fail. Trying to execute it is expected to be expensive but fail, and is not recommended.',
@@ -110,6 +111,7 @@ describe('Confirm Page Container Content', () => {
         'This transaction is expected to fail. Trying to execute it is expected to be expensive but fail, and is not recommended.',
       ),
     ).not.toBeInTheDocument();
+
     expect(
       queryByText('Transaction Error. Exception thrown in contract code.'),
     ).not.toBeInTheDocument();

@@ -13,9 +13,11 @@ describe('CurrencyDisplay Component', () => {
       conversionRate: 280.45,
     }));
   });
+
   afterEach(() => {
     sinon.restore();
   });
+
   it('should render text with a className', () => {
     const wrapper = shallow(
       <CurrencyDisplay

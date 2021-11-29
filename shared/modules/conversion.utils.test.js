@@ -46,6 +46,7 @@ describe('conversion utils', () => {
       expect(typeof conv1 === 'string').toStrictEqual(true);
       expect(conv2 instanceof BigNumber).toStrictEqual(true);
     });
+
     it('converts from dec to hex', () => {
       expect(
         conversionUtil('1000000000000000000', {
@@ -53,6 +54,7 @@ describe('conversion utils', () => {
           toNumericBase: 'hex',
         }),
       ).toStrictEqual('de0b6b3a7640000');
+
       expect(
         conversionUtil('1500000000000000000', {
           fromNumericBase: 'dec',
@@ -60,6 +62,7 @@ describe('conversion utils', () => {
         }),
       ).toStrictEqual('14d1120d7b160000');
     });
+
     it('converts hex formatted numbers to dec', () => {
       expect(
         conversionUtil('0xde0b6b3a7640000', {
@@ -67,6 +70,7 @@ describe('conversion utils', () => {
           toNumericBase: 'dec',
         }),
       ).toStrictEqual('1000000000000000000');
+
       expect(
         conversionUtil('0x14d1120d7b160000', {
           fromNumericBase: 'hex',
@@ -74,6 +78,7 @@ describe('conversion utils', () => {
         }),
       ).toStrictEqual('1500000000000000000');
     });
+
     it('converts WEI to ETH', () => {
       expect(
         conversionUtil('0xde0b6b3a7640000', {
@@ -83,6 +88,7 @@ describe('conversion utils', () => {
           toDenomination: 'ETH',
         }),
       ).toStrictEqual('1');
+
       expect(
         conversionUtil('0x14d1120d7b160000', {
           fromNumericBase: 'hex',
@@ -92,6 +98,7 @@ describe('conversion utils', () => {
         }),
       ).toStrictEqual('1.5');
     });
+
     it('converts ETH to WEI', () => {
       expect(
         conversionUtil('1', {
@@ -100,6 +107,7 @@ describe('conversion utils', () => {
           toDenomination: 'WEI',
         }).toNumber(),
       ).toStrictEqual(1000000000000000000);
+
       expect(
         conversionUtil('1.5', {
           fromNumericBase: 'dec',
@@ -108,6 +116,7 @@ describe('conversion utils', () => {
         }).toNumber(),
       ).toStrictEqual(1500000000000000000);
     });
+
     it('converts ETH to GWEI', () => {
       expect(
         conversionUtil('1', {
@@ -116,6 +125,7 @@ describe('conversion utils', () => {
           toDenomination: 'GWEI',
         }).toNumber(),
       ).toStrictEqual(1000000000);
+
       expect(
         conversionUtil('1.5', {
           fromNumericBase: 'dec',
@@ -124,6 +134,7 @@ describe('conversion utils', () => {
         }).toNumber(),
       ).toStrictEqual(1500000000);
     });
+
     it('converts ETH to USD', () => {
       expect(
         conversionUtil('1', {
@@ -134,6 +145,7 @@ describe('conversion utils', () => {
           numberOfDecimals: 2,
         }),
       ).toStrictEqual('468.58');
+
       expect(
         conversionUtil('1.5', {
           fromNumericBase: 'dec',
@@ -144,6 +156,7 @@ describe('conversion utils', () => {
         }),
       ).toStrictEqual('702.87');
     });
+
     it('converts USD to ETH', () => {
       expect(
         conversionUtil('468.58', {
@@ -155,6 +168,7 @@ describe('conversion utils', () => {
           invertConversionRate: true,
         }),
       ).toStrictEqual('1');
+
       expect(
         conversionUtil('702.87', {
           fromNumericBase: 'dec',

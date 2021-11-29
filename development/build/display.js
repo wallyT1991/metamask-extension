@@ -23,10 +23,12 @@ function setupTaskDisplay(taskEvents) {
   taskEvents.on('start', ([name]) => {
     console.log(`Starting '${name}'...`);
   });
+
   taskEvents.on('end', ([name, start, end]) => {
     taskData.push([name, start, end]);
     console.log(`Finished '${name}'`);
   });
+
   taskEvents.on('complete', () => {
     displayChart(taskData);
   });
