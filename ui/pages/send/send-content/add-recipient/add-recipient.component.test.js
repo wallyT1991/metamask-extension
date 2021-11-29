@@ -69,6 +69,7 @@ describe('AddRecipient Component', () => {
       expect(
         wrapper.find('.send__select-recipient-wrapper__list__link'),
       ).toHaveLength(0);
+
       expect(
         wrapper.find('.send__select-recipient-wrapper__group'),
       ).toHaveLength(0);

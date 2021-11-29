@@ -174,16 +174,19 @@ describe('util', () => {
       const result = util.formatBalance(input, 2);
       expect(result).toStrictEqual('1.33 ETH');
     });
+
     it('should default to 3 decimal points', () => {
       const input = '0x128dfa6a90b28000';
       const result = util.formatBalance(input);
       expect(result).toStrictEqual('1.337 ETH');
     });
+
     it('should show 2 significant digits for tiny balances', () => {
       const input = '0x1230fa6a90b28';
       const result = util.formatBalance(input);
       expect(result).toStrictEqual('0.00032 ETH');
     });
+
     it('should not parse the balance and return value with 2 decimal points with ETH at the end', () => {
       const value = '1.2456789';
       const needsParse = false;
@@ -315,27 +318,35 @@ describe('util', () => {
           return '';
       }
     };
+
     it('should return empty string if milliseconds passed is undefined', () => {
       expect(util.toHumanReadableTime(t)).toStrictEqual('');
     });
+
     it('should return rounded value for time', () => {
       expect(util.toHumanReadableTime(t, 6300)).toStrictEqual('7 sec');
     });
+
     it('should return value in seconds for milliseconds passed is < 9000', () => {
       expect(util.toHumanReadableTime(t, 6000)).toStrictEqual('6 sec');
     });
+
     it('should return value in seconds for milliseconds passed is > 6000 and <= 9000', () => {
       expect(util.toHumanReadableTime(t, 9000)).toStrictEqual('9 sec');
     });
+
     it('should return value in minutes for milliseconds passed is > 90000', () => {
       expect(util.toHumanReadableTime(t, 90001)).toStrictEqual('2 min');
     });
+
     it('should return value in minutes for milliseconds passed is > 90000 and <= 5400000', () => {
       expect(util.toHumanReadableTime(t, 5400000)).toStrictEqual('90 min');
     });
+
     it('should return value in hours for milliseconds passed is > 5400000', () => {
       expect(util.toHumanReadableTime(t, 5400001)).toStrictEqual('2 hrs');
     });
+
     it('should return value in hours for milliseconds passed very high above 5400000', () => {
       expect(util.toHumanReadableTime(t, 7200000)).toStrictEqual('2 hrs');
     });

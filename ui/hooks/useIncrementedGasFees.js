@@ -88,6 +88,7 @@ export function useIncrementedGasFees(transaction) {
               transactionMaxFeePerGas,
               suggestedMaxFeePerGas,
             );
+
       temporaryGasSettings.maxPriorityFeePerGas =
         transactionMaxPriorityFeePerGas === undefined ||
         transactionMaxPriorityFeePerGas.startsWith('-')

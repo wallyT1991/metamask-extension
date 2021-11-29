@@ -118,6 +118,7 @@ describe('send-gas-row container', () => {
       expect(
         result.gasPriceButtonGroupProps.someGasPriceButtonGroupProp,
       ).toStrictEqual('foo');
+
       expect(
         result.gasPriceButtonGroupProps.anotherGasPriceButtonGroupProp,
       ).toStrictEqual('bar');

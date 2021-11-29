@@ -79,6 +79,7 @@ export default class PendingTransactionTracker extends EventEmitter {
     if (!pending.length) {
       return;
     }
+
     for (const txMeta of pending) {
       try {
         await this._resubmitTx(txMeta, blockNumber);
@@ -101,6 +102,7 @@ export default class PendingTransactionTracker extends EventEmitter {
         if (isKnownTx) {
           return;
         }
+
         // encountered real error - transition to error state
         txMeta.warning = {
           error: errorMessage,

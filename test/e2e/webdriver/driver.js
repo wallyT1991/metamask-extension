@@ -16,6 +16,7 @@ function wrapElementWithAPI(element, driver) {
     await element.clear();
     await element.sendKeys(input);
   };
+
   element.waitForElementState = async (state, timeout) => {
     switch (state) {
       case 'hidden':
@@ -141,6 +142,7 @@ class Driver {
     if (!['visible', 'detached'].includes(state)) {
       throw new Error(`Provided state selector ${state} is not supported`);
     }
+
     if (state === 'visible') {
       element = await this.driver.wait(until.elementLocated(selector), timeout);
     } else if (state === 'detached') {

@@ -84,6 +84,7 @@ const getMaxPriorityFeeWarning = (
   ) {
     return GAS_FORM_ERRORS.MAX_PRIORITY_FEE_TOO_LOW;
   }
+
   if (
     gasFeeEstimates?.high &&
     bnGreaterThan(
@@ -115,9 +116,11 @@ const getMaxFeeWarning = (
   ) {
     return undefined;
   }
+
   if (bnLessThan(maxFeePerGas, gasFeeEstimates?.low?.suggestedMaxFeePerGas)) {
     return GAS_FORM_ERRORS.MAX_FEE_TOO_LOW;
   }
+
   if (
     gasFeeEstimates?.high &&
     bnGreaterThan(

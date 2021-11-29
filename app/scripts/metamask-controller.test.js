@@ -69,6 +69,7 @@ const initializeMockMiddlewareLog = () => {
     responses: [],
   };
 };
+
 const tearDownMockMiddlewareLog = () => {
   loggerMiddlewareMock = undefined;
 };
@@ -144,6 +145,7 @@ describe('MetaMaskController', function () {
       metamaskController.keyringController,
       'createNewVaultAndKeychain',
     );
+
     sandbox.spy(
       metamaskController.keyringController,
       'createNewVaultAndRestore',
@@ -365,9 +367,11 @@ describe('MetaMaskController', function () {
       metamaskController.getBalance.withArgs(TEST_ADDRESS).callsFake(() => {
         return Promise.resolve('0x14ced5122ce0a000');
       });
+
       metamaskController.getBalance.withArgs(TEST_ADDRESS_2).callsFake(() => {
         return Promise.resolve('0x0');
       });
+
       metamaskController.getBalance.withArgs(TEST_ADDRESS_3).callsFake(() => {
         return Promise.resolve('0x14ced5122ce0a000');
       });
@@ -470,6 +474,7 @@ describe('MetaMaskController', function () {
           name: 'Account 2',
         },
       };
+
       metamaskController.preferencesController.store.updateState({
         identities,
       });
@@ -609,6 +614,7 @@ describe('MetaMaskController', function () {
       await metamaskController
         .connectHardware('trezor', 0, `m/44'/1'/0'/0`)
         .catch(() => null);
+
       await metamaskController.unlockHardwareWalletAccount(
         accountToUnlock,
         'trezor',
@@ -790,6 +796,7 @@ describe('MetaMaskController', function () {
         ),
       );
     });
+
     it('should call accountTracker.removeAccount', async function () {
       assert(
         metamaskController.accountTracker.removeAccount.calledWith([
@@ -797,6 +804,7 @@ describe('MetaMaskController', function () {
         ]),
       );
     });
+
     it('should call keyringController.removeAccount', async function () {
       assert(
         metamaskController.keyringController.removeAccount.calledWith(
@@ -804,6 +812,7 @@ describe('MetaMaskController', function () {
         ),
       );
     });
+
     it('should call permissionsController.removeAllAccountPermissions', async function () {
       assert(
         metamaskController.permissionsController.removeAllAccountPermissions.calledWith(
@@ -811,6 +820,7 @@ describe('MetaMaskController', function () {
         ),
       );
     });
+
     it('should return address', async function () {
       assert.equal(ret, '0x1');
     });
@@ -986,10 +996,12 @@ describe('MetaMaskController', function () {
       await metamaskController.signPersonalMessage(
         personalMessages[0].msgParams,
       );
+
       assert.equal(
         metamaskPersonalMsgs[msgId].status,
         TRANSACTION_STATUSES.SIGNED,
       );
+
       assert.equal(
         metamaskPersonalMsgs[msgId].rawSig,
         '0x6a1b65e2b8ed53cf398a769fad24738f9fbe29841fe6854e226953542c4b6a173473cb152b6b1ae5f06d601d45dd699a129b0a8ca84e78b423031db5baa734741b',
@@ -1020,6 +1032,7 @@ describe('MetaMaskController', function () {
           cb();
           return;
         }
+
         assert.equal(
           chunk.data.hostname,
           new URL(phishingMessageSender.url).hostname,
@@ -1157,6 +1170,7 @@ describe('MetaMaskController', function () {
       sandbox.replace(metamaskController, 'preferencesController', {
         syncAddresses,
       });
+
       sandbox.replace(metamaskController, 'accountTracker', {
         syncWithAddresses,
       });
@@ -1175,6 +1189,7 @@ describe('MetaMaskController', function () {
       sandbox.replace(metamaskController, 'preferencesController', {
         syncAddresses,
       });
+
       sandbox.replace(metamaskController, 'accountTracker', {
         syncWithAddresses,
       });
@@ -1199,6 +1214,7 @@ describe('MetaMaskController', function () {
       sandbox.replace(metamaskController, 'preferencesController', {
         syncAddresses,
       });
+
       sandbox.replace(metamaskController, 'accountTracker', {
         syncWithAddresses,
       });

@@ -69,18 +69,23 @@ describe('NetworkForm Component', () => {
     expect(
       getByDisplayValue(propNetworkDisplay.selectedNetwork.label),
     ).toBeInTheDocument();
+
     expect(
       getByDisplayValue(propNetworkDisplay.selectedNetwork.rpcUrl),
     ).toBeInTheDocument();
+
     expect(
       getByDisplayValue(propNetworkDisplay.selectedNetwork.chainId),
     ).toBeInTheDocument();
+
     expect(
       getByDisplayValue(propNetworkDisplay.selectedNetwork.ticker),
     ).toBeInTheDocument();
+
     expect(
       getByDisplayValue(propNetworkDisplay.selectedNetwork.blockExplorerUrl),
     ).toBeInTheDocument();
+
     fireEvent.change(
       getByDisplayValue(propNetworkDisplay.selectedNetwork.label),
       {
@@ -94,6 +99,7 @@ describe('NetworkForm Component', () => {
         target: { value: '1' },
       },
     );
+
     expect(
       queryByText('This Chain ID is currently used by the mainnet network.'),
     ).toBeInTheDocument();
@@ -104,6 +110,7 @@ describe('NetworkForm Component', () => {
         target: { value: 'test' },
       },
     );
+
     expect(
       queryByText('URLs require the appropriate HTTP/HTTPS prefix.'),
     ).toBeInTheDocument();

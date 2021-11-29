@@ -18,6 +18,7 @@ const Alerts = ({ history }) => {
   if (_invalidCustomNetworkAlertIsOpen) {
     return <InvalidCustomNetworkAlert history={history} />;
   }
+
   if (_unconnectedAccountAlertIsOpen) {
     return <UnconnectedAccountAlert />;
   }

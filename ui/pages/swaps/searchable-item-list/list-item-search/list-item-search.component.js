@@ -50,6 +50,7 @@ export default function ListItemSearch({
     } catch (e) {
       log.error('Token not found, show 0 results.', e);
     }
+
     onSearch({
       searchQuery: contractAddress,
       results: [], // No token for import found.

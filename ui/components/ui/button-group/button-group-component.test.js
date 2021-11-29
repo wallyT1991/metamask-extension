@@ -116,6 +116,7 @@ describe('ButtonGroup Component', () => {
       expect(wrapper.find('div').at(0).props().className).toStrictEqual(
         'someClassName',
       );
+
       expect(wrapper.find('div').at(0).props().style).toStrictEqual({
         color: 'red',
       });

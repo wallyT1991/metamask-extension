@@ -9,6 +9,7 @@ describe('MetaFoxLogo', () => {
     expect(
       wrapper.find('img.app-header__metafox-logo--icon').prop('width'),
     ).toStrictEqual(42);
+
     expect(
       wrapper.find('img.app-header__metafox-logo--icon').prop('height'),
     ).toStrictEqual(42);
@@ -20,6 +21,7 @@ describe('MetaFoxLogo', () => {
     expect(
       wrapper.find('img.app-header__metafox-logo--icon').prop('width'),
     ).toBeUndefined();
+
     expect(
       wrapper.find('img.app-header__metafox-logo--icon').prop('height'),
     ).toBeUndefined();

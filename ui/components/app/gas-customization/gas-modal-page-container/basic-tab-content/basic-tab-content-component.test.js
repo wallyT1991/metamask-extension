@@ -83,6 +83,7 @@ describe('BasicTabContent Component', () => {
       expect(gasButtonInfo).toStrictEqual(
         mockGasPriceButtonGroupProps.gasButtonInfo,
       );
+
       expect(handleGasPriceSelection).toStrictEqual(
         mockGasPriceButtonGroupProps.handleGasPriceSelection,
       );

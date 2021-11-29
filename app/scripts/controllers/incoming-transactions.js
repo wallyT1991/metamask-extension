@@ -167,6 +167,7 @@ export default class IncomingTransactionsController {
     if (!etherscanSupportedNetworks.includes(chainId) || !address) {
       return;
     }
+
     try {
       const currentState = this.store.getState();
       const currentBlock = parseInt(this.blockTracker.getCurrentBlock(), 16);
@@ -283,6 +284,7 @@ export default class IncomingTransactionsController {
       txParams.maxFeePerGas = bnToHex(
         new BN(etherscanTransaction.maxFeePerGas),
       );
+
       txParams.maxPriorityFeePerGas = bnToHex(
         new BN(etherscanTransaction.maxPriorityFeePerGas),
       );

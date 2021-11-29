@@ -13,9 +13,11 @@ const fetchWithCache = async (
   ) {
     throw new Error('fetchWithCache only supports GET requests');
   }
+
   if (!(fetchOptions.headers instanceof window.Headers)) {
     fetchOptions.headers = new window.Headers(fetchOptions.headers);
   }
+
   if (
     fetchOptions.headers.has('Content-Type') &&
     fetchOptions.headers.get('Content-Type') !== 'application/json'

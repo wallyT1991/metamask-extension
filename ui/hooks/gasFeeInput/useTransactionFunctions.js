@@ -32,6 +32,7 @@ export const useTransactionFunctions = ({
       if (maxFeePerGas) {
         newGasSettings.maxFeePerGas = maxFeePerGas;
       }
+
       if (maxPriorityFeePerGas) {
         newGasSettings.maxPriorityFeePerGas = maxPriorityFeePerGas;
       }

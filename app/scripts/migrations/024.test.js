@@ -23,6 +23,7 @@ while (transactions.length <= 10) {
     txParams: { from: '0x8aCce2391c0d510a6c5E5d8f819a678f79b7e675' },
     status: TRANSACTION_STATUSES.UNAPPROVED,
   });
+
   transactions.push({
     txParams: { from: '0x8aCce2391c0d510a6c5E5d8f819a678f79b7e675' },
     status: TRANSACTION_STATUSES.CONFIRMED,

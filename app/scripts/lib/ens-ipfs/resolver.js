@@ -42,6 +42,7 @@ export default async function resolveEnsToIpfsContentId({ provider, name }) {
 
     return { type, hash: decodedContentHash };
   }
+
   if (isLegacyResolver[0]) {
     // lookup content id
     const contentLookupResult = await Resolver.content(hash);

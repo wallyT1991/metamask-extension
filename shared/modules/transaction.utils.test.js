@@ -16,6 +16,7 @@ describe('Transaction.utils', function () {
           txParams: { maxFeePerGas: 0, maxPriorityFeePerGas: '0x1' },
         }),
       ).toBe(false);
+
       expect(
         isEIP1559Transaction({
           txParams: { maxFeePerGas: '0x1', maxPriorityFeePerGas: 'fail' },
@@ -29,6 +30,7 @@ describe('Transaction.utils', function () {
           txParams: { maxPriorityFeePerGas: '0x1' },
         }),
       ).toBe(false);
+
       expect(
         isEIP1559Transaction({
           txParams: { maxFeePerGas: '0x1' },

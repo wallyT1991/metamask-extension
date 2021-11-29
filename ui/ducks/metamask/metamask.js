@@ -332,6 +332,7 @@ export function getIsGasEstimatesLoading(state) {
 export function getCompletedOnboarding(state) {
   return state.metamask.completedOnboarding;
 }
+
 export function getIsInitialized(state) {
   return state.metamask.isInitialized;
 }

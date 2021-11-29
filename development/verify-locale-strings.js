@@ -151,6 +151,7 @@ async function verifyLocale(code) {
       for (const item of extraItems) {
         delete newLocale[item];
       }
+
       for (const message of Object.keys(englishLocale)) {
         if (englishLocale[message].description && targetLocale[message]) {
           targetLocale[message].description =

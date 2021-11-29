@@ -38,6 +38,7 @@ export default function MetaMaskTranslation({ translationKey, variables }) {
             Section with element '${variable.element}' for translationKey: '${translationKey}' has no key property`,
           );
         }
+
         if (
           variable.children &&
           Array.isArray(variable.children) &&

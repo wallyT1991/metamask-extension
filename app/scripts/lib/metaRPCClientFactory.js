@@ -38,6 +38,7 @@ class MetaRPCClient {
       // dont handle server-side to client-side requests
       return;
     }
+
     if (method && params && isNotification) {
       // handle servier-side to client-side notification
       this.notificationChannel.emit('notification', data);
@@ -75,6 +76,7 @@ const metaRPCClientFactory = (connectionStream) => {
       if (object[property]) {
         return object[property];
       }
+
       return (...p) => {
         const cb = p[p.length - 1];
         const params = p.slice(0, -1);

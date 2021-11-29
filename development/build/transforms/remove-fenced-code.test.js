@@ -792,6 +792,7 @@ Always_Included
     data.validInputs.extraContentWithFences,
     false,
   ];
+
   data.validOutputsWithExtraContent.main = [
     data.validInputs.extraContentWithoutFences,
     true,

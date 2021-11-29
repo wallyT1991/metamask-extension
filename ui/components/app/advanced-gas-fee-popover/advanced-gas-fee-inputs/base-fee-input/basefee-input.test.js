@@ -85,6 +85,7 @@ describe('BaseFeeInput', () => {
         maxFeePerGas: '0x174876E800',
       },
     });
+
     fireEvent.change(document.getElementsByTagName('input')[0], {
       target: { value: 4 },
     });

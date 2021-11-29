@@ -36,6 +36,7 @@ describe('MetaMetrics Opt In', () => {
     expect(await props.setParticipateInMetaMetrics.calledOnce).toStrictEqual(
       true,
     );
+
     expect(props.setParticipateInMetaMetrics.getCall(0).args[0]).toStrictEqual(
       false,
     );
@@ -51,6 +52,7 @@ describe('MetaMetrics Opt In', () => {
     expect(await props.setParticipateInMetaMetrics.calledOnce).toStrictEqual(
       true,
     );
+
     expect(props.setParticipateInMetaMetrics.getCall(0).args[0]).toStrictEqual(
       true,
     );

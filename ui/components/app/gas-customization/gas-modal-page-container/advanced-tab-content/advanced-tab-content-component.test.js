@@ -76,6 +76,7 @@ describe('AdvancedTabContent Component', () => {
       expect(
         titlesNode.hasClass('advanced-tab__transaction-data-summary__titles'),
       ).toStrictEqual(true);
+
       expect(titlesNode.children().at(0).text()).toStrictEqual(
         'newTransactionFee',
       );

@@ -89,6 +89,7 @@ export default function CreatePassword({
     if (!isValid) {
       return;
     }
+
     // If secretRecoveryPhrase is defined we are in import wallet flow
     if (secretRecoveryPhrase) {
       await importWithRecoveryPhrase(password, secretRecoveryPhrase);

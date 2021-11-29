@@ -297,6 +297,7 @@ export function importNewAccount(strategy, args) {
     dispatch(
       showLoadingIndication('This may take a while, please be patient.'),
     );
+
     try {
       log.debug(`background.importAccountWithStrategy`);
       await promisifiedBackground.importAccountWithStrategy(strategy, args);
@@ -401,6 +402,7 @@ export function connectHardware(deviceName, page, hdPath, t) {
       if (deviceName === 'ledger') {
         await promisifiedBackground.establishLedgerTransportPreference();
       }
+
       if (
         deviceName === DEVICE_NAMES.LEDGER &&
         ledgerTransportType === LEDGER_TRANSPORT_TYPES.WEBHID
@@ -457,6 +459,7 @@ export function unlockHardwareWalletAccounts(
     hdPath,
     hdPathDescription,
   );
+
   return async (dispatch) => {
     dispatch(showLoadingIndication());
 
@@ -1067,6 +1070,7 @@ export function updateMetamaskState(newState) {
         });
       }
     });
+
     // Also emit an event for the selected account changing, either due to a
     // property update or if the entire account changes.
     if (isEqual(oldSelectedAccount, newSelectedAccount) === false) {
@@ -1075,6 +1079,7 @@ export function updateMetamaskState(newState) {
         payload: { account: newSelectedAccount },
       });
     }
+
     // We need to keep track of changing address book entries
     if (isEqual(oldAddressBook, newAddressBook) === false) {
       dispatch({
@@ -1095,12 +1100,14 @@ export function updateMetamaskState(newState) {
         },
       });
     }
+
     if (provider.chainId !== newProvider.chainId) {
       dispatch({
         type: actionConstants.CHAIN_CHANGED,
         payload: newProvider.chainId,
       });
     }
+
     dispatch({
       type: actionConstants.UPDATE_METAMASK_STATE,
       value: newState,
@@ -1202,6 +1209,7 @@ export function showAccountDetail(address) {
       type: actionConstants.SHOW_ACCOUNT_DETAIL,
       value: address,
     });
+
     if (
       unconnectedAccountAccountAlertIsEnabled &&
       switchingToUnconnectedAddress
@@ -1266,9 +1274,11 @@ export function addToken(
     if (!address) {
       throw new Error('MetaMask - Cannot add token without address');
     }
+
     if (!dontShowLoadingIndicator) {
       dispatch(showLoadingIndication());
     }
+
     try {
       await promisifiedBackground.addToken(address, symbol, decimals, image);
     } catch (error) {
@@ -1286,12 +1296,15 @@ export function addCollectible(address, tokenID, dontShowLoadingIndicator) {
     if (!address) {
       throw new Error('MetaMask - Cannot add collectible without address');
     }
+
     if (!tokenID) {
       throw new Error('MetaMask - Cannot add collectible without tokenID');
     }
+
     if (!dontShowLoadingIndicator) {
       dispatch(showLoadingIndication());
     }
+
     try {
       await promisifiedBackground.addCollectible(address, tokenID);
     } catch (error) {
@@ -1313,12 +1326,15 @@ export function addCollectibleVerifyOwnership(
     if (!address) {
       throw new Error('MetaMask - Cannot add collectible without address');
     }
+
     if (!tokenID) {
       throw new Error('MetaMask - Cannot add collectible without tokenID');
     }
+
     if (!dontShowLoadingIndicator) {
       dispatch(showLoadingIndication());
     }
+
     try {
       await promisifiedBackground.addCollectibleVerifyOwnership(
         address,
@@ -1350,12 +1366,15 @@ export function removeAndIgnoreCollectible(
     if (!address) {
       throw new Error('MetaMask - Cannot ignore collectible without address');
     }
+
     if (!tokenID) {
       throw new Error('MetaMask - Cannot ignore collectible without tokenID');
     }
+
     if (!dontShowLoadingIndicator) {
       dispatch(showLoadingIndication());
     }
+
     try {
       await promisifiedBackground.removeAndIgnoreCollectible(address, tokenID);
     } catch (error) {
@@ -1373,12 +1392,15 @@ export function removeCollectible(address, tokenID, dontShowLoadingIndicator) {
     if (!address) {
       throw new Error('MetaMask - Cannot remove collectible without address');
     }
+
     if (!tokenID) {
       throw new Error('MetaMask - Cannot remove collectible without tokenID');
     }
+
     if (!dontShowLoadingIndicator) {
       dispatch(showLoadingIndication());
     }
+
     try {
       await promisifiedBackground.removeCollectible(address, tokenID);
     } catch (error) {
@@ -1718,6 +1740,7 @@ export function addToAddressBook(recipient, nickname = '', memo = '') {
       dispatch(displayWarning('Address book failed to update'));
       throw error;
     }
+
     if (!set) {
       dispatch(displayWarning('Address book failed to update'));
     }
@@ -2127,6 +2150,7 @@ export function setUseBlockie(val) {
         dispatch(displayWarning(err.message));
       }
     });
+
     dispatch({
       type: actionConstants.SET_USE_BLOCKIE,
       value: val,
@@ -2568,6 +2592,7 @@ export function setFirstTimeFlowType(type) {
         dispatch(displayWarning(err.message));
       }
     });
+
     dispatch({
       type: actionConstants.SET_FIRST_TIME_FLOW_TYPE,
       value: type,

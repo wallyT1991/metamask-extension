@@ -49,14 +49,17 @@ const QRHardwarePopover = () => {
         action = cancelPersonalMsg;
         break;
       }
+
       case MESSAGE_TYPE.ETH_SIGN: {
         action = cancelMsg;
         break;
       }
+
       case MESSAGE_TYPE.ETH_SIGN_TYPED_DATA: {
         action = cancelTypedMsg;
         break;
       }
+
       default: {
         action = cancelTx;
       }
@@ -72,6 +75,7 @@ const QRHardwarePopover = () => {
     } else if (showWalletImporter) {
       _title = t('QRHardwareWalletImporterTitle');
     }
+
     if (errorTitle !== '') {
       _title = errorTitle;
     }

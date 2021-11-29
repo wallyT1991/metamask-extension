@@ -173,6 +173,7 @@ export default function Swap() {
     fetchParams,
     isAwaitingSwapRoute,
   ]);
+
   useEffect(() => {
     return () => {
       clearTemporaryTokenRef.current();
@@ -251,6 +252,7 @@ export default function Swap() {
       }
       return null;
     };
+
     if (isLoadingQuotesRoute && !beforeUnloadEventAddedRef.current) {
       beforeUnloadEventAddedRef.current = true;
       window.addEventListener('beforeunload', fn);

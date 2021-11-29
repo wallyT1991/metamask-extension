@@ -99,6 +99,7 @@ const removeEndEventListener = (node, eventListener) => {
   if (endEvents.length === 0) {
     return;
   }
+
   endEvents.forEach(function (endEvent) {
     removeEventListener(node, endEvent, eventListener);
   });
@@ -111,6 +112,7 @@ const addEndEventListener = (node, eventListener) => {
     window.setTimeout(eventListener, 0);
     return;
   }
+
   endEvents.forEach(function (endEvent) {
     addEventListener(node, endEvent, eventListener);
   });

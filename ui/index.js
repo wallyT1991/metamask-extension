@@ -37,6 +37,7 @@ export default function launchMetamaskUi(opts, cb) {
       cb(err);
       return;
     }
+
     startApp(metamaskState, backgroundConnection, opts).then((store) => {
       setupDebuggingHelpers(store);
       cb(null, store);
@@ -189,6 +190,7 @@ function setupDebuggingHelpers(store) {
     state.browser = window.navigator.userAgent;
     return state;
   };
+
   window.getSentryState = function () {
     const fullState = store.getState();
     const debugState = maskObject(fullState, SENTRY_STATE);

@@ -43,6 +43,7 @@ describe('Metamask Import UI', function () {
             '[data-testid="create-password-new"]',
             'correct horse battery staple',
           );
+
           await driver.fill(
             '[data-testid="create-password-confirm"]',
             'correct horse battery staple',
@@ -98,6 +99,7 @@ describe('Metamask Import UI', function () {
         await driver.clickElement(
           '[data-testid="account-options-menu-button"]',
         );
+
         await driver.clickElement(
           '[data-testid="account-options-menu__account-details"]',
         );
@@ -259,6 +261,7 @@ describe('Metamask Import UI', function () {
         await driver.clickElement(
           '[data-testid="account-options-menu-button"]',
         );
+
         await driver.clickElement(
           '[data-testid="account-options-menu__remove-account"]',
         );
@@ -286,6 +289,7 @@ describe('Metamask Import UI', function () {
       },
     );
   });
+
   it('Connects to a Hardware wallet', async function () {
     const ganacheOptions = {
       accounts: [

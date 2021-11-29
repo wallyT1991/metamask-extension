@@ -397,6 +397,7 @@ describe('permissions log', function () {
         1,
         'history should have single origin',
       );
+
       assert.ok(
         Boolean(permHistory[DOMAINS.a.origin]),
         'history should have expected origin',
@@ -555,6 +556,7 @@ describe('permissions log', function () {
         DOMAINS.a.origin,
         PERM_NAMES.eth_accounts,
       );
+
       res = {
         result: [PERMS.granted.test_method()],
       };

@@ -42,14 +42,17 @@ export default class ConfirmTransactionSwitch extends Component {
           const pathname = `${CONFIRM_TRANSACTION_ROUTE}/${id}${CONFIRM_SEND_TOKEN_PATH}`;
           return <Redirect to={{ pathname }} />;
         }
+
         case TRANSACTION_TYPES.TOKEN_METHOD_APPROVE: {
           const pathname = `${CONFIRM_TRANSACTION_ROUTE}/${id}${CONFIRM_APPROVE_PATH}`;
           return <Redirect to={{ pathname }} />;
         }
+
         case TRANSACTION_TYPES.TOKEN_METHOD_TRANSFER_FROM: {
           const pathname = `${CONFIRM_TRANSACTION_ROUTE}/${id}${CONFIRM_TRANSFER_FROM_PATH}`;
           return <Redirect to={{ pathname }} />;
         }
+
         default: {
           const pathname = `${CONFIRM_TRANSACTION_ROUTE}/${id}${CONFIRM_TOKEN_METHOD_PATH}`;
           return <Redirect to={{ pathname }} />;

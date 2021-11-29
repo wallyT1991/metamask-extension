@@ -19,12 +19,15 @@ describe('txUtils', function () {
       assert.throws(() => txUtils.validateTxParams(), {
         message: 'Invalid transaction params: must be an object.',
       });
+
       assert.throws(() => txUtils.validateTxParams(null), {
         message: 'Invalid transaction params: must be an object.',
       });
+
       assert.throws(() => txUtils.validateTxParams(true), {
         message: 'Invalid transaction params: must be an object.',
       });
+
       assert.throws(() => txUtils.validateTxParams([]), {
         message: 'Invalid transaction params: must be an object.',
       });
@@ -302,6 +305,7 @@ describe('txUtils', function () {
           },
         );
       });
+
       it('should validate when network does support EIP-1559', function () {
         const txParams = {
           maxPriorityFeePerGas: '0x1',
@@ -336,16 +340,19 @@ describe('txUtils', function () {
         !normalizedTxParams.to,
         'there should be no to address if null',
       );
+
       assert.equal(
         normalizedTxParams.from.slice(0, 2),
         '0x',
         'from should be hex-prefixed',
       );
+
       assert.equal(
         normalizedTxParams.data.slice(0, 2),
         '0x',
         'data should be hex-prefixed',
       );
+
       assert.ok(
         !('random' in normalizedTxParams),
         'there should be no random key in normalizedTxParams',
@@ -370,11 +377,13 @@ describe('txUtils', function () {
         '0x1',
         'maxFeePerGas should be hex-prefixed',
       );
+
       assert.equal(
         normalizedTxParams.maxPriorityFeePerGas,
         '0x1',
         'maxPriorityFeePerGas should be hex-prefixed',
       );
+
       assert.equal(
         normalizedTxParams.type,
         '0x1',
@@ -386,6 +395,7 @@ describe('txUtils', function () {
         GAS_RECOMMENDATIONS.MEDIUM,
         'estimateSuggested should be the string originally provided',
       );
+
       assert.equal(
         normalizedTxParams.estimateUsed,
         GAS_RECOMMENDATIONS.HIGH,

@@ -134,6 +134,7 @@ describe('GasPriceButtonGroup Component', () => {
       expect(
         mockGasPriceButtonGroupProps.handleGasPriceSelection.callCount,
       ).toStrictEqual(1);
+
       expect(
         mockGasPriceButtonGroupProps.handleGasPriceSelection.getCall(0).args,
       ).toStrictEqual([
@@ -189,6 +190,7 @@ describe('GasPriceButtonGroup Component', () => {
       expect(
         wrappedRenderButtonContentResult.childAt(0).children(),
       ).toHaveLength(1);
+
       expect(
         wrappedRenderButtonContentResult.find('.someClass__label').text(),
       ).toStrictEqual('slow');
@@ -209,6 +211,7 @@ describe('GasPriceButtonGroup Component', () => {
       expect(
         wrappedRenderButtonContentResult.childAt(0).children(),
       ).toHaveLength(1);
+
       expect(
         wrappedRenderButtonContentResult
           .find('.someClass__primary-currency')
@@ -231,6 +234,7 @@ describe('GasPriceButtonGroup Component', () => {
       expect(
         wrappedRenderButtonContentResult.childAt(0).children(),
       ).toHaveLength(1);
+
       expect(
         wrappedRenderButtonContentResult
           .find('.someClass__secondary-currency')
@@ -253,6 +257,7 @@ describe('GasPriceButtonGroup Component', () => {
       expect(
         wrappedRenderButtonContentResult.childAt(0).children(),
       ).toHaveLength(1);
+
       expect(
         wrappedRenderButtonContentResult
           .find('.someClass__time-estimate')

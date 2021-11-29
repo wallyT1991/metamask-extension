@@ -448,6 +448,7 @@ export default class MetamaskController extends EventEmitter {
       initState: initState.KeyringController,
       encryptor: opts.encryptor || undefined,
     });
+
     this.keyringController.memStore.subscribe((state) =>
       this._onKeyringControllerUpdate(state),
     );
@@ -597,21 +598,25 @@ export default class MetamaskController extends EventEmitter {
         this.metaMetricsController,
       ),
     });
+
     this.personalMessageManager = new PersonalMessageManager({
       metricsEvent: this.metaMetricsController.trackEvent.bind(
         this.metaMetricsController,
       ),
     });
+
     this.decryptMessageManager = new DecryptMessageManager({
       metricsEvent: this.metaMetricsController.trackEvent.bind(
         this.metaMetricsController,
       ),
     });
+
     this.encryptionPublicKeyManager = new EncryptionPublicKeyManager({
       metricsEvent: this.metaMetricsController.trackEvent.bind(
         this.metaMetricsController,
       ),
     });
+
     this.typedMessageManager = new TypedMessageManager({
       getCurrentChainId: this.networkController.getCurrentChainId.bind(
         this.networkController,
@@ -1716,9 +1721,11 @@ export default class MetamaskController extends EventEmitter {
     if (!keyring) {
       keyring = await this.keyringController.addNewKeyring(keyringName);
     }
+
     if (hdPath && keyring.setHdPath) {
       keyring.setHdPath(hdPath);
     }
+
     if (deviceName === DEVICE_NAMES.LATTICE) {
       keyring.appName = 'MetaMask';
     }
@@ -2581,6 +2588,7 @@ export default class MetamaskController extends EventEmitter {
       if (outStream._writableState.ended) {
         return;
       }
+
       // send notification to client-side
       outStream.write({
         jsonrpc: '2.0',
@@ -2689,6 +2697,7 @@ export default class MetamaskController extends EventEmitter {
         registerOnboarding: this.onboardingController.registerOnboarding,
       }),
     );
+
     engine.push(
       createMethodMiddleware({
         origin,
@@ -3027,6 +3036,7 @@ export default class MetamaskController extends EventEmitter {
         newChainId,
         entry.memo,
       );
+
       if (!duplicate) {
         this.addressBookController.delete(oldChainId, address);
       }
@@ -3063,6 +3073,7 @@ export default class MetamaskController extends EventEmitter {
       nickname,
       rpcPrefs,
     );
+
     await this.preferencesController.updateRpc({
       rpcUrl,
       chainId,
@@ -3109,6 +3120,7 @@ export default class MetamaskController extends EventEmitter {
         nickname,
         rpcPrefs,
       );
+
       await this.preferencesController.addToFrequentRpcList(
         rpcUrl,
         chainId,

@@ -63,6 +63,7 @@ describe('ViewQuote', () => {
     expect(
       getByTestId('main-quote-summary__exchange-rate-container'),
     ).toMatchSnapshot();
+
     expect(
       getByTestId('fee-card__savings-and-quotes-header'),
     ).toMatchSnapshot();
@@ -89,6 +90,7 @@ describe('ViewQuote', () => {
     expect(
       getByTestId('main-quote-summary__exchange-rate-container'),
     ).toMatchSnapshot();
+
     expect(
       getByTestId('fee-card__savings-and-quotes-header'),
     ).toMatchSnapshot();

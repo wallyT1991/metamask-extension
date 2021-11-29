@@ -78,6 +78,7 @@ export default function setupSentry({ release, getState }) {
         `Missing SENTRY_DSN environment variable in production environment`,
       );
     }
+
     console.log(
       `Setting up Sentry Remote Error Reporting for '${METAMASK_ENVIRONMENT}': SENTRY_DSN`,
     );
@@ -148,6 +149,7 @@ function rewriteErrorMessages(report, rewriteFn) {
   if (typeof report.message === 'string') {
     report.message = rewriteFn(report.message);
   }
+
   // rewrite each exception message
   if (report.exception && report.exception.values) {
     report.exception.values.forEach((item) => {

@@ -467,6 +467,7 @@ describe('permissions middleware', function () {
         3,
         'should have attempted to create three pending approvals',
       );
+
       assert.equal(
         permController.approvals._approvals.size,
         2,
@@ -487,6 +488,7 @@ describe('permissions middleware', function () {
         resA1.result && !resA1.error,
         'first response should have result and no error',
       );
+
       assert.equal(
         resA1.result.length,
         1,
@@ -497,6 +499,7 @@ describe('permissions middleware', function () {
         resB1.result && !resB1.error,
         'second response should have result and no error',
       );
+
       assert.equal(
         resB1.result.length,
         1,
@@ -605,6 +608,7 @@ describe('permissions middleware', function () {
         res.result && !res.error,
         'response should have result and no error',
       );
+
       assert.deepEqual(
         res.result,
         [ACCOUNTS.a.primary],
@@ -764,6 +768,7 @@ describe('permissions middleware', function () {
         res.result && !res.error,
         'response should have result and no error',
       );
+
       assert.deepEqual(
         res.result,
         [ACCOUNTS.c.primary],
@@ -814,6 +819,7 @@ describe('permissions middleware', function () {
         res.result && !res.error,
         'response should have result and no error',
       );
+
       assert.deepEqual(
         res.result,
         [ACCOUNTS.c.primary],

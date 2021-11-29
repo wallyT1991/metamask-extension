@@ -96,20 +96,25 @@ export const generateUseSelectorRouter = ({
   if (selector === getConversionRate) {
     return MOCK_ETH_USD_CONVERSION_RATE;
   }
+
   if (selector === getNativeCurrency) {
     return ETH;
   }
+
   if (selector === getPreferences) {
     return {
       useNativeCurrencyAsPrimaryCurrency: true,
     };
   }
+
   if (selector === getCurrentCurrency) {
     return 'USD';
   }
+
   if (selector === getShouldShowFiat) {
     return shouldShowFiat;
   }
+
   if (selector === txDataSelector) {
     return {
       txParams: {
@@ -117,11 +122,13 @@ export const generateUseSelectorRouter = ({
       },
     };
   }
+
   if (selector === getSelectedAccount) {
     return {
       balance: '0x440aa47cc2556',
     };
   }
+
   if (selector === checkNetworkAndAccountSupports1559) {
     return checkNetworkAndAccountSupports1559Response;
   }

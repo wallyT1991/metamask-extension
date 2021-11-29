@@ -26,6 +26,7 @@ const PageSet = ({ children }) => {
   useEffect(() => {
     unapprovedEncryptionPublicKeyMsgs['7786962153682822'].msgParams =
       account.address;
+
     store.dispatch(
       updateMetamaskState(
         getNewState(state.metamask, {

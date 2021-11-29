@@ -36,6 +36,7 @@ function transformState(state) {
       newState.PreferencesController.frequentRpcListDetail = frequentRpcListDetail;
     }
   }
+
   if (state.NetworkController) {
     if (
       newState.NetworkController.network &&

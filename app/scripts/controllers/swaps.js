@@ -211,6 +211,7 @@ export default class SwapsController {
     if (!fetchParams) {
       return null;
     }
+
     // Every time we get a new request that is not from the polling, we reset the poll count so we can poll for up to three more sets of quotes with these new params.
     if (!isPolledRequest) {
       this.pollCount = 0;
@@ -276,6 +277,7 @@ export default class SwapsController {
       approvalRequired =
         allowance.eq(0) &&
         Object.values(newQuotes)[0].aggregator !== 'wrappedNative';
+
       if (!approvalRequired) {
         newQuotes = mapValues(newQuotes, (quote) => ({
           ...quote,

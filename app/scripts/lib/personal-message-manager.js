@@ -139,6 +139,7 @@ export default class PersonalMessageManager extends EventEmitter {
         msgParams,
       )}`,
     );
+
     // add origin from request
     if (req) {
       msgParams.origin = req.origin;

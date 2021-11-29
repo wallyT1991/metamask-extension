@@ -210,6 +210,7 @@ describe('Send ETH from dapp using advanced gas controls', function () {
           'E2E Test Dapp',
           windowHandles,
         );
+
         popup = windowHandles.find(
           (handle) => handle !== extension && handle !== dapp,
         );
@@ -250,6 +251,7 @@ describe('Send ETH from dapp using advanced gas controls', function () {
           '.transaction-list__completed-transactions .transaction-list-item:nth-of-type(1)',
           { timeout: 10000 },
         );
+
         await driver.waitForSelector({
           css: '.transaction-list-item__primary-currency',
           text: '-3 ETH',

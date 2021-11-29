@@ -162,6 +162,7 @@ describe('CurrencyInput Component', () => {
       expect(currencyInputInstance.state.decimalValue).toStrictEqual(
         0.00432788,
       );
+
       expect(currencyInputInstance.state.hexValue).toStrictEqual(
         'f602f2234d0ea',
       );
@@ -170,6 +171,7 @@ describe('CurrencyInput Component', () => {
       expect(wrapper.find('.unit-input__input').props().value).toStrictEqual(
         0.00432788,
       );
+
       expect(
         wrapper.find('.currency-input__conversion-component').text(),
       ).toStrictEqual('noConversionRateAvailable_t');
@@ -320,6 +322,7 @@ describe('CurrencyInput Component', () => {
       expect(currencyInputInstance.state('hexValue')).toStrictEqual(
         '1ec05e43e72400',
       );
+
       expect(currencyInputInstance.find(UnitInput).props().value).toStrictEqual(
         2,
       );

@@ -61,6 +61,7 @@ export default class SendAssetRow extends Component {
             assetSelected: token ? ERC20 : this.props.nativeCurrency,
           },
         });
+
         this.props.updateSendAsset({
           type,
           details: type === ASSET_TYPES.NATIVE ? null : token,

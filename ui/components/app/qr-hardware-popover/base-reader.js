@@ -107,6 +107,7 @@ const BaseReader = ({
       if (!mounted.current) {
         return;
       }
+
       if (e.name === 'NotAllowedError') {
         log.info(`Permission denied: '${e}'`);
         setReady(READY_STATE.NEED_TO_ALLOW_ACCESS);

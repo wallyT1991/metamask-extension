@@ -89,6 +89,7 @@ export default class TxGasUtil {
     if (initialGasLimitBn.gt(upperGasLimitBn)) {
       return bnToHex(initialGasLimitBn);
     }
+
     // if bufferedGasLimit is below blockGasLimit, use bufferedGasLimit
     if (bufferedGasLimitBn.lt(upperGasLimitBn)) {
       return bnToHex(bufferedGasLimitBn);

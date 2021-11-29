@@ -35,6 +35,7 @@ describe('Metamask Responsive UI', function () {
             '[data-testid="create-password-new"]',
             'correct horse battery staple',
           );
+
           await driver.fill(
             '[data-testid="create-password-confirm"]',
             'correct horse battery staple',
@@ -66,6 +67,7 @@ describe('Metamask Responsive UI', function () {
             '[data-testid="recovery-phrase-input-3"]',
             chipThree,
           );
+
           await driver.fill(
             '[data-testid="recovery-phrase-input-7"]',
             chipSeven,
@@ -98,6 +100,7 @@ describe('Metamask Responsive UI', function () {
             '.first-time-flow__form #create-password',
             'correct horse battery staple',
           );
+
           await driver.fill(
             '.first-time-flow__form #confirm-password',
             'correct horse battery staple',

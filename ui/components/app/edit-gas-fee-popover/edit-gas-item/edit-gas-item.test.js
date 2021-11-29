@@ -120,6 +120,7 @@ describe('EditGasItem', () => {
       { priorityLevel: 'dappSuggested' },
       { dappSuggestedGasFees: DAPP_SUGGESTED_ESTIMATE },
     );
+
     expect(
       screen.queryByRole('button', { name: 'dappSuggested' }),
     ).toBeInTheDocument();

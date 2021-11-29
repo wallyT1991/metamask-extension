@@ -166,6 +166,7 @@ describe('app utils', function () {
           });
           break;
         }
+
         case 'edge': {
           sinon.stub(window, 'navigator').value({
             userAgent:
@@ -173,6 +174,7 @@ describe('app utils', function () {
           });
           break;
         }
+
         case 'opera': {
           sinon.stub(window, 'navigator').value({
             userAgent:
@@ -180,6 +182,7 @@ describe('app utils', function () {
           });
           break;
         }
+
         default: {
           sinon.stub(window, 'navigator').value({
             userAgent:

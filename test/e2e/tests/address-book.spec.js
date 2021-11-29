@@ -75,6 +75,7 @@ describe('Address Book', function () {
       },
     );
   });
+
   it('Sends to an address book entry', async function () {
     await withFixtures(
       {

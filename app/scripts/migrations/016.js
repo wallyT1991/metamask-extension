@@ -37,6 +37,7 @@ function transformState(state) {
       if (!txMeta.err) {
         return txMeta;
       }
+
       if (
         txMeta.err === 'transaction with the same hash was already imported.'
       ) {

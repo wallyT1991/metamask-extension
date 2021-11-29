@@ -25,6 +25,7 @@ const onResponse = (request, response) => {
     );
   }
 };
+
 const onRequest = (request, response) => {
   console.log(chalk`{gray '<--'} {blue [${request.method}]} ${request.url}`);
   response.on('finish', () => onResponse(request, response));

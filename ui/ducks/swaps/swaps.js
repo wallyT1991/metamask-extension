@@ -531,6 +531,7 @@ export const fetchQuotesAndSetQuoteState = (
         ),
       );
     }
+
     if (
       fromTokenAddress &&
       fromTokenSymbol !== swapsDefaultToken.symbol &&
@@ -730,9 +731,11 @@ export const signAndSendTransactions = (history, metaMetricsEvent) => {
       decEstimatedBaseFee = decGWEIToHexWEI(estimatedBaseFee);
       maxFeePerGas =
         customMaxFeePerGas || decGWEIToHexWEI(suggestedMaxFeePerGas);
+
       maxPriorityFeePerGas =
         customMaxPriorityFeePerGas ||
         decGWEIToHexWEI(suggestedMaxPriorityFeePerGas);
+
       baseAndPriorityFeePerGas = addHexes(
         decEstimatedBaseFee,
         maxPriorityFeePerGas,
@@ -871,6 +874,7 @@ export const signAndSendTransactions = (history, metaMetricsEvent) => {
           true,
         ),
       );
+
       try {
         await dispatch(updateAndApproveTx(finalApproveTxMeta, true));
       } catch (e) {

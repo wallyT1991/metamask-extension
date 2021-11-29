@@ -55,6 +55,7 @@ async function validateSourcemapForFile({ buildName }) {
   } catch (_) {
     // empty
   }
+
   if (!rawBuild) {
     throw new Error(
       `SourcemapValidator - failed to load source file for "${buildName}"`,
@@ -72,6 +73,7 @@ async function validateSourcemapForFile({ buildName }) {
   } catch (_) {
     // empty
   }
+
   // attempt to load in dev mode
   try {
     const filePath = path.join(
@@ -83,6 +85,7 @@ async function validateSourcemapForFile({ buildName }) {
   } catch (_) {
     // empty
   }
+
   if (!rawSourceMap) {
     throw new Error(
       `SourcemapValidator - failed to load sourcemaps for "${buildName}"`,

@@ -172,6 +172,7 @@ export default class TypedMessageManager extends EventEmitter {
           Array.isArray(params.data),
           '"params.data" must be an array.',
         );
+
         assert.doesNotThrow(() => {
           typedSignatureHash(params.data);
         }, 'Signing data must be valid EIP-712 typed data.');
@@ -192,6 +193,7 @@ export default class TypedMessageManager extends EventEmitter {
           data.primaryType in data.types,
           `Primary type of "${data.primaryType}" has no type definition.`,
         );
+
         assert.equal(
           validation.errors.length,
           0,
@@ -204,9 +206,11 @@ export default class TypedMessageManager extends EventEmitter {
             !Number.isNaN(activeChainId),
             `Cannot sign messages for chainId "${chainId}", because MetaMask is switching networks.`,
           );
+
           if (typeof chainId === 'string') {
             chainId = parseInt(chainId, chainId.startsWith('0x') ? 16 : 10);
           }
+
           assert.equal(
             chainId,
             activeChainId,

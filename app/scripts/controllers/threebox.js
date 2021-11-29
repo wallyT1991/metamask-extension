@@ -163,6 +163,7 @@ export default class ThreeBoxController {
         throw e;
       }
     }
+
     if (this.getThreeBoxSyncingState() || backupExists) {
       this.store.updateState({ threeBoxSynced: false });
 
@@ -277,6 +278,7 @@ export default class ThreeBoxController {
     if (this.store.getState().threeBoxDisabled) {
       return;
     }
+
     this.store.updateState({
       threeBoxSyncingAllowed: newThreeboxSyncingState,
     });

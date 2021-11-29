@@ -43,6 +43,7 @@ async function main() {
   if (browser) {
     args.push('--browser', browser);
   }
+
   if (retries) {
     args.push('--retries', retries);
   }

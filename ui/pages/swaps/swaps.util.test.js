@@ -219,6 +219,7 @@ describe('Swaps Util', () => {
     it('returns true if "to" is ETH mainnet contract address on ETH mainnet', () => {
       usedTradeTxParams.to =
         SWAPS_CHAINID_CONTRACT_ADDRESS_MAP[MAINNET_CHAIN_ID];
+
       expect(
         isContractAddressValid(usedTradeTxParams.to, MAINNET_CHAIN_ID),
       ).toBe(true);
@@ -265,6 +266,7 @@ describe('Swaps Util', () => {
     it('returns true if "to" is Polygon contract address on Polygon network', () => {
       usedTradeTxParams.to =
         SWAPS_CHAINID_CONTRACT_ADDRESS_MAP[POLYGON_CHAIN_ID];
+
       expect(
         isContractAddressValid(usedTradeTxParams.to, POLYGON_CHAIN_ID),
       ).toBe(true);
@@ -273,6 +275,7 @@ describe('Swaps Util', () => {
     it('returns true if "to" is Rinkeby contract address on Rinkeby network', () => {
       usedTradeTxParams.to =
         SWAPS_CHAINID_CONTRACT_ADDRESS_MAP[RINKEBY_CHAIN_ID];
+
       expect(
         isContractAddressValid(usedTradeTxParams.to, RINKEBY_CHAIN_ID),
       ).toBe(true);
@@ -281,6 +284,7 @@ describe('Swaps Util', () => {
     it('returns true if "to" is testnet contract address', () => {
       usedTradeTxParams.to =
         SWAPS_CHAINID_CONTRACT_ADDRESS_MAP[LOCALHOST_CHAIN_ID];
+
       expect(
         isContractAddressValid(usedTradeTxParams.to, LOCALHOST_CHAIN_ID),
       ).toBe(true);

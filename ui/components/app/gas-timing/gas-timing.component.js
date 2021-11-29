@@ -37,6 +37,7 @@ const toHumanReadableTime = (milliseconds = 1, t) => {
   }
   return t('gasTimingMinutes', [Math.ceil(seconds / 60)]);
 };
+
 export default function GasTiming({
   maxFeePerGas = 0,
   maxPriorityFeePerGas = 0,
@@ -156,6 +157,7 @@ export default function GasTiming({
     if (!supportsEIP1559V2 || estimateUsed === 'low') {
       attitude = 'negative';
     }
+
     // If the user has chosen a value less than our low estimate,
     // calculate a potential wait time
     if (isUnknownLow) {

@@ -40,6 +40,7 @@ export default class ConfirmAddSuggestedToken extends Component {
     if (suggestedAssets.length > 0) {
       return;
     }
+
     if (getEnvironmentType() === ENVIRONMENT_TYPE_NOTIFICATION) {
       global.platform.closeCurrentWindow();
     } else {

@@ -40,9 +40,11 @@ describe('storage is migrated successfully', () => {
     expect(
       migratedData.data.PreferencesController.frequentRpcListDetail[0].chainId,
     ).toBeUndefined();
+
     expect(
       migratedData.data.PreferencesController.frequentRpcListDetail[1].chainId,
     ).toStrictEqual('1');
+
     expect(
       migratedData.data.NetworkController.provider.chainId,
     ).toBeUndefined();

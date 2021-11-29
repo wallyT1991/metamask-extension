@@ -26,9 +26,11 @@ async function buildBrowserWebDriver(browser, webDriverOptions) {
     case Browser.CHROME: {
       return await ChromeDriver.build(webDriverOptions);
     }
+
     case Browser.FIREFOX: {
       return await FirefoxDriver.build(webDriverOptions);
     }
+
     default: {
       throw new Error(`Unrecognized browser: ${browser}`);
     }
@@ -61,6 +63,7 @@ async function setupFetchMocking(driver) {
       }
       return window.origFetch(...args);
     };
+
     if (window.chrome && window.chrome.webRequest) {
       window.chrome.webRequest.onBeforeRequest.addListener(
         cancelInfuraRequest,
@@ -68,10 +71,12 @@ async function setupFetchMocking(driver) {
         ['blocking'],
       );
     }
+
     function cancelInfuraRequest(requestDetails) {
       console.log(`fetchMocking - Canceling request: "${requestDetails.url}"`);
       return { cancel: true };
     }
+
     function clone(obj) {
       return JSON.parse(JSON.stringify(obj));
     }

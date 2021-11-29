@@ -78,6 +78,7 @@ describe('useGasEstimates', () => {
       expect(result.current.estimatedMinimumFiat).toBe(
         convertFromHexToFiat(minimumHexValue),
       );
+
       expect(result.current.estimatedMinimumNative).toBe(
         convertFromHexToETH(minimumHexValue),
       );
@@ -96,6 +97,7 @@ describe('useGasEstimates', () => {
       expect(result.current.estimatedMaximumFiat).toBe(
         convertFromHexToFiat(maximumHexValue),
       );
+
       expect(result.current.estimatedMaximumNative).toBe(
         convertFromHexToETH(maximumHexValue),
       );
@@ -154,6 +156,7 @@ describe('useGasEstimates', () => {
       expect(result.current.estimatedMinimumFiat).toBe(
         convertFromHexToFiat(minimumHexValue),
       );
+
       expect(result.current.estimatedMinimumNative).toBe(
         convertFromHexToETH(minimumHexValue),
       );
@@ -177,6 +180,7 @@ describe('useGasEstimates', () => {
       expect(result.current.estimatedMaximumFiat).toBe(
         convertFromHexToFiat(maximumHexValue),
       );
+
       expect(result.current.estimatedMaximumNative).toBe(
         convertFromHexToETH(maximumHexValue),
       );

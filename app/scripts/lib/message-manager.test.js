@@ -74,11 +74,13 @@ describe('Message Manager', function () {
         status: 'unapproved',
         metamaskNetworkId: 'unit test',
       });
+
       messageManager.addMsg({
         id: '2',
         status: TRANSACTION_STATUSES.APPROVED,
         metamaskNetworkId: 'unit test',
       });
+
       messageManager._updateMsg({
         id: '1',
         status: 'blah',
@@ -97,6 +99,7 @@ describe('Message Manager', function () {
         status: 'unapproved',
         metamaskNetworkId: 'unit test',
       });
+
       messageManager.addMsg({
         id: '2',
         status: TRANSACTION_STATUSES.APPROVED,
@@ -116,6 +119,7 @@ describe('Message Manager', function () {
         status: 'unapproved',
         metamaskNetworkId: 'unit test',
       });
+
       messageManager.addMsg({
         id: '2',
         status: TRANSACTION_STATUSES.APPROVED,

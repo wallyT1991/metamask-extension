@@ -83,6 +83,7 @@ export default function NetworkDisplay({
     />
   );
 }
+
 NetworkDisplay.propTypes = {
   colored: PropTypes.bool,
   indicatorSize: PropTypes.oneOf(Object.values(SIZES)),

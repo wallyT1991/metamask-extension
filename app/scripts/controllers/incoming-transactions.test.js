@@ -236,6 +236,7 @@ describe('IncomingTransactionsController', function () {
       assert(
         incomingTransactionsController.blockTracker.addListener.calledOnce,
       );
+
       assert.strictEqual(
         incomingTransactionsController.blockTracker.addListener.getCall(0)
           .args[0],
@@ -296,6 +297,7 @@ describe('IncomingTransactionsController', function () {
         typeof generatedTxId === 'number' && generatedTxId > 0,
         'Generated transaction ID should be a positive number',
       );
+
       assert.deepStrictEqual(
         actualStateWithoutGenerated,
         {
@@ -591,6 +593,7 @@ describe('IncomingTransactionsController', function () {
         typeof generatedTxId === 'number' && generatedTxId > 0,
         'Generated transaction ID should be a positive number',
       );
+
       assert.deepStrictEqual(
         actualStateWithoutGenerated,
         {
@@ -729,6 +732,7 @@ describe('IncomingTransactionsController', function () {
         typeof generatedTxId === 'number' && generatedTxId > 0,
         'Generated transaction ID should be a positive number',
       );
+
       assert.deepStrictEqual(
         actualStateWithoutGenerated,
         {
@@ -838,11 +842,13 @@ describe('IncomingTransactionsController', function () {
         assert(
           incomingTransactionsController._getNewIncomingTransactions.calledOnce,
         );
+
         assert.deepStrictEqual(
           incomingTransactionsController._getNewIncomingTransactions.getCall(0)
             .args,
           ['fakeAddress', 999, ROPSTEN_CHAIN_ID],
         );
+
         assert.deepStrictEqual(
           incomingTransactionsController.store.updateState.getCall(0).args[0],
           {

@@ -28,6 +28,7 @@ while (transactions.length <= 10) {
     },
     status: TRANSACTION_STATUSES.UNAPPROVED,
   });
+
   transactions.push({
     txParams: { from: '0x8aCce2391c0d510a6c5E5d8f819a678f79b7e675' },
     status: TRANSACTION_STATUSES.CONFIRMED,
@@ -46,6 +47,7 @@ describe('storage is migrated successfully and the txParams.from are lowercase',
       if (tx.status === TRANSACTION_STATUSES.UNAPPROVED) {
         expect(!tx.txParams.random).toStrictEqual(true);
       }
+
       if (tx.status === TRANSACTION_STATUSES.UNAPPROVED) {
         expect(!tx.txParams.chainId).toStrictEqual(true);
       }

@@ -143,6 +143,7 @@ describe('useUserPreferencedCurrency', () => {
       }`, () => {
         expect(hookResult.current.currency).toStrictEqual(result.currency);
       });
+
       it(`should return decimals as ${
         result.numberOfDecimals || 'not modified by user preferences'
       }`, () => {

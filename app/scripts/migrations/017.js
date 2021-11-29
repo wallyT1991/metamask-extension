@@ -35,6 +35,7 @@ function transformState(state) {
       if (!txMeta.status === TRANSACTION_STATUSES.FAILED) {
         return txMeta;
       }
+
       if (txMeta.retryCount > 0 && txMeta.retryCount < 2) {
         txMeta.status = TRANSACTION_STATUSES.SUBMITTED;
         delete txMeta.err;

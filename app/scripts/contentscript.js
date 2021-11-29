@@ -75,6 +75,7 @@ async function setupStreams() {
   pump(pageMux, pageStream, pageMux, (err) =>
     logStreamDisconnectWarning('MetaMask Inpage Multiplex', err),
   );
+
   pump(extensionMux, extensionStream, extensionMux, (err) => {
     logStreamDisconnectWarning('MetaMask Background Multiplex', err);
     notifyInpageOfStreamFailure();
@@ -102,6 +103,7 @@ async function setupStreams() {
   pump(legacyPageMux, legacyPageStream, legacyPageMux, (err) =>
     logStreamDisconnectWarning('MetaMask Legacy Inpage Multiplex', err),
   );
+
   pump(
     legacyExtensionMux,
     extensionStream,
@@ -119,6 +121,7 @@ async function setupStreams() {
     legacyPageMux,
     legacyExtensionMux,
   );
+
   forwardTrafficBetweenMuxes(
     LEGACY_PUBLIC_CONFIG,
     legacyPageMux,
@@ -289,6 +292,7 @@ function blockedDomainCheck() {
       `(?:https?:\\/\\/)(?:(?!${blockedDomain}).)*$`,
       'u',
     );
+
     if (!currentRegex.test(currentUrl)) {
       return true;
     }

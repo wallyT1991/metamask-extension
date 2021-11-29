@@ -108,6 +108,7 @@ function checkForError() {
   if (!lastError) {
     return undefined;
   }
+
   // if it quacks like an Error, its an Error
   if (lastError.stack && lastError.message) {
     return lastError;

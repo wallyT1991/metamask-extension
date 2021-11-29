@@ -56,6 +56,7 @@ export class PermissionsController {
       getKeyringAccounts: this.getKeyringAccounts.bind(this),
       getIdentities: this._getIdentities.bind(this),
     });
+
     this.permissionsLog = new PermissionsLogController({
       restrictedMethods: Object.keys(this._restrictedMethods),
       store: this.store,

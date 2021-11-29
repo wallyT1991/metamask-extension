@@ -598,6 +598,7 @@ export default class PreferencesController {
     this.network.on(NETWORK_EVENTS.INFURA_IS_BLOCKED, () => {
       this._setInfuraBlocked(true);
     });
+
     this.network.on(NETWORK_EVENTS.INFURA_IS_UNBLOCKED, () => {
       this._setInfuraBlocked(false);
     });

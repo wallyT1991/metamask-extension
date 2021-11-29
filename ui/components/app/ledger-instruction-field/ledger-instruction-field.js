@@ -80,6 +80,7 @@ export default function LedgerInstructionField({ showDataInstruction }) {
         );
       }
     };
+
     const determineTransportStatus = async () => {
       if (
         ledgerTransportType === LEDGER_TRANSPORT_TYPES.WEBHID &&

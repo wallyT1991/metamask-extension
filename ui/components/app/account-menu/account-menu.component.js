@@ -407,6 +407,7 @@ export default class AccountMenu extends Component {
                 name: 'Clicked Connect Hardware',
               },
             });
+
             if (getEnvironmentType() === ENVIRONMENT_TYPE_POPUP) {
               global.platform.openExtensionInBrowser(CONNECT_HARDWARE_ROUTE);
             } else {

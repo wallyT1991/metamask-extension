@@ -35,12 +35,15 @@ const generateUseSelectorRouter = () => (selector) => {
   if (selector === checkNetworkAndAccountSupports1559) {
     return true;
   }
+
   if (selector === getGasEstimateType) {
     return TRANSACTION_ENVELOPE_TYPE_NAMES.FEE_MARKET;
   }
+
   if (selector === getGasFeeEstimates) {
     return MOCKS.createGasFeeEstimatesForFeeMarket();
   }
+
   if (selector === getIsGasEstimatesLoading) {
     return false;
   }
@@ -101,9 +104,11 @@ describe('FeeCard', () => {
     expect(
       getByText('Quote includes a 0.875% MetaMask fee'),
     ).toBeInTheDocument();
+
     expect(
       document.querySelector('.fee-card__savings-and-quotes-header'),
     ).toMatchSnapshot();
+
     expect(
       document.querySelector('.fee-card__top-bordered-row'),
     ).toMatchSnapshot();
@@ -127,9 +132,11 @@ describe('FeeCard', () => {
     expect(
       getByText('Quote includes a 0.875% MetaMask fee'),
     ).toBeInTheDocument();
+
     expect(
       document.querySelector('.fee-card__savings-and-quotes-header'),
     ).toMatchSnapshot();
+
     expect(
       document.querySelector('.fee-card__top-bordered-row'),
     ).toMatchSnapshot();

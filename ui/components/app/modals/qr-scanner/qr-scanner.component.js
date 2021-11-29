@@ -127,6 +127,7 @@ export default class QrScanner extends Component {
     if (!this.codeReader) {
       this.codeReader = new BrowserQRCodeReader();
     }
+
     try {
       await this.codeReader.getVideoInputDevices();
       this.checkPermissions();
@@ -147,6 +148,7 @@ export default class QrScanner extends Component {
       if (!this.mounted) {
         return;
       }
+
       if (error.name === 'NotAllowedError') {
         log.info(`Permission denied: '${error}'`);
         this.setState({ ready: READY_STATE.NEED_TO_ALLOW_ACCESS });
@@ -189,6 +191,7 @@ export default class QrScanner extends Component {
     if (this.codeReader) {
       this.teardownCodeReader();
     }
+
     this.setState(this.getInitialState(), () => {
       this.checkEnvironment();
     });

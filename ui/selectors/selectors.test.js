@@ -245,6 +245,7 @@ describe('Selectors', () => {
       },
     });
   });
+
   it('#getAdvancedGasFeeValues', () => {
     const advancedGasFee = selectors.getAdvancedGasFeeValues(mockState);
     expect(advancedGasFee).toStrictEqual({
@@ -252,6 +253,7 @@ describe('Selectors', () => {
       priorityFee: '2',
     });
   });
+
   it('#getIsAdvancedGasFeeDefault', () => {
     const isAdvancedGasFeeDefault = selectors.getIsAdvancedGasFeeDefault(
       mockState,

@@ -786,6 +786,7 @@ export function getNetworkSupportsSettingGasPrice(state) {
 export function getIsMultiLayerFeeNetwork(state) {
   return getIsOptimism(state);
 }
+
 /**
  *  To retrieve the maxBaseFee and priotitFee teh user has set as default
  *  @param {*} state

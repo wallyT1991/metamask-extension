@@ -40,6 +40,7 @@ describe('MetaMask', function () {
       dappServer.on('listening', resolve);
       dappServer.on('error', reject);
     });
+
     if (
       process.env.SELENIUM_BROWSER === 'chrome' &&
       process.env.CI === 'true'
@@ -62,6 +63,7 @@ describe('MetaMask', function () {
         console.error(new Error(errorMessage));
       }
     }
+
     if (this.currentTest.state === 'failed') {
       failed = true;
       await driver.verboseReportOnFailure(this.currentTest.title);
@@ -109,6 +111,7 @@ describe('MetaMask', function () {
         '.first-time-flow__form #create-password',
         'correct horse battery staple',
       );
+
       await driver.fill(
         '.first-time-flow__form #confirm-password',
         'correct horse battery staple',
@@ -244,6 +247,7 @@ describe('MetaMask', function () {
         'E2E Test Dapp',
         windowHandles,
       );
+
       popup = windowHandles.find(
         (handle) => handle !== extension && handle !== dapp,
       );

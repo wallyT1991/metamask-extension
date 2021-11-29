@@ -140,6 +140,7 @@ class AccountList extends Component {
                       block_explorer_domain: getURLHostName(accountLink),
                     },
                   });
+
                   global.platform.openTab({
                     url: accountLink,
                   });

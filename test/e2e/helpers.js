@@ -71,6 +71,7 @@ async function withFixtures(options, testSuite) {
         dappServer.on('error', reject);
       });
     }
+
     if (mockSegment) {
       segmentStub = sinon.stub();
       segmentServer = createSegmentServer((_request, response, events) => {
@@ -82,6 +83,7 @@ async function withFixtures(options, testSuite) {
       });
       await segmentServer.start(9090);
     }
+
     if (
       process.env.SELENIUM_BROWSER === 'chrome' &&
       process.env.CI === 'true'
@@ -127,9 +129,11 @@ async function withFixtures(options, testSuite) {
       if (ganacheOptions?.concurrent) {
         await secondaryGanacheServer.quit();
       }
+
       if (webDriver) {
         await webDriver.quit();
       }
+
       if (dappServer && dappServer.listening) {
         await new Promise((resolve, reject) => {
           dappServer.close((error) => {
@@ -140,6 +144,7 @@ async function withFixtures(options, testSuite) {
           });
         });
       }
+
       if (segmentServer) {
         await segmentServer.stop();
       }

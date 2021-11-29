@@ -72,11 +72,13 @@ describe('Personal Message Manager', function () {
         status: TRANSACTION_STATUSES.UNAPPROVED,
         metamaskNetworkId: 'unit test',
       });
+
       messageManager.addMsg({
         id: '2',
         status: TRANSACTION_STATUSES.APPROVED,
         metamaskNetworkId: 'unit test',
       });
+
       messageManager._updateMsg({
         id: '1',
         status: 'blah',
@@ -95,6 +97,7 @@ describe('Personal Message Manager', function () {
         status: TRANSACTION_STATUSES.UNAPPROVED,
         metamaskNetworkId: 'unit test',
       });
+
       messageManager.addMsg({
         id: '2',
         status: TRANSACTION_STATUSES.APPROVED,
@@ -114,15 +117,18 @@ describe('Personal Message Manager', function () {
         status: TRANSACTION_STATUSES.UNAPPROVED,
         metamaskNetworkId: 'unit test',
       });
+
       messageManager.addMsg({
         id: '2',
         status: TRANSACTION_STATUSES.APPROVED,
         metamaskNetworkId: 'unit test',
       });
+
       assert.equal(
         messageManager.getMsg('1').status,
         TRANSACTION_STATUSES.UNAPPROVED,
       );
+
       assert.equal(
         messageManager.getMsg('2').status,
         TRANSACTION_STATUSES.APPROVED,

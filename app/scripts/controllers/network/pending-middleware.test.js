@@ -20,11 +20,13 @@ describe('PendingNonceMiddleware', function () {
       const res = {};
       pendingNonceMiddleware(req, res, () => done());
     });
+
     it('should call next if not a "pending" block request', function (done) {
       const req = { method: 'eth_getTransactionCount', params: [address] };
       const res = {};
       pendingNonceMiddleware(req, res, () => done());
     });
+
     it('should fill the result with a the "pending" nonce', function (done) {
       const req = {
         method: 'eth_getTransactionCount',

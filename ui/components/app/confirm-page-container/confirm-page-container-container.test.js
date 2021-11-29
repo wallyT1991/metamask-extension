@@ -96,6 +96,7 @@ describe('Confirm Page Container Container Test', () => {
     expect(
       wrapper.find(SenderToRecipient).getElements()[0].props.senderAddress,
     ).toStrictEqual('0xd8f6a2ffb0fc5952d16c9768b71cfd35b6399aa5');
+
     expect(
       wrapper.find(SenderToRecipient).getElements()[0].props.recipientAddress,
     ).toStrictEqual('0x7a1A4Ad9cc746a70ee58568466f7996dD0aCE4E8');
@@ -155,6 +156,7 @@ describe('Confirm Page Container Container Test', () => {
     expect(wrapper.find('button.page-container__footer-button')).toHaveLength(
       2,
     );
+
     wrapper
       .find('button.page-container__footer-button')
       .first()
@@ -166,6 +168,7 @@ describe('Confirm Page Container Container Test', () => {
     expect(wrapper.find('button.page-container__footer-button')).toHaveLength(
       2,
     );
+
     wrapper
       .find('button.page-container__footer-button')
       .at(1)

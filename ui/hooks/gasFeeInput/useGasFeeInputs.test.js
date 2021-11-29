@@ -56,11 +56,13 @@ describe('useGasFeeInputs', () => {
     beforeEach(() => {
       configureLegacy();
     });
+
     it('passes through the raw estimate values from useGasFeeEstimates', () => {
       const { result } = renderHook(() => useGasFeeInputs());
       expect(result.current.gasFeeEstimates).toMatchObject(
         LEGACY_GAS_ESTIMATE_RETURN_VALUE.gasFeeEstimates,
       );
+
       expect(result.current.gasEstimateType).toBe(
         LEGACY_GAS_ESTIMATE_RETURN_VALUE.gasEstimateType,
       );
@@ -141,11 +143,13 @@ describe('useGasFeeInputs', () => {
     beforeEach(() => {
       configureEIP1559();
     });
+
     it('passes through the raw estimate values from useGasFeeEstimates', () => {
       const { result } = renderHook(() => useGasFeeInputs());
       expect(result.current.gasFeeEstimates).toMatchObject(
         FEE_MARKET_ESTIMATE_RETURN_VALUE.gasFeeEstimates,
       );
+
       expect(result.current.gasEstimateType).toBe(
         FEE_MARKET_ESTIMATE_RETURN_VALUE.gasEstimateType,
       );
@@ -159,6 +163,7 @@ describe('useGasFeeInputs', () => {
         FEE_MARKET_ESTIMATE_RETURN_VALUE.gasFeeEstimates.medium
           .suggestedMaxFeePerGas,
       );
+
       expect(result.current.maxPriorityFeePerGas).toBe(
         FEE_MARKET_ESTIMATE_RETURN_VALUE.gasFeeEstimates.medium
           .suggestedMaxPriorityFeePerGas,
@@ -262,6 +267,7 @@ describe('useGasFeeInputs', () => {
         FEE_MARKET_ESTIMATE_RETURN_VALUE.gasFeeEstimates.high
           .suggestedMaxFeePerGas,
       );
+
       expect(result.current.maxPriorityFeePerGas).toBe(
         FEE_MARKET_ESTIMATE_RETURN_VALUE.gasFeeEstimates.high
           .suggestedMaxPriorityFeePerGas,

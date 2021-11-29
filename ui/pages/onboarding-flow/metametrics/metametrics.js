@@ -53,6 +53,7 @@ export default function OnboardingMetametrics() {
           flushImmediately: true,
         });
       }
+
       metricsEvent({
         eventOpts: {
           category: 'Onboarding',

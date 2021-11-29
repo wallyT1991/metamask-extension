@@ -135,6 +135,7 @@ export default class DecryptMessageManager extends EventEmitter {
         msgParams,
       )}`,
     );
+
     // add origin from request
     if (req) {
       msgParams.origin = req.origin;

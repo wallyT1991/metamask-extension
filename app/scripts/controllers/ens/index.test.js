@@ -14,9 +14,11 @@ describe('EnsController', function () {
     getCurrentChainId = () => currentChainId;
     onNetworkDidChange = sinon.spy();
   });
+
   afterEach(function () {
     sinon.restore();
   });
+
   describe('#constructor', function () {
     it('should construct the controller given a provider and a network', async function () {
       const ens = new EnsController({

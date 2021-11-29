@@ -22,6 +22,7 @@ class ChromeDriver {
     if (process.env.ENABLE_CHROME_LOGGING !== 'false') {
       service.setStdio('inherit').enableChromeLogging();
     }
+
     if (port) {
       service.setPort(port);
     }

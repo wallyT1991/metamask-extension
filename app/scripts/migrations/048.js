@@ -59,9 +59,11 @@ function transformState(state = {}) {
   if (!state.PreferencesController) {
     state.PreferencesController = {};
   }
+
   if (!state.PreferencesController.frequentRpcListDetail) {
     state.PreferencesController.frequentRpcListDetail = [];
   }
+
   state.PreferencesController.frequentRpcListDetail.unshift({
     rpcUrl: 'http://localhost:8545',
     chainId: '0x539',

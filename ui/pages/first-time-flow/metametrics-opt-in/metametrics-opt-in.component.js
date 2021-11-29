@@ -147,6 +147,7 @@ export default class MetaMetricsOptIn extends Component {
                       }),
                     );
                   }
+
                   metrics.push(
                     metricsEvent({
                       eventOpts: {

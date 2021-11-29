@@ -41,6 +41,7 @@ export function formatDateWithYearContext(
     now.year === dateTime.year ? formatThisYear : fallback,
   );
 }
+
 /**
  * Determines if the provided chainId is a default MetaMask chain
  * @param {string} chainId - chainId to check
@@ -137,6 +138,7 @@ export function parseBalance(balance) {
   afterDecimal = `000000000000000000${wei}`
     .slice(-18)
     .replace(trailingZeros, '');
+
   if (afterDecimal === '') {
     afterDecimal = '0';
   }
@@ -419,6 +421,7 @@ export const toHumanReadableTime = (t, milliseconds) => {
   if (seconds <= SECOND_CUTOFF) {
     return t('gasTimingSecondsShort', [seconds]);
   }
+
   if (seconds <= MINUTE_CUTOFF) {
     return t('gasTimingMinutesShort', [Math.ceil(seconds / 60)]);
   }

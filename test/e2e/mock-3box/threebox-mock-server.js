@@ -35,6 +35,7 @@ class ThreeboxMockServer {
       request.on('data', (chunk) => {
         body += chunk.toString(); // convert Buffer to string
       });
+
       request.on('end', () => {
         const { key, data } = JSON.parse(body);
         this.database[key] = data;

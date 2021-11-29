@@ -24,6 +24,7 @@ describe('SlippageButtons', () => {
     expect(
       document.querySelector('.slippage-buttons__header'),
     ).toMatchSnapshot();
+
     expect(
       document.querySelector('.slippage-buttons__button-group'),
     ).toMatchSnapshot();

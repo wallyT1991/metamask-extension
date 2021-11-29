@@ -18,9 +18,11 @@ describe('CancelTransaction Component', () => {
     expect(wrapper.find(CancelTransactionGasFee).props().value).toStrictEqual(
       '0x1319718a5000',
     );
+
     expect(wrapper.find('.cancel-transaction__title').text()).toStrictEqual(
       'cancellationGasFee',
     );
+
     expect(
       wrapper.find('.cancel-transaction__description').text(),
     ).toStrictEqual('attemptToCancelDescription');

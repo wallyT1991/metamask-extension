@@ -32,6 +32,7 @@ const NetworksTabContent = ({
     </>
   );
 };
+
 NetworksTabContent.propTypes = {
   networkDefaultedToProvider: PropTypes.bool,
   networkIsSelected: PropTypes.bool,

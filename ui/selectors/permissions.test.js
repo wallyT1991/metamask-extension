@@ -28,17 +28,17 @@ describe('selectors', () => {
               permissions: [
                 {
                   '@context': ['https://github.com/MetaMask/rpc-cap'],
-                  'caveats': [
+                  caveats: [
                     {
                       name: 'exposedAccounts',
                       type: 'filterResponse',
                       value: ['0x8e5d75d60224ea0c33d0041e75de68b1c3cb6dd5'],
                     },
                   ],
-                  'date': 1585676177970,
-                  'id': '840d72a0-925f-449f-830a-1aa1dd5ce151',
-                  'invoker': 'peepeth.com',
-                  'parentCapability': 'eth_accounts',
+                  date: 1585676177970,
+                  id: '840d72a0-925f-449f-830a-1aa1dd5ce151',
+                  invoker: 'peepeth.com',
+                  parentCapability: 'eth_accounts',
                 },
               ],
             },
@@ -46,17 +46,17 @@ describe('selectors', () => {
               permissions: [
                 {
                   '@context': ['https://github.com/MetaMask/rpc-cap'],
-                  'caveats': [
+                  caveats: [
                     {
                       type: 'filterResponse',
                       value: ['0x8e5d75d60224ea0c33d0041e75de68b1c3cb6dd5'],
                       name: 'exposedAccounts',
                     },
                   ],
-                  'date': 1585685128948,
-                  'id': '6b9615cc-64e4-4317-afab-3c4f8ee0244a',
-                  'invoker': 'https://remix.ethereum.org',
-                  'parentCapability': 'eth_accounts',
+                  date: 1585685128948,
+                  id: '6b9615cc-64e4-4317-afab-3c4f8ee0244a',
+                  invoker: 'https://remix.ethereum.org',
+                  parentCapability: 'eth_accounts',
                 },
               ],
             },
@@ -103,17 +103,17 @@ describe('selectors', () => {
               permissions: [
                 {
                   '@context': ['https://github.com/MetaMask/rpc-cap'],
-                  'caveats': [
+                  caveats: [
                     {
                       name: 'exposedAccounts',
                       type: 'filterResponse',
                       value: ['0x8e5d75d60224ea0c33d0041e75de68b1c3cb6dd5'],
                     },
                   ],
-                  'date': 1585676177970,
-                  'id': '840d72a0-925f-449f-830a-1aa1dd5ce151',
-                  'invoker': 'peepeth.com',
-                  'parentCapability': 'eth_accounts',
+                  date: 1585676177970,
+                  id: '840d72a0-925f-449f-830a-1aa1dd5ce151',
+                  invoker: 'peepeth.com',
+                  parentCapability: 'eth_accounts',
                 },
               ],
             },
@@ -121,7 +121,7 @@ describe('selectors', () => {
               permissions: [
                 {
                   '@context': ['https://github.com/MetaMask/rpc-cap'],
-                  'caveats': [
+                  caveats: [
                     {
                       type: 'filterResponse',
                       value: [
@@ -131,10 +131,10 @@ describe('selectors', () => {
                       name: 'exposedAccounts',
                     },
                   ],
-                  'date': 1585685128948,
-                  'id': '6b9615cc-64e4-4317-afab-3c4f8ee0244a',
-                  'invoker': 'https://remix.ethereum.org',
-                  'parentCapability': 'eth_accounts',
+                  date: 1585685128948,
+                  id: '6b9615cc-64e4-4317-afab-3c4f8ee0244a',
+                  invoker: 'https://remix.ethereum.org',
+                  parentCapability: 'eth_accounts',
                 },
               ],
             },
@@ -189,7 +189,7 @@ describe('selectors', () => {
             permissions: [
               {
                 '@context': ['https://github.com/MetaMask/rpc-cap'],
-                'caveats': [
+                caveats: [
                   {
                     name: 'exposedAccounts',
                     type: 'filterResponse',
@@ -202,10 +202,10 @@ describe('selectors', () => {
                     ],
                   },
                 ],
-                'date': 1586359844177,
-                'id': '3aa65a8b-3bcb-4944-941b-1baa5fe0ed8b',
-                'invoker': 'https://remix.ethereum.org',
-                'parentCapability': 'eth_accounts',
+                date: 1586359844177,
+                id: '3aa65a8b-3bcb-4944-941b-1baa5fe0ed8b',
+                invoker: 'https://remix.ethereum.org',
+                parentCapability: 'eth_accounts',
               },
             ],
           },
@@ -213,17 +213,17 @@ describe('selectors', () => {
             permissions: [
               {
                 '@context': ['https://github.com/MetaMask/rpc-cap'],
-                'caveats': [
+                caveats: [
                   {
                     name: 'exposedAccounts',
                     type: 'filterResponse',
                     value: ['0x8e5d75d60224ea0c33d0041e75de68b1c3cb6dd5'],
                   },
                 ],
-                'date': 1585676177970,
-                'id': '840d72a0-925f-449f-830a-1aa1dd5ce151',
-                'invoker': 'peepeth.com',
-                'parentCapability': 'eth_accounts',
+                date: 1585676177970,
+                id: '840d72a0-925f-449f-830a-1aa1dd5ce151',
+                invoker: 'peepeth.com',
+                parentCapability: 'eth_accounts',
               },
             ],
           },
@@ -343,7 +343,7 @@ describe('selectors', () => {
             permissions: [
               {
                 '@context': ['https://github.com/MetaMask/rpc-cap'],
-                'caveats': [
+                caveats: [
                   {
                     name: 'exposedAccounts',
                     type: 'filterResponse',
@@ -353,10 +353,10 @@ describe('selectors', () => {
                     ],
                   },
                 ],
-                'date': 1586359844177,
-                'id': '3aa65a8b-3bcb-4944-941b-1baa5fe0ed8b',
-                'invoker': 'https://remix.ethereum.org',
-                'parentCapability': 'eth_accounts',
+                date: 1586359844177,
+                id: '3aa65a8b-3bcb-4944-941b-1baa5fe0ed8b',
+                invoker: 'https://remix.ethereum.org',
+                parentCapability: 'eth_accounts',
               },
             ],
           },
@@ -364,17 +364,17 @@ describe('selectors', () => {
             permissions: [
               {
                 '@context': ['https://github.com/MetaMask/rpc-cap'],
-                'caveats': [
+                caveats: [
                   {
                     name: 'exposedAccounts',
                     type: 'filterResponse',
                     value: ['0x8e5d75d60224ea0c33d0041e75de68b1c3cb6dd5'],
                   },
                 ],
-                'date': 1585676177970,
-                'id': '840d72a0-925f-449f-830a-1aa1dd5ce151',
-                'invoker': 'peepeth.com',
-                'parentCapability': 'eth_accounts',
+                date: 1585676177970,
+                id: '840d72a0-925f-449f-830a-1aa1dd5ce151',
+                invoker: 'peepeth.com',
+                parentCapability: 'eth_accounts',
               },
             ],
           },
@@ -382,17 +382,17 @@ describe('selectors', () => {
             permissions: [
               {
                 '@context': ['https://github.com/MetaMask/rpc-cap'],
-                'caveats': [
+                caveats: [
                   {
                     name: 'exposedAccounts',
                     type: 'filterResponse',
                     value: ['0x8e5d75d60224ea0c33d0041e75de68b1c3cb6dd5'],
                   },
                 ],
-                'date': 1585616816623,
-                'id': 'ce625215-f2e9-48e7-93ca-21ba193244ff',
-                'invoker': 'uniswap.exchange',
-                'parentCapability': 'eth_accounts',
+                date: 1585616816623,
+                id: 'ce625215-f2e9-48e7-93ca-21ba193244ff',
+                invoker: 'uniswap.exchange',
+                parentCapability: 'eth_accounts',
               },
             ],
           },

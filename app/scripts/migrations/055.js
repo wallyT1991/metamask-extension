@@ -30,12 +30,14 @@ function transformState(state) {
       // not be possible, but it's safer
       (_, key) => NETWORK_TYPE_TO_ID_MAP[key]?.chainId ?? UNKNOWN_CHAIN_ID_KEY,
     );
+
     // Now that mainnet and test net last fetched blocks are keyed by their
     // respective chainIds, we can safely delete anything we had for custom
     // networks. Any custom network that shares a chainId with one of the
     // aforementioned networks will use the value stored by chainId.
     delete state.IncomingTransactionsController
       .incomingTxLastFetchedBlockByChainId[UNKNOWN_CHAIN_ID_KEY];
+
     delete state.IncomingTransactionsController
       .incomingTxLastFetchedBlocksByNetwork;
   }

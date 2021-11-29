@@ -206,6 +206,7 @@ async function addEthereumChainHandler(
         }),
       );
     }
+
     if (nativeCurrency.decimals !== 18) {
       return end(
         ethErrors.rpc.invalidParams({

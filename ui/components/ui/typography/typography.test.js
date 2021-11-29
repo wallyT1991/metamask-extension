@@ -7,6 +7,7 @@ describe('Typography', () => {
     const { getByText } = render(<Typography>Test type</Typography>);
     expect(getByText('Test type')).toBeDefined();
   });
+
   it('should render the Typography with correct html tags', () => {
     const { getByText, container } = render(
       <>

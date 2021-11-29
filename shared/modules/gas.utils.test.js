@@ -65,6 +65,7 @@ describe('gas utils', () => {
                   }),
                 ).toBe(true);
               });
+
               results.forEach(({ result, gasLimit }) => {
                 const expectedResult = (
                   expectedEffectiveGasPrice * gasLimit

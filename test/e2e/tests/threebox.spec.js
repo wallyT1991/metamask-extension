@@ -17,9 +17,11 @@ describe('Threebox', function () {
     threeboxServer = new ThreeboxMockServer();
     await threeboxServer.start();
   });
+
   after(async function () {
     await threeboxServer.stop();
   });
+
   it('Set up data to be restored by 3box', async function () {
     await withFixtures(
       {
@@ -64,6 +66,7 @@ describe('Threebox', function () {
       },
     );
   });
+
   it('Restore from 3box', async function () {
     await withFixtures(
       {

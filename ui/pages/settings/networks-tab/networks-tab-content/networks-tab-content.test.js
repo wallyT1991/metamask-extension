@@ -71,6 +71,7 @@ describe('NetworksTabContent Component', () => {
     expect(
       getByDisplayValue(props.selectedNetwork.blockExplorerUrl),
     ).toBeInTheDocument();
+
     fireEvent.change(getByDisplayValue(props.selectedNetwork.label), {
       target: { value: 'LocalHost 8545' },
     });
@@ -78,6 +79,7 @@ describe('NetworksTabContent Component', () => {
     fireEvent.change(getByDisplayValue(props.selectedNetwork.chainId), {
       target: { value: '1' },
     });
+
     expect(
       queryByText('This Chain ID is currently used by the mainnet network.'),
     ).toBeInTheDocument();
@@ -85,6 +87,7 @@ describe('NetworksTabContent Component', () => {
     fireEvent.change(getByDisplayValue(props.selectedNetwork.rpcUrl), {
       target: { value: 'test' },
     });
+
     expect(
       queryByText('URLs require the appropriate HTTP/HTTPS prefix.'),
     ).toBeInTheDocument();

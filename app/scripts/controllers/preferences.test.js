@@ -152,10 +152,12 @@ describe('preferences controller', function () {
         rpcUrl: 'test/1',
         chainId: '0x1',
       });
+
       await preferencesController.updateRpc({
         rpcUrl: 'test/2',
         chainId: '0x1',
       });
+
       await preferencesController.updateRpc({
         rpcUrl: 'test/3',
         chainId: '0x1',
@@ -248,6 +250,7 @@ describe('preferences controller', function () {
       );
     });
   });
+
   describe('setUseTokenDetection', function () {
     it('should default to false', function () {
       const state = preferencesController.store.getState();
@@ -316,10 +319,12 @@ describe('preferences controller', function () {
         maxBaseFee: '1.5',
         priorityFee: '2',
       });
+
       assert.equal(
         preferencesController.store.getState().advancedGasFee.maxBaseFee,
         '1.5',
       );
+
       assert.equal(
         preferencesController.store.getState().advancedGasFee.priorityFee,
         '2',

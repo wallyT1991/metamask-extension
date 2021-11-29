@@ -131,11 +131,13 @@ export function validateTxParams(txParams, eip1559Compatibility = true) {
       'Invalid transaction params: must be an object.',
     );
   }
+
   if (!txParams.to && !txParams.data) {
     throw ethErrors.rpc.invalidParams(
       'Invalid transaction params: must specify "data" for contract deployments, or "to" (and optionally "data") for all other types of transactions.',
     );
   }
+
   if (isEIP1559Transaction({ txParams }) && !eip1559Compatibility) {
     throw ethErrors.rpc.invalidParams(
       'Invalid transaction params: params specify an EIP-1559 transaction but the current network does not support EIP-1559',
@@ -158,6 +160,7 @@ export function validateTxParams(txParams, eip1559Compatibility = true) {
           'gasPrice',
           'maxFeePerGas',
         );
+
         ensureMutuallyExclusiveFieldsNotProvided(
           txParams,
           'gasPrice',
@@ -179,6 +182,7 @@ export function validateTxParams(txParams, eip1559Compatibility = true) {
           txParams,
           'maxPriorityFeePerGas',
         );
+
         ensureMutuallyExclusiveFieldsNotProvided(
           txParams,
           'maxPriorityFeePerGas',
@@ -230,6 +234,7 @@ export function validateFrom(txParams) {
       `Invalid "from" address "${txParams.from}": not a string.`,
     );
   }
+
   if (!isValidHexAddress(txParams.from, { allowNonPrefixed: false })) {
     throw ethErrors.rpc.invalidParams('Invalid "from" address.');
   }

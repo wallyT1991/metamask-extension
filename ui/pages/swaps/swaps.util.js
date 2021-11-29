@@ -84,6 +84,7 @@ export const getBaseApi = function (type, chainId = MAINNET_CHAIN_ID) {
   if (!baseUrl) {
     throw new Error(`Swaps API calls are disabled for chainId: ${chainId}`);
   }
+
   switch (type) {
     case 'trade':
       return `${baseUrl}/trades?`;
@@ -307,6 +308,7 @@ export async function fetchTradesInfo(
   if (exchangeList) {
     urlParams.exchangeList = exchangeList;
   }
+
   if (shouldEnableDirectWrapping(chainId, sourceToken, destinationToken)) {
     urlParams.enableDirectWrapping = true;
   }
@@ -811,6 +813,7 @@ export const getSwapsLivenessForNetwork = (swapsFeatureFlags = {}, chainId) => {
       swapsFeatureIsLive: true,
     };
   }
+
   // If a network name is not found in the list of feature flags, disable Swaps.
   if (!swapsFeatureFlags[networkName]) {
     return {

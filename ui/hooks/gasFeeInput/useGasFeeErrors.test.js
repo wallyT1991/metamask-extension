@@ -51,6 +51,7 @@ describe('useGasFeeErrors', () => {
     beforeEach(() => {
       configureLegacy();
     });
+
     it('does not returns gasLimitError if gasLimit is not below minimum', () => {
       const { result } = renderUseGasFeeErrorsHook(
         LEGACY_GAS_ESTIMATE_RETURN_VALUE,
@@ -58,6 +59,7 @@ describe('useGasFeeErrors', () => {
       expect(result.current.gasErrors.gasLimit).toBeUndefined();
       expect(result.current.hasGasErrors).toBe(false);
     });
+
     it('returns gasLimitError if gasLimit is below minimum', () => {
       const { result } = renderUseGasFeeErrorsHook({
         gasLimit: '100',
@@ -75,11 +77,13 @@ describe('useGasFeeErrors', () => {
       beforeEach(() => {
         configureEIP1559();
       });
+
       it('does not return maxPriorityFeeError if maxPriorityFee is not 0', () => {
         const { result } = renderUseGasFeeErrorsHook();
         expect(result.current.gasErrors.maxPriorityFee).toBeUndefined();
         expect(result.current.hasGasErrors).toBe(false);
       });
+
       it('return maxPriorityFeeError if maxPriorityFee is 0', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxPriorityFeePerGas: '0',
@@ -90,10 +94,12 @@ describe('useGasFeeErrors', () => {
         expect(result.current.hasGasErrors).toBe(true);
       });
     });
+
     describe('Legacy estimates', () => {
       beforeEach(() => {
         configureLegacy();
       });
+
       it('does not return maxPriorityFeeError if maxPriorityFee is 0', () => {
         const { result } = renderUseGasFeeErrorsHook(
           LEGACY_GAS_ESTIMATE_RETURN_VALUE,
@@ -109,11 +115,13 @@ describe('useGasFeeErrors', () => {
       beforeEach(() => {
         configureEIP1559();
       });
+
       it('does not return maxFeeError if maxFee is greater than maxPriorityFee', () => {
         const { result } = renderUseGasFeeErrorsHook();
         expect(result.current.gasErrors.maxFee).toBeUndefined();
         expect(result.current.hasGasErrors).toBe(false);
       });
+
       it('return maxFeeError if maxFee is less than maxPriorityFee', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxFeePerGas: '1',
@@ -124,6 +132,7 @@ describe('useGasFeeErrors', () => {
         );
         expect(result.current.hasGasErrors).toBe(true);
       });
+
       it('does not return MAX_FEE_IMBALANCE error if maxPriorityFeePerGas is 0', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxFeePerGas: '1',
@@ -132,10 +141,12 @@ describe('useGasFeeErrors', () => {
         expect(result.current.gasErrors.maxFee).toBeUndefined();
       });
     });
+
     describe('Legacy estimates', () => {
       beforeEach(() => {
         configureLegacy();
       });
+
       it('does not return maxFeeError if maxFee is less than maxPriorityFee', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxFeePerGas: '1',
@@ -153,16 +164,19 @@ describe('useGasFeeErrors', () => {
       beforeEach(() => {
         configureEIP1559();
       });
+
       it('does not return gasPriceError if gasPrice is 0', () => {
         const { result } = renderUseGasFeeErrorsHook({ gasPrice: '0' });
         expect(result.current.gasErrors.gasPrice).toBeUndefined();
         expect(result.current.hasGasErrors).toBe(false);
       });
     });
+
     describe('Legacy estimates', () => {
       beforeEach(() => {
         configureLegacy();
       });
+
       it('returns gasPriceError if gasPrice is 0', () => {
         const { result } = renderUseGasFeeErrorsHook({
           gasPrice: '0',
@@ -173,6 +187,7 @@ describe('useGasFeeErrors', () => {
         );
         expect(result.current.hasGasErrors).toBe(true);
       });
+
       it('does not return gasPriceError if gasPrice is > 0', () => {
         const { result } = renderUseGasFeeErrorsHook(
           LEGACY_GAS_ESTIMATE_RETURN_VALUE,
@@ -188,10 +203,12 @@ describe('useGasFeeErrors', () => {
       beforeEach(() => {
         configureEIP1559();
       });
+
       it('does not return maxPriorityFeeWarning if maxPriorityFee is > suggestedMaxPriorityFeePerGas', () => {
         const { result } = renderUseGasFeeErrorsHook();
         expect(result.current.gasWarnings.maxPriorityFee).toBeUndefined();
       });
+
       it('return maxPriorityFeeWarning if maxPriorityFee is < suggestedMaxPriorityFeePerGas', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxPriorityFeePerGas: '1',
@@ -200,6 +217,7 @@ describe('useGasFeeErrors', () => {
           GAS_FORM_ERRORS.MAX_PRIORITY_FEE_TOO_LOW,
         );
       });
+
       it('return maxPriorityFeeWarning if maxPriorityFee is > gasFeeEstimates.high.suggestedMaxPriorityFeePerGas', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxPriorityFeePerGas: '100',
@@ -209,10 +227,12 @@ describe('useGasFeeErrors', () => {
         );
       });
     });
+
     describe('Legacy estimates', () => {
       beforeEach(() => {
         configureLegacy();
       });
+
       it('does not return maxPriorityFeeWarning if maxPriorityFee is < gasFeeEstimates.low.suggestedMaxPriorityFeePerGas', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxPriorityFeePerGas: '1',
@@ -229,10 +249,12 @@ describe('useGasFeeErrors', () => {
       beforeEach(() => {
         configureEIP1559();
       });
+
       it('does not return maxFeeWarning if maxFee is > suggestedMaxFeePerGas', () => {
         const { result } = renderUseGasFeeErrorsHook();
         expect(result.current.gasWarnings.maxFee).toBeUndefined();
       });
+
       it('return maxFeeWarning if maxFee is < suggestedMaxFeePerGas', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxFeePerGas: '20',
@@ -241,6 +263,7 @@ describe('useGasFeeErrors', () => {
           GAS_FORM_ERRORS.MAX_FEE_TOO_LOW,
         );
       });
+
       it('return maxFeeWarning if gasFeeEstimates are high and maxFee is > suggestedMaxFeePerGas', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxFeePerGas: '1000',
@@ -250,10 +273,12 @@ describe('useGasFeeErrors', () => {
         );
       });
     });
+
     describe('Legacy estimates', () => {
       beforeEach(() => {
         configureLegacy();
       });
+
       it('does not return maxFeeWarning if maxFee is < suggestedMaxFeePerGas', () => {
         const { result } = renderUseGasFeeErrorsHook({
           maxFeePerGas: '1',
@@ -270,6 +295,7 @@ describe('useGasFeeErrors', () => {
       const { result } = renderUseGasFeeErrorsHook();
       expect(result.current.balanceError).toBe(false);
     });
+
     it('is true if balance is less than transaction value', () => {
       configureLegacy();
       const { result } = renderUseGasFeeErrorsHook({
@@ -286,6 +312,7 @@ describe('useGasFeeErrors', () => {
       const { result } = renderUseGasFeeErrorsHook();
       expect(result.current.hasSimulationError).toBe(false);
     });
+
     it('is true if transaction.simulationFails is true', () => {
       configureEIP1559();
       const { result } = renderUseGasFeeErrorsHook({
@@ -301,6 +328,7 @@ describe('useGasFeeErrors', () => {
       const { result } = renderUseGasFeeErrorsHook();
       expect(result.current.estimatesUnavailableWarning).toBe(false);
     });
+
     it('is true if supportsEIP1559 and gasEstimateType is not fee-market', () => {
       useSelector.mockImplementation(
         generateUseSelectorRouter({
