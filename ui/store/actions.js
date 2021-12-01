@@ -1118,8 +1118,8 @@ export function updateMetamaskState(newState) {
     const transactionIdsToRemove = Object.keys(
       transactionsToDisplayOnFailure,
     ).filter((id) => {
-      const currentTx = currentNetworkTxList.find((tx) => tx.id === id);
-      const newTx = newNetworkTxList.find((tx) => tx.id === id);
+      const currentTx = currentNetworkTxList.find((tx) => String(tx.id) === id);
+      const newTx = newNetworkTxList.find((tx) => String(tx.id) === id);
       if (currentTx && newTx) {
         return (
           newTx.status !== currentTx.status &&
