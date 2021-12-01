@@ -24,7 +24,8 @@
         "eslint-plugin-node": true,
         "eslint-plugin-prettier": true,
         "eslint-plugin-react": true,
-        "eslint-plugin-react-hooks": true
+        "eslint-plugin-react-hooks": true,
+        "eslint-plugin-jsdoc": true
       }
     },
     "eslint-module-utils": {
