@@ -76,6 +76,7 @@ export default class ConfirmPageContainer extends Component {
     // Hardware
     showingHardwareConnectionContents: PropTypes.bool,
     showingHardwareConnectionAdvancedPopover: PropTypes.bool,
+    closeHardwareConnectionAdvancedPopover: PropTypes.func,
   };
 
   render() {
@@ -128,6 +129,7 @@ export default class ConfirmPageContainer extends Component {
       isOwnedAccount,
       showingHardwareConnectionContents,
       showingHardwareConnectionAdvancedPopover,
+      closeHardwareConnectionAdvancedPopover,
     } = this.props;
 
     const showAddToAddressDialog =
@@ -140,11 +142,6 @@ export default class ConfirmPageContainer extends Component {
       (currentTransaction.type === TRANSACTION_TYPES.CONTRACT_INTERACTION ||
         currentTransaction.type === TRANSACTION_TYPES.DEPLOY_CONTRACT) &&
       currentTransaction.txParams?.value === '0x0';
-
-    /* ToDo:  We need this method from elevated component */
-    const onHardwareConnectivityClose = () => {
-      console.log('Closing hardware connectivity');
-    };
 
     return (
       <GasFeeContextProvider transaction={currentTransaction}>
@@ -248,7 +245,7 @@ export default class ConfirmPageContainer extends Component {
           )}
           {showingHardwareConnectionAdvancedPopover ? (
             <HardwareConnectivityPopover
-              onClose={onHardwareConnectivityClose}
+              onClose={closeHardwareConnectionAdvancedPopover}
             />
           ) : null}
         </div>
