@@ -82,7 +82,7 @@ const BaseFeeInput = () => {
 
 =======
     setMaxFeePerGas,
-    setMaxBaseFee,
+    setBaseFeeMultiplier,
   } = useAdvanceGasFeePopoverContext();
 >>>>>>> 6ef929224 (adding maxBaseFeeMultiplier to teh context and updating teh default setting)
   const { estimatedBaseFee } = gasFeeEstimates;
@@ -167,7 +167,7 @@ const BaseFeeInput = () => {
     );
     setBaseFeeError(error);
     setHasError(Boolean(error));
-    setMaxBaseFee(maxBaseFeeMultiplier);
+    setBaseFeeMultiplier(maxBaseFeeMultiplier);
   }, [
     gasFeeEstimates,
     maxBaseFeeGWEI,
@@ -176,7 +176,7 @@ const BaseFeeInput = () => {
     setHasError,
     setBaseFeeError,
     setMaxFeePerGas,
-    setMaxBaseFee,
+    setBaseFeeMultiplier,
   ]);
 
   return (
