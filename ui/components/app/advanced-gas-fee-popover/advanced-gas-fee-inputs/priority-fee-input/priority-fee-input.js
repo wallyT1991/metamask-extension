@@ -11,6 +11,7 @@ import { useGasFeeContext } from '../../../../../contexts/gasFee';
 import { useI18nContext } from '../../../../../hooks/useI18nContext';
 import { useUserPreferencedCurrency } from '../../../../../hooks/useUserPreferencedCurrency';
 import FormField from '../../../../ui/form-field';
+import Box from '../../../../ui/box';
 import { bnGreaterThan, bnLessThan } from '../../../../../helpers/utils/util';
 
 import { useAdvancedGasFeePopoverContext } from '../../context';
@@ -89,7 +90,7 @@ const PriorityFeeInput = () => {
   ]);
 
   return (
-    <>
+    <Box margin={[0, 2]}>
       <FormField
         error={priorityFeeError ? t(priorityFeeError) : ''}
         onChange={updatePriorityFee}
@@ -101,7 +102,7 @@ const PriorityFeeInput = () => {
         numeric
       />
       <AdvancedGasFeeInputSubtext latest="1-18 GWEI" historical="23-359 GWEI" />
-    </>
+    </Box>
   );
 };
 
