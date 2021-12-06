@@ -2483,6 +2483,9 @@
   "slow": {
     "message": "Slow"
   },
+  "snaps": {
+    "message": "Snaps"
+  },
   "snap_clearState": {
     "message": "Clear its stored data from your device.",
     "description": "The description for the `snap_clearState` permission"

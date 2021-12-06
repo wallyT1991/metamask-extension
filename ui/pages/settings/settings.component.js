@@ -11,6 +11,8 @@ import {
   ABOUT_US_ROUTE,
   SETTINGS_ROUTE,
   NETWORKS_ROUTE,
+  SNAPS_VIEW_ROUTE,
+  SNAPS_LIST_ROUTE,
   CONTACT_LIST_ROUTE,
   CONTACT_ADD_ROUTE,
   CONTACT_EDIT_ROUTE,
@@ -26,6 +28,7 @@ import InfoTab from './info-tab';
 import SecurityTab from './security-tab';
 import ContactListTab from './contact-list-tab';
 import ExperimentalTab from './experimental-tab';
+import SnapListTab from './snaps-list-tab';
 
 class SettingsPage extends PureComponent {
   static propTypes = {
@@ -208,6 +211,11 @@ class SettingsPage extends PureComponent {
             key: CONTACT_LIST_ROUTE,
           },
           {
+            content: t('snaps'),
+            description: t('snapsSettingsDescription'),
+            key: SNAPS_LIST_ROUTE,
+          },
+          {
             content: t('securityAndPrivacy'),
             description: t('securitySettingsDescription'),
             key: SECURITY_ROUTE,
@@ -280,6 +288,8 @@ class SettingsPage extends PureComponent {
           path={`${CONTACT_VIEW_ROUTE}/:id`}
           component={ContactListTab}
         />
+        <Route exact path={SNAPS_LIST_ROUTE} component={SnapListTab} />
+        {/* <Route exact path={`${SNAPS_VIEW_ROUTE}/:id`} component={SnapListTab} /> */}
         <Route
           render={(routeProps) => (
             <SettingsTab
