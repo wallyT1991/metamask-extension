@@ -48,7 +48,6 @@ export default class ConfirmPageContainerContent extends Component {
     rejectNText: PropTypes.string,
     hideTitle: PropTypes.bool,
     supportsEIP1559V2: PropTypes.bool,
-    hideTitle: PropTypes.boolean,
     isFailedTransaction: PropTypes.bool,
   };
 
