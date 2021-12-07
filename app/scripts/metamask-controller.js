@@ -143,6 +143,10 @@ export default class MetamaskController extends EventEmitter {
     this.extension = opts.extension;
     this.platform = opts.platform;
     const initState = opts.initState || {};
+    // TODO:flask temporary hack
+    delete initState.PermissionController;
+    delete initState.SnapController;
+
     const version = this.platform.getVersion();
     this.recordFirstTimeInfo(initState);
 
@@ -560,9 +564,9 @@ export default class MetamaskController extends EventEmitter {
       getRpcMessageHandler: this.workerController.getRpcMessageHandler.bind(
         this.workerController,
       ),
-      getPermissions: this.permissionController.getPermissions.bind(
-        this.permissionController,
-      ),
+      // TODO:flask Fix in skunkworks (SnapController)
+      getPermissions: (origin) =>
+        Object.values(this.permissionController.getPermissions(origin) ?? {}),
       hasPermission: this.permissionController.hasPermission.bind(
         this.permissionController,
       ),
@@ -571,11 +575,16 @@ export default class MetamaskController extends EventEmitter {
           this.permissionController.revokeAllPermissions(snapId),
         );
       },
-      requestPermissions: (snapId, requestedPermissions) => {
-        this.permissionController.requestPermissions(
+      // TODO:flask Fix in skunkworks (SnapController)
+      requestPermissions: async (snapId, requestedPermissions) => {
+        const [
+          approvedPermissions,
+        ] = await this.permissionController.requestPermissions(
           { origin: snapId },
           requestedPermissions,
         );
+
+        return Object.values(approvedPermissions);
       },
       closeAllConnections: this.removeAllConnections.bind(this),
       state: initState.SnapController,
@@ -870,13 +879,17 @@ export default class MetamaskController extends EventEmitter {
     // TODO:flask Probably find a better solution?
     // We create these wrapper functions to reference the SnapController in
     // restricted method hooks before it's actually initialized.
-    const _addSnap = (...args) => this.snapController.add(args);
-    const _getSnap = (...args) => this.snapController.get(args);
+    const _addSnap = (...args) => this.snapController.add(...args);
+    const _getSnap = (...args) => this.snapController.get(...args);
     const _getSnapRpcHandler = (...args) =>
-      this.snapController.getRpcMessageHandler(args);
-    const _getSnapState = (...args) => this.snapController.getSnapState(args);
+      this.snapController.getRpcMessageHandler(...args);
+    // TODO:flask Fix in skunkworks (probably?)
+    const _getSnapState = async (...args) => {
+      const result = await this.snapController.getSnapState(...args);
+      return result ?? null;
+    };
     const _updateSnapState = (...args) =>
-      this.snapController.updateSnapState(args);
+      this.snapController.updateSnapState(...args);
 
     return buildSnapPermissionSpecifications({
       addSnap: _addSnap,
@@ -3122,10 +3135,17 @@ export default class MetamaskController extends EventEmitter {
           this.snapController,
           origin,
         ),
-        requestPermissions: this.permissionController.requestPermissions.bind(
-          this.permissionController,
-          origin,
-        ),
+        // TODO:flask Fix in skunkworks (rpc-methods)
+        requestPermissions: async (requestedPermissions) => {
+          const [
+            approvedPermissions,
+          ] = await this.permissionController.requestPermissions(
+            { origin },
+            requestedPermissions,
+          );
+
+          return Object.values(approvedPermissions);
+        },
         getAccounts: this.getPermittedAccounts.bind(this, origin),
         installSnaps: this.snapController.installSnaps.bind(
           this.snapController,

@@ -46,6 +46,7 @@ export function createMethodMiddleware(hooks) {
           selectHooks(hooks, hookNames),
         );
       } catch (error) {
+        console.error(error);
         return end(error);
       }
     }
@@ -81,6 +82,7 @@ export function createSnapMethodMiddleware(isSnap, hooks) {
           selectHooks(hooks, hookNames),
         );
       } catch (error) {
+        console.error(error);
         return end(error);
       }
     }
