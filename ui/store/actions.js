@@ -1113,7 +1113,7 @@ export function updateMetamaskState(newState) {
       value: newState,
     });
 
-    // Check that the transaction was not submitted successfully, and remove it from failed transactions if it was.
+    // Remove successful transactions from `transactionsToDisplayOnFailure`.
 
     const transactionIdsToRemove = Object.keys(
       transactionsToDisplayOnFailure,
