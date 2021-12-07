@@ -95,9 +95,7 @@ import PersonalMessageManager from './lib/personal-message-manager';
 import TypedMessageManager from './lib/typed-message-manager';
 import TransactionController from './controllers/transactions';
 import DetectTokensController from './controllers/detect-tokens';
-import PermissionLogController from './controllers/permissions/permission-log';
 import SwapsController from './controllers/swaps';
-import { NOTIFICATION_NAMES } from './controllers/permissions/enums';
 import { nodeify, nodeifyObject } from './lib/nodeify';
 import accountImporter from './account-import-strategies';
 import seedPhraseVerifier from './lib/seed-phrase-verifier';
@@ -111,7 +109,12 @@ import {
   getPermissionBackgroundApiMethods,
   getPermissionSpecifications,
   getPermittedAccountsByOrigin,
+  NOTIFICATION_NAMES,
+  PermissionLogController,
   unrestrictedMethods,
+  ///: BEGIN:ONLY_INCLUDE_IN(flask)
+  buildSnapPermissionSpecifications,
+  ///: END:ONLY_INCLUDE_IN
 } from './controllers/permissions';
 
 export const METAMASK_CONTROLLER_EVENTS = {
@@ -496,12 +499,17 @@ export default class MetamaskController extends EventEmitter {
       }),
       state: initState.PermissionController,
       caveatSpecifications: getCaveatSpecifications({ getIdentities }),
-      permissionSpecifications: getPermissionSpecifications({
-        getIdentities,
-        getAllAccounts: this.keyringController.getAccounts.bind(
-          this.keyringController,
-        ),
-      }),
+      permissionSpecifications: {
+        ...getPermissionSpecifications({
+          getIdentities,
+          getAllAccounts: this.keyringController.getAccounts.bind(
+            this.keyringController,
+          ),
+        }),
+        ///: BEGIN:ONLY_INCLUDE_IN(flask)
+        ...this.getSnapPermissionSpecifications(),
+        ///: END:ONLY_INCLUDE_IN
+      },
       unrestrictedMethods,
     });
 
@@ -574,31 +582,6 @@ export default class MetamaskController extends EventEmitter {
       messenger: snapControllerMessenger,
     });
     ///: END:ONLY_INCLUDE_IN
-
-    // TODO:rebase fix this after skunkworks@0.5.0
-    // this.permissionsController.initializePermissions(
-    //   initState.PermissionsController,
-    //   getRestrictedMethods,
-    //   ///: BEGIN:ONLY_INCLUDE_IN(flask)
-    //   {
-    //     addSnap: this.snapController.add.bind(this.snapController),
-    //     clearSnapState: (fromDomain) =>
-    //       this.snapController.updateSnapState(fromDomain, {}),
-    //     getMnemonic: this.getPrimaryKeyringMnemonic.bind(this),
-    //     getSnap: this.snapController.get.bind(this.snapController),
-    //     getSnapRpcHandler: this.snapController.getRpcMessageHandler.bind(
-    //       this.snapController,
-    //     ),
-    //     getSnapState: this.snapController.getSnapState.bind(
-    //       this.snapController,
-    //     ),
-    //     showConfirmation: window.confirm, // Eventually, a template confirmation.
-    //     updateSnapState: this.snapController.updateSnapState.bind(
-    //       this.snapController,
-    //     ),
-    //   },
-    //   ///: END:ONLY_INCLUDE_IN
-    // );
 
     this.detectTokensController = new DetectTokensController({
       preferences: this.preferencesController,
@@ -876,6 +859,36 @@ export default class MetamaskController extends EventEmitter {
     // TODO:LegacyProvider: Delete
     this.publicConfigStore = this.createPublicConfigStore();
   }
+
+  ///: BEGIN:ONLY_INCLUDE_IN(flask)
+  /**
+   * Constructor helper for getting Snap permission specifications.
+   * Exists primarily to get around the circular dependencies between the Snap
+   * and Permission controllers during initialization.
+   */
+  getSnapPermissionSpecifications() {
+    // We create these wrapper functions to reference the SnapController in
+    // restricted method hooks before it's actually initialized.
+    const _addSnap = (...args) => this.snapController.add(args);
+    const _getSnap = (...args) => this.snapController.get(args);
+    const _getSnapRpcHandler = (...args) =>
+      this.snapController.getRpcMessageHandler(args);
+    const _getSnapState = (...args) => this.snapController.getSnapState(args);
+    const _updateSnapState = (...args) =>
+      this.snapController.updateSnapState(args);
+
+    return buildSnapPermissionSpecifications({
+      addSnap: _addSnap,
+      clearSnapState: (fromSubject) => _updateSnapState(fromSubject, {}),
+      getMnemonic: this.getPrimaryKeyringMnemonic.bind(this),
+      getSnap: _getSnap,
+      getSnapRpcHandler: _getSnapRpcHandler,
+      getSnapState: _getSnapState,
+      showConfirmation: window.confirm, // TODO:flask Use custom confirmation
+      updateSnapState: _updateSnapState,
+    });
+  }
+  ///: END:ONLY_INCLUDE_IN
 
   /**
    * Sets up BaseController V2 event subscriptions. Currently, this includes
