@@ -189,8 +189,8 @@ const BaseFeeInput = () => {
         numeric
       />
       <AdvancedGasFeeInputSubtext
-        latest={`${estimatedBaseFee}`}
-        historical={`${lowHistorical}-${highHistorical}`}
+        latest={`${estimatedBaseFee} GWEI`}
+        historical={`${lowHistorical}-${highHistorical} GWEI`}
       />
     </Box>
   );
