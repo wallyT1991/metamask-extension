@@ -79,6 +79,7 @@
     },
     "PermissionsController": {
       "domains": {},
+      "permissionsDescriptions": {},
       "permissionsRequests": []
     },
     "PreferencesController": {

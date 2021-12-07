@@ -867,6 +867,7 @@ export default class MetamaskController extends EventEmitter {
    * and Permission controllers during initialization.
    */
   getSnapPermissionSpecifications() {
+    // TODO:flask Probably find a better solution?
     // We create these wrapper functions to reference the SnapController in
     // restricted method hooks before it's actually initialized.
     const _addSnap = (...args) => this.snapController.add(args);
@@ -2993,14 +2994,7 @@ export default class MetamaskController extends EventEmitter {
   }) {
     // setup json rpc engine stack
     const engine = new JsonRpcEngine();
-    const {
-      blockTracker,
-      permissionController,
-      provider,
-      ///: BEGIN:ONLY_INCLUDE_IN(flask)
-      snapController,
-      ///: END:ONLY_INCLUDE_IN
-    } = this;
+    const { blockTracker, provider } = this;
 
     // create filter polyfill middleware
     const filterMiddleware = createFilterMiddleware({ provider, blockTracker });
@@ -3124,13 +3118,19 @@ export default class MetamaskController extends EventEmitter {
     engine.push(
       createSnapMethodMiddleware(isSnap, {
         getAppKey: this.getAppKeyForDomain.bind(this, origin),
-        getSnaps: snapController.getPermittedSnaps.bind(snapController, origin),
-        requestPermissions: permissionController.requestPermissions.bind(
-          permissionController,
+        getSnaps: this.snapController.getPermittedSnaps.bind(
+          this.snapController,
+          origin,
+        ),
+        requestPermissions: this.permissionController.requestPermissions.bind(
+          this.permissionController,
           origin,
         ),
         getAccounts: this.getPermittedAccounts.bind(this, origin),
-        installSnaps: snapController.installSnaps.bind(snapController, origin),
+        installSnaps: this.snapController.installSnaps.bind(
+          this.snapController,
+          origin,
+        ),
       }),
     );
     ///: END:ONLY_INCLUDE_IN

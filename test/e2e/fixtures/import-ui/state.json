@@ -132,6 +132,7 @@
     },
     "PermissionsController": {
       "permissionsRequests": [],
+      "permissionsDescriptions": {},
       "domains": {}
     },
     "TransactionController": {

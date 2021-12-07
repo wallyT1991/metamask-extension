@@ -5,7 +5,7 @@ module.exports = {
     './app/scripts/lib/**/*.test.js',
     './app/scripts/migrations/*.test.js',
     './app/scripts/platforms/*.test.js',
-    './app/scripts/controllers/permissions/*.test.js',
+    './app/scripts/controllers/permissions/**/*.test.js',
   ],
   recursive: true,
   require: ['test/env.js', 'test/setup.js'],
