@@ -355,7 +355,7 @@ export default function reduceApp(state = {}, action) {
         ...appState,
         gasLoadingAnimationIsShowing: action.value,
       };
-    case actionConstants.ADD_TXS_TO_FAILED_TXES_TO_DISPLAY:
+    case actionConstants.ADD_TRANSACTION_TO_DISPLAY_ON_FAILURE:
       return {
         ...appState,
         transactionsToDisplayOnFailure: {
@@ -405,9 +405,9 @@ export function hideWhatsNewPopup() {
 export function toggleGasLoadingAnimation(value) {
   return { type: actionConstants.TOGGLE_GAS_LOADING_ANIMATION, value };
 }
-export function addTxToFailedTxesToDisplay(txId) {
+export function addTransactionToDisplayOnFailure(txId) {
   return {
-    type: actionConstants.ADD_TXS_TO_FAILED_TXES_TO_DISPLAY,
+    type: actionConstants.ADD_TRANSACTION_TO_DISPLAY_ON_FAILURE,
     value: txId,
   };
 }
