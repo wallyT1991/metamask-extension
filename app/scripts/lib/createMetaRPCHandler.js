@@ -26,7 +26,7 @@ const createMetaRPCHandler = (api, outStream) => {
 
     if (outStream._writableState.ended) {
       if (error) {
-        console.log(error);
+        console.error(error);
       }
       return;
     }
